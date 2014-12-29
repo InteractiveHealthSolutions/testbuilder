@@ -61,9 +61,9 @@
                     </c:url>
 
                     <td rowspan="${question.getQuestionDataList().size()}">
-                    <a href="<c:out value="${editUrl}"/>">Edit</a> | <c:url var="detailUrl"
-                        value="${resources.JSP_VIEW_QUESTION}">
-                        
+                    <a href="<c:out value="${editUrl}"/>">Edit</a> | 
+                    
+                    <c:url var="detailUrl" value="${resources.JSP_VIEW_QUESTION}">                        
                         <c:param name="id" value="${question.getId()}" />
                       </c:url> <a href="<c:out value="${detailUrl}"/>">Details</a>
                     
