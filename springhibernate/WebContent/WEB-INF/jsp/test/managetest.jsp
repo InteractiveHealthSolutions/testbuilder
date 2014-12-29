@@ -53,7 +53,14 @@
                 <c:url var="editUrl" value="${resources.JSP_EDIT_TEST}">
                   <c:param name="id" value="${test.getId()}" />
                 </c:url>
-                <td><a href="<c:out value="${editUrl}"/>">Edit</a></td>
+                <td>
+                <a href="<c:out value="${editUrl}"/>">Edit</a> | 
+                    
+                    <c:url var="detailUrl" value="${resources.JSP_VIEW_TEST}">                        
+                        <c:param name="id" value="${test.getId()}" />
+                      </c:url> <a href="<c:out value="${detailUrl}"/>">Details</a>
+                
+                </td>
 
               </tr>
 
