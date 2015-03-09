@@ -11,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.ihs.springhibernate.sessioninterface.IUserSession;
 
 public class AuditTrailFieldsInterceptor extends EmptyInterceptor
-{
-//	@Autowired
-//	private IUserSession userSession;
-//	
+{	
 	// It is called  before update operation of Hibernate
 	public boolean onFlushDirty(Object entity, Serializable id, Object[] currentState,
 			Object[] previousState, String[] propertyNames, Type[] types)
