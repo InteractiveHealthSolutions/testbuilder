@@ -15,8 +15,8 @@ public class HomeController
 	@Autowired
 	private IUserSession userSession;
 
-	// Error : It will allowed logged in user and don't show any dash board
-	
+	// Error : It will allow logged in user and don't show any dash board
+
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public ModelAndView getHome()
 	{
@@ -25,7 +25,10 @@ public class HomeController
 		ModelAndView modelAndView = null;
 		ResourcesName resources = new ResourcesName();
 
-		if (userSession != null)
+		/*
+		 * TODO: dirty way to validate userSession is not null
+		 */
+		if (userSession.getName() != null)
 		{
 			userSession.getRole().getPrivilegeList();
 			modelAndView = new ModelAndView(resources.getJSP_HOME());
