@@ -1,6 +1,5 @@
 package com.ihs.springhibernate.sessionuser;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import org.springframework.context.annotation.Scope;
@@ -13,6 +12,15 @@ import com.ihs.springhibernate.sessioninterface.IUserSession;
 // public class UserSession extends User implements IUserSession
 public class UserSession implements IUserSession, java.io.Serializable
 {
+
+	/**
+	 *
+	 */
+
+	/*
+	 * Added to suppress warning
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 

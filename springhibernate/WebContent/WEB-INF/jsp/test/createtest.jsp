@@ -12,8 +12,7 @@
 <t:header />
 
 <link href="<c:url value='/resources/jquerymultiselect/css/multi-select.css'/>" media="screen" rel="stylesheet"
-  type="text/css"
->
+  type="text/css">
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 

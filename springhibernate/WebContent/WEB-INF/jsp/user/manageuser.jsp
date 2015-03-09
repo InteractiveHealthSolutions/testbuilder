@@ -29,8 +29,6 @@
 
         <h3>Manage Users</h3>
 
-
-
         <c:url var="createUrl" value="${resources.JSP_ADD_USER}">
         </c:url>
         <h4>
@@ -49,7 +47,7 @@
             <tr>
               <td>${user.getName()}</td>
               <td>${user.getLogin_Id()}</td>
-              <td>${user.getPassword()}</td>
+<%--               <td>${user.getPassword()}</td> --%>
 
               <c:url var="editUrl" value="${resources.JSP_EDIT_USER}">
                 <c:param name="id" value="${user.getId()}" />

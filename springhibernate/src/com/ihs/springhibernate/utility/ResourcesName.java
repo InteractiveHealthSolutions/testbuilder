@@ -25,38 +25,44 @@ public class ResourcesName
 	private final String JSP_INDEX = "index";
 
 	private final String JSP_HOME = "home";
-
-	private final String JSP_MANAGE_USER = "manageuser";
+	
 	private final String JSP_MANAGE_TEST_QUESTION = "managetestquestion"; // main page for managing test and question
+	
+	private final String JSP_ADD_USER = "adduser";
+	private final String JSP_DETAIL_USER = "detailuser";
+	private final String JSP_EDIT_USER = "edituser";
+	private final String JSP_MANAGE_USER = "manageuser";
+
+	private final String JSP_EDIT_QUESTION = "editquestion";
+	private final String JSP_VIEW_QUESTION = "viewquestion";
+	private final String JSP_CREATE_QUESTION = "createquestion";
+	private final String JSP_MANAGE_QUESTION = "managequestion"; // manage questions
 
 	private final String JSP_CHECK_TEST = "checktest";
 	private final String JSP_MANAGE_TEST = "managetest"; // manage test
-
-	private final String JSP_MANAGE_QUESTION = "managequestion"; // manage questions
-
-	private final String JSP_ADD_USER = "adduser";
-	private final String JSP_DETAIL_USER = "detailuser";
-
-	private final String JSP_EDIT_USER = "edituser";
-
-	private final String JSP_CREATE_QUESTION = "createquestion";
 	private final String JSP_CREATE_TEST = "createtest";
-
-	private final String JSP_EDIT_TEST = "edittest";
-	private final String JSP_EDIT_QUESTION = "editquestion";
-
-	private final String JSP_VIEW_QUESTION = "viewquestion";
+	private final String JSP_EDIT_TEST = "edittest";	
 	private final String JSP_VIEW_TEST = "viewtest";
+	private final String JSP_TAKE_TEST_LIST = "taketestlist";
+	private final String JSP_TEST_BEGIN_SUMMARY = "testbeginsummary";
+	private final String JSP_TAKING_TEST = "takingtest";
 
+	private final String JSP_ERROR_PAGE = "errorpage";
 
 	// / End of JSP pages name ////
 
 	// / folder names for jsp pages////
 
+
+
 	private final String FOLDER_USER = "user";
+
 	private final String FOLDER_TEST = "test";
 
 	private final String FOLDER_QUESTION = "question";
+
+
+	private final String FOLDER_ERROR = "error";
 
 	// / End offolder names for jsp pages ////
 
@@ -90,13 +96,50 @@ public class ResourcesName
 
 	private final String MESSAGE_FAIL_ADD = "Add failed";
 	private final String MESSAGE_FAIL_ADD_AND_DUPLICATE = "Add failed due to same Login ID";
-	
+
 
 	private final String MESSAGE_FAIL_UPDATE = "Update failed";
 
 	private final String MESSAGE_VALIDATION_ERROR = "Please fill required fields";
 
+	private final String MESSAGE_NOPRIVILEGE = "Sorry! You dont have privilege for this";
+
 	// / End of Messages ////
+
+	// / Labels ////
+
+	// private final String LABEL_ADD = "Added Successfully";
+	// private final String MESSAGE_UPDATE = "Update Successfully";
+	//
+	// private final String MESSAGE_FAIL_ADD = "Add failed";
+	// private final String MESSAGE_FAIL_ADD_AND_DUPLICATE = "Add failed due to same Login ID";
+	//
+	//
+	// private final String MESSAGE_FAIL_UPDATE = "Update failed";
+	//
+	// private final String MESSAGE_VALIDATION_ERROR = "Please fill required fields";
+
+	// / End of Labels ////
+	
+	public String getJSP_TAKING_TEST()
+	{
+		return JSP_TAKING_TEST;
+	}
+
+	public String getJSP_TEST_BEGIN_SUMMARY()
+	{
+		return JSP_TEST_BEGIN_SUMMARY;
+	}
+
+	public String getMESSAGE_NOPRIVILEGE()
+	{
+		return MESSAGE_NOPRIVILEGE;
+	}
+
+	public String getJSP_TAKE_TEST_LIST()
+	{
+		return JSP_TAKE_TEST_LIST;
+	}
 
 	public String getMESSAGE_VALIDATION_ERROR()
 	{
@@ -118,11 +161,21 @@ public class ResourcesName
 	// return JSP_VIEW_QUESTION_LIST;
 	// }
 
+	public String getJSP_ERROR_PAGE()
+	{
+		return JSP_ERROR_PAGE;
+	}
+
+	public String getFOLDER_ERROR()
+	{
+		return FOLDER_ERROR;
+	}
+
 	public String getJSP_VIEW_TEST()
 	{
 		return JSP_VIEW_TEST;
 	}
-	
+
 	public String getJSP_EDIT_QUESTION()
 	{
 		return JSP_EDIT_QUESTION;
@@ -142,7 +195,7 @@ public class ResourcesName
 	{
 		return FOLDER_USER;
 	}
-	
+
 	public String getMESSAGE_FAIL_ADD_AND_DUPLICATE()
 	{
 		return MESSAGE_FAIL_ADD_AND_DUPLICATE;

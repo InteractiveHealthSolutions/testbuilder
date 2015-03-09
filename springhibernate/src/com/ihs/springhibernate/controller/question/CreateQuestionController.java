@@ -63,7 +63,7 @@ public class CreateQuestionController
 
 			else
 			{
-				modelAndView = new ModelAndView(resources.getJSP_INDEX());
+				modelAndView = new ModelAndView("redirect:/" + resources.getJSP_INDEX());
 				modelAndView.getModel().put("loginUser", new User());
 			}
 		}

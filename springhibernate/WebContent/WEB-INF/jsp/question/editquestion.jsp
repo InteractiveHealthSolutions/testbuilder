@@ -82,7 +82,9 @@
               <center>Question Description</center></th>
             </tr>
             <tr>
-              <td colspan="2"><form:textarea path="description" id="editor" required="true" /></td>
+              <td colspan="2">
+              <form:textarea path="description" id="editor" required="true" />
+              </td>
                 <td ><form:errors path="description" /></td>
             </tr>
             <tr>

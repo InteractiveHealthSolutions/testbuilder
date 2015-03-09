@@ -8,6 +8,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.ihs.springhibernate.model.Question;
 import com.ihs.springhibernate.model.Test;
 import com.ihs.springhibernate.utility.SessionFactoryBuilder;
 
@@ -240,7 +241,13 @@ public class TestDAO
 					for (Test _test : testList)
 					{
 						Hibernate.initialize(_test.getQuestionList());
+
+						// for (Question _question : _test.getQuestionList())
+						// {
+						// Hibernate.initialize(_question.getQuestionDataList());
+						// }
 					}
+
 				}
 			}
 

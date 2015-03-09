@@ -5,12 +5,7 @@
 	id="WebApp_ID" version="3.0">
 	<display-name>springhibernate</display-name>
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>index.jsp</welcome-file>		
 	</welcome-file-list>
 	
 	<display-name>Spring MVC Form Handling</display-name>
@@ -31,15 +26,20 @@
 	</servlet-mapping>
 	
 		<!-- 	CK Finder configuration -->
-	  <servlet>
-	<servlet-name>ConnectorServlet</servlet-name>
-	<servlet-class>com.ckfinder.connector.ConnectorServlet</servlet-class>
+	<servlet>
+		<servlet-name>ConnectorServlet</servlet-name>
+		<servlet-class>com.ckfinder.connector.ConnectorServlet</servlet-class>
 	<init-param>
 		<param-name>XMLConfig</param-name>
 		<param-value>/WEB-INF/config.xml</param-value>
 	</init-param>
-	<load-on-startup>1</load-on-startup>
-</servlet>
+	<init-param>
+		<param-name>debug</param-name>
+		<param-value>true</param-value>
+	</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
 <servlet-mapping>
 	<servlet-name>ConnectorServlet</servlet-name>
 	<url-pattern>
@@ -62,10 +62,6 @@
 
 <!-- The listener is something sitting there and 
 wait for specified event happened, then “hijack” the event and run its own event. -->
-
-<!-- Problem -->
-<!-- You want to initialize a database connection pool before the web application is started,
- is there a “main ()” method in the web application environment? -->
 
 <listener>
   <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>

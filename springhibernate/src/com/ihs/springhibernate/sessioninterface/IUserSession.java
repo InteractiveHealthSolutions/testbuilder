@@ -28,10 +28,6 @@ public interface IUserSession
 
 	public String getLogin_Id();
 
-	public void setLogin_Id(String login_Id);
-	
-//	public void setIUSerSessionLoggedIn()
-//	{
-//		
-//	}
+	public void setLogin_Id(String login_Id);	
+
 }

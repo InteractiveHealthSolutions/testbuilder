@@ -113,8 +113,13 @@
           </td>
           </tr>
 
+<%-- 					<tr id="Delete_that_Tr"> --%>
+<%-- 						<td><img --%>
+<!-- 							src="/springhibernate/resources/src/img/apple-touch-icon-144-precomposed.png" -->
+<%-- 							alt="Smiley face" height="42" width="42"></td> --%>
+<%-- 					</tr> --%>
 
-        </table>
+				</table>
 
       </div>
     </div>

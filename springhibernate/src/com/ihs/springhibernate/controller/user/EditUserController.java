@@ -38,8 +38,7 @@ public class EditUserController
 		ResourcesName resources = new ResourcesName();
 
 		if (userSession.getRole().getId() != null)
-		{
-			// if (userSession.getRole().getId() == Privileges.ADMIN.getRoleId()) // if admin then it is fine
+		{			
 			if (UserDAO.hasPrivilegeFor(userSession, Privileges.ADMIN) == true)
 
 			{
@@ -88,9 +87,7 @@ public class EditUserController
 
 				modelAndView.getModel().put("currentUser", userSession);
 
-				modelAndView.getModel().put("resources", resources);
-
-				// do some server-site validation of user input
+				modelAndView.getModel().put("resources", resources);				
 
 				if (bindingResult.hasErrors())
 				{
@@ -102,16 +99,9 @@ public class EditUserController
 
 					return modelAndView;
 				}
-				//
-				// Role selectedRole = RoleDAO.getRole(RoleDAO.By.ID, String.valueOf(editUser.getRole().getId()), RoleDAO.FetchType.LAZY);
-				//
-				// if (selectedRole != null)
-				// {
-				// editUser.setRole(selectedRole);
-
+			
 				if (UserDAO.update(editUser) == true)
-				{
-					// modelAndView = new ModelAndView(resources.getFOLDER_USER() + "/" + resources.getJSP_EDIT_USER());
+				{					
 					modelAndView = new ModelAndView("redirect:/" + resources.getFOLDER_USER() + "/" + resources.getJSP_DETAIL_USER() + "?id=" + editUser.getId());
 					modelAndView.getModel().put("status", resources.getMESSAGE_UPDATE());
 				}
@@ -119,8 +109,7 @@ public class EditUserController
 				else
 				{
 					modelAndView.getModel().put("status", resources.getMESSAGE_FAIL_UPDATE());
-				}
-				// }
+				}				
 			}
 		}
 

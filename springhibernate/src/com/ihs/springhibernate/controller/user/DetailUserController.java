@@ -33,10 +33,8 @@ public class DetailUserController
 		if (userSession.getRole().getId() != null)
 		{
 			if (UserDAO.hasPrivilegeFor(userSession, Privileges.ADMIN) == true) // if admin then it is fine
-			{
-				
-				modelAndView = new ModelAndView(resources.getFOLDER_USER() + "/" + resources.getJSP_DETAIL_USER());
-			
+			{				
+				modelAndView = new ModelAndView(resources.getFOLDER_USER() + "/" + resources.getJSP_DETAIL_USER());			
 
 				modelAndView.getModelMap().put("detailUser", user);
 				modelAndView.getModelMap().put("currentUser", userSession);
@@ -45,8 +43,7 @@ public class DetailUserController
 			}
 			else
 			{
-				modelAndView = new ModelAndView("redirect:/" + resources.getJSP_INDEX());
-				// modelAndView.getModel().put("status", status);
+				modelAndView = new ModelAndView("redirect:/" + resources.getJSP_INDEX());				
 			}
 		}
 

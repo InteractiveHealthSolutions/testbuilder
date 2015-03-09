@@ -9,19 +9,16 @@ import org.apache.catalina.util.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-
 import org.springframework.web.bind.annotation.ModelAttribute;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.ihs.springhibernate.dao.AnswerTypeDAO;
 import com.ihs.springhibernate.dao.QuestionDAO;
 import com.ihs.springhibernate.dao.UserDAO;
-
 import com.ihs.springhibernate.dao.QuestionDataDAO;
 import com.ihs.springhibernate.dao.QuestionDataDAO.By;
 import com.ihs.springhibernate.dao.QuestionTypeDAO;
@@ -31,7 +28,6 @@ import com.ihs.springhibernate.model.Question;
 import com.ihs.springhibernate.model.QuestionData;
 import com.ihs.springhibernate.model.QuestionType;
 import com.ihs.springhibernate.model.User;
-
 import com.ihs.springhibernate.sessioninterface.IUserSession;
 import com.ihs.springhibernate.utility.KeyValue;
 import com.ihs.springhibernate.utility.Privileges;
@@ -68,26 +64,7 @@ public class EditQuestionController
 
 				List<QuestionType> questionTypeList = QuestionTypeDAO.getAllTypes();
 
-				modelAndView.getModel().put("questionTypeList", questionTypeList);
-
-				// List<AnswerType> answerTypeList = AnswerTypeDAO.getAllTypes();
-
-				// List<KeyValue> imageList = new ArrayList<KeyValue>();
-
-				// for (QuestionData questionData : editQuestion.getQuestionDataList())
-				// {
-				// if (questionData.getImageData() != null)
-				// {
-				// String encodedImage = Base64.encode(questionData.getImageData());
-				// KeyValue keyValue = new KeyValue();
-				// keyValue.setKey(String.valueOf(questionData.getId()));
-				// keyValue.setValue(encodedImage);
-				// imageList.add(keyValue);
-				// }
-				// }
-
-				// modelAndView.getModel().put("imageList", imageList);
-				// modelAndView.getModel().put("answerTypeList", answerTypeList);
+				modelAndView.getModel().put("questionTypeList", questionTypeList);				
 			}
 
 			else
@@ -97,6 +74,11 @@ public class EditQuestionController
 
 				modelAndView.getModel().put("loginUser", new User());
 			}
+		}
+		
+		else
+		{
+			modelAndView = new ModelAndView("redirect:/" + resources.getJSP_INDEX());
 		}
 
 		return modelAndView;
@@ -120,7 +102,10 @@ public class EditQuestionController
 
 		ModelAndView modelAndView = new ModelAndView(resources.getFOLDER_QUESTION() + "/" + resources.getJSP_EDIT_QUESTION());
 
-		// If user is not test maker then redirect him to login page
+		/* If user is not test maker then redirect him to login page
+		 * 
+		 */
+		
 		if (UserDAO.hasPrivilegeFor(userSession, Privileges.TEST_MAKER) == false)
 		{
 			modelAndView = new ModelAndView("redirect:/" + resources.getJSP_INDEX());
@@ -144,7 +129,6 @@ public class EditQuestionController
 
 			modelAndView.getModel().put("questionTypeList", questionTypeList);
 
-
 			modelAndView.getModel().put("status", resources.getMESSAGE_VALIDATION_ERROR());
 
 			return modelAndView;
@@ -167,9 +151,7 @@ public class EditQuestionController
 				List<QuestionType> questionTypeList = QuestionTypeDAO.getAllTypes();
 
 				modelAndView.getModel().put("questionTypeList", questionTypeList);
-
-
-
+				
 				modelAndView.getModel().put("status", resources.getMESSAGE_FAIL_ADD());
 			}
 		}

@@ -24,7 +24,6 @@
 		initCKEditor("description");
 		updateBtnAddMore();
 		// 		    $('#frmSubmitQuestion').bootstrapValidator();
-
 	});
 </script>
 </head>
@@ -51,7 +50,7 @@
           modelAttribute="newQuestion" enctype="multipart/form-data" class="form-horizontal">
 
           <table border="1px" class="table table-bordered">
-            <%--       <table>  --%>
+         
             <tr>
 
               <th>Question Type</th>
@@ -144,8 +143,12 @@
 
               </td>
             </tr>
-
-          </table>
+<%-- 						<tr id="Delete_that_Tr"> --%>
+<%-- 							<td> --%>
+<!-- 							 <img src="/springhibernate/resources/src/img/apple-touch-icon-144-precomposed.png" alt="Smiley face" height="42" width="42">  -->
+<%-- 							</td> --%>
+<%-- 						</tr> --%>
+					</table>
         </form:form>
 
       </div>

@@ -177,6 +177,57 @@ public class UserDAO
 				_privilege.setId(Privileges.TEST_MAKER.getRoleId());
 			}
 
+			else if (privilege == Privileges.TEST_TAKER)
+			{
+				_privilege.setId(Privileges.TEST_TAKER.getRoleId());
+			}
+
+			else if (privilege == Privileges.TEST_CHECKER)
+			{
+				_privilege.setId(Privileges.TEST_CHECKER.getRoleId());
+			}
+
+			if (user.getRole().getPrivilegeList().contains(_privilege))
+			{
+				hasPrivilege = true;
+			}
+		}
+
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+		}
+
+		return hasPrivilege;
+	}
+
+	public static Boolean hasPrivilegeFor(User user, Privileges privilege)
+	{
+		Boolean hasPrivilege = false;
+		try
+		{
+			Privilege _privilege = new Privilege();
+
+			if (privilege == Privileges.ADMIN)
+			{
+				_privilege.setId(Privileges.ADMIN.getRoleId());
+			}
+
+			else if (privilege == Privileges.TEST_MAKER)
+			{
+				_privilege.setId(Privileges.TEST_MAKER.getRoleId());
+			}
+
+			else if (privilege == Privileges.TEST_CHECKER)
+			{
+				_privilege.setId(Privileges.TEST_CHECKER.getRoleId());
+			}
+
+			else if (privilege == Privileges.TEST_TAKER)
+			{
+				_privilege.setId(Privileges.TEST_TAKER.getRoleId());
+			}
+
 			if (user.getRole().getPrivilegeList().contains(_privilege))
 			{
 				hasPrivilege = true;

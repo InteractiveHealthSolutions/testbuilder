@@ -27,7 +27,7 @@
         <c:url var="manageUser" value="/${Resource.FOLDER_USER}/${Resource.JSP_MANAGE_USER}">
         </c:url>
 
-        <li><a href="<c:out value="${manageUser}"/>">${right.getRight()}</a></li>
+        <li><a href="<c:out value="${manageUser}"/>">Account Management</a></li>
       </c:if>
 
       <c:if test="${right.getId() == 2 }">
@@ -55,15 +55,15 @@
         <c:url var="checkTest" value="/${Resource.FOLDER_TEST}/${Resource.JSP_CHECK_TEST}">
         </c:url>
 
-        <li><a href="<c:out value="${checkTest}"/>">${right.getRight()}</a></li>
+        <li><a href="<c:out value="${checkTest}"/>">Check Test</a></li>
       </c:if>
 
       <c:if test="${ right.getId() == 4}">
         <!--        if test taker -->
 
-        <c:url var="takeTest" value="${Resource.JSP_CHECK_TEST}">
+        <c:url var="takeTest" value="/${Resource.FOLDER_TEST}/${Resource.JSP_TAKE_TEST_LIST}">
         </c:url>
-        <li><a href="<c:out value="${takeTest}"/>">${right.getRight()}</a></li>
+        <li><a href="<c:out value="${takeTest}"/>">Take Test</a></li>
       </c:if>
 
     </c:forEach>

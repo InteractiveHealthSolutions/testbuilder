@@ -42,7 +42,7 @@ public class User implements IAuditTrailFields
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "creation_ts")
 	private Date creationTS = new Date();
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "last_edited_ts")
 	private Date lastEditedTS;
@@ -113,7 +113,7 @@ public class User implements IAuditTrailFields
 	{
 		this.password = password;
 	}
-	
+
 	@Override
 	public Date getLastEditedTS()
 	{
@@ -145,5 +145,5 @@ public class User implements IAuditTrailFields
 	{
 		this.lastEditorId = lastEditorId;
 	}
-	
+
 }

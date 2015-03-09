@@ -48,6 +48,7 @@ public class Question implements IAuditTrailFields
 	@JoinColumn(name = "question_type_id")
 	private QuestionType questionType = new QuestionType();
 
+	// It contains MCQ related options
 	//@NotEmpty
 	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<QuestionData> questionDataList = new ArrayList<QuestionData>();
