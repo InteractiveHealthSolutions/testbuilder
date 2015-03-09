@@ -28,11 +28,11 @@ public class IndexController
 {
 	@Autowired
 	private IUserSession userSession;
-	
-//	@RequestMapping(value={"/formA.html", "/formB.html", "/formC.html"})
-//	@RequestMapping({ "/home", "/contact" })
-	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+
+	// @RequestMapping(value={"/formA.html", "/formB.html", "/formC.html"})
+	// @RequestMapping({ "/home", "/contact" })
+
+	@RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
 	public ModelAndView indexDefault(@ModelAttribute("loginUser") User loginUser)
 	{
 		ResourcesName resources = new ResourcesName();
@@ -42,32 +42,15 @@ public class IndexController
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public ModelAndView index(@ModelAttribute("loginUser") User loginUser)
-	{
-		ResourcesName resources = new ResourcesName();
-
-		ModelAndView modelAndView = new ModelAndView(resources.getJSP_INDEX());
-		modelAndView.getModel().put("loginUser", loginUser);
-		return modelAndView;
-
-		// ResourcesName resources = new ResourcesName();
-		// ModelAndView modelAndView = new ModelAndView(resources.getJSP_INDEX());
-		//
-		// if (userSession != null)
-		// {
-		// modelAndView = new ModelAndView("redirect:/" + resources.getJSP_HOME());
-		// modelAndView.getModel().put("loginUser", userSession);
-		// return modelAndView;
-		// }
-		//
-		// else
-		// {
-		// modelAndView.getModel().put("loginUser", loginUser);
-		// }
-		//
-		// return modelAndView;
-	}
+	// @RequestMapping(value = "/index", method = RequestMethod.GET)
+	// public ModelAndView index(@ModelAttribute("loginUser") User loginUser)
+	// {
+	// ResourcesName resources = new ResourcesName();
+	//
+	// ModelAndView modelAndView = new ModelAndView(resources.getJSP_INDEX());
+	// modelAndView.getModel().put("loginUser", loginUser);
+	// return modelAndView;
+	// }
 
 	@RequestMapping(value = "/index", method = RequestMethod.POST)
 	public ModelAndView authenticateUser(@ModelAttribute("loginUser") @Valid User loginUser, BindingResult result)
@@ -77,6 +60,10 @@ public class IndexController
 
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 		Validator validator = factory.getValidator();
+
+		/**
+		 * Using it to validate desired fields of an object
+		 */
 
 		Set<ConstraintViolation<User>> constraintViolations = validator.validateProperty(loginUser, "login_Id");
 		Set<ConstraintViolation<User>> constraintViolations2 = validator.validateProperty(loginUser, "password");
@@ -101,7 +88,7 @@ public class IndexController
 			userSession.setId(loginUser.getId());
 			userSession.setName(loginUser.getName());
 
-			userSession.setName(loginUser.getName());
+			//userSession.setName(loginUser.getName());
 			userSession.setRole(loginUser.getRole());
 			userSession.setCreationTS(loginUser.getCreationTS());
 
