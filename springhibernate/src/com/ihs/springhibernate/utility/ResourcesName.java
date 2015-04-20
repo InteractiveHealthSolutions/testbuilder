@@ -45,6 +45,8 @@ public class ResourcesName
 	private final String JSP_VIEW_TEST = "viewtest";
 	private final String JSP_TAKE_TEST_LIST = "taketestlist";
 	private final String JSP_TEST_BEGIN_SUMMARY = "testbeginsummary";
+	private final String JSP_TEST_END_SUMMARY = "testendsummary";	
+
 	private final String JSP_TAKING_TEST = "takingtest";
 
 	private final String JSP_ERROR_PAGE = "errorpage";
@@ -344,6 +346,11 @@ public class ResourcesName
 	public String getMESSAGE_FAIL_UPDATE()
 	{
 		return MESSAGE_FAIL_UPDATE;
+	}
+	
+	public String getJSP_TEST_END_SUMMARY()
+	{
+		return JSP_TEST_END_SUMMARY;
 	}
 
 }
