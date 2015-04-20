@@ -29,6 +29,7 @@ public class HomeController
 		 * TODO: dirty way to validate userSession is not null
 		 */
 		if (userSession.getName() != null)
+		// if (userSession.getId() != null)
 		{
 			userSession.getRole().getPrivilegeList();
 			modelAndView = new ModelAndView(resources.getJSP_HOME());
