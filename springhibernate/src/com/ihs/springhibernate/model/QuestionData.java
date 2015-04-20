@@ -30,11 +30,6 @@ public class QuestionData implements Comparable<QuestionData>, IAuditTrailFields
 	@GeneratedValue
 	private Integer id;
 
-//	@NotNull
-//	@OneToOne
-//	@JoinColumn(name = "question_type_id")
-//	private QuestionType questionType = new QuestionType();
-
 	@NotEmpty
 	@Column(name = "data")
 	private String data;
@@ -87,16 +82,6 @@ public class QuestionData implements Comparable<QuestionData>, IAuditTrailFields
 		this.imageData = file.getBytes();
 		this.data = file.getOriginalFilename();
 	}
-
-//	public QuestionType getQuestionType()
-//	{
-//		return questionType;
-//	}
-//
-//	public void setQuestionType(QuestionType questionType)
-//	{
-//		this.questionType = questionType;
-//	}
 
 	public String getData()
 	{
