@@ -108,9 +108,9 @@
             <c:forEach var="data" items="${editQuestion.getQuestionDataList()}" varStatus="index2">
               <c:if test="${data.getIndex() != 0 && editQuestion.getQuestionType().getId()!= 4}">
 
-                <div id="divData${index2.count}">             
+                <div id="divData${index2.count}">  
+                           
 <div class="input-group">
-
                   
                   <input type="textbox" name="questionDataList[${index2.count}].data" value="${data.getData()}" class="form-control"/>
                   <span class="input-group-btn"> 
