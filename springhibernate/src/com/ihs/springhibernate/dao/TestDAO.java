@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.Hibernate;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -14,7 +15,7 @@ import com.ihs.springhibernate.utility.SessionFactoryBuilder;
 
 public class TestDAO
 {
-	// static Logger log = Logger.getLogger(TestDAO.class.getName());
+	static Logger log = Logger.getLogger(TestDAO.class);
 
 	public enum By
 	{
@@ -54,7 +55,7 @@ public class TestDAO
 		{
 			try
 			{
-				// log.error("Exception occured !", ex);
+				log.error("Exception occured !", ex);
 				transaction.rollback();
 			}
 			catch (Exception eAny)
@@ -195,6 +196,11 @@ public class TestDAO
 				if (fetchType == FetchType.EAGER)
 				{
 					Hibernate.initialize(test.getQuestionList());
+
+					for (Question _question : test.getQuestionList())
+					{
+						Hibernate.initialize(_question.getQuestionDataList());
+					}
 				}
 			}
 
@@ -231,6 +237,71 @@ public class TestDAO
 
 			String hql = "FROM Test";
 			Query query = session.createQuery(hql);
+
+			testList = (List<Test>) query.list();
+
+			if (testList != null)
+			{
+				if (fetchType == FetchType.EAGER)
+				{
+					for (Test _test : testList)
+					{
+						Hibernate.initialize(_test.getQuestionList());
+
+						// for (Question _question : _test.getQuestionList())
+						// {
+						// Hibernate.initialize(_question.getQuestionDataList());
+						// }
+					}
+
+				}
+			}
+
+			session.getTransaction().commit();
+		}
+
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+		}
+
+		finally
+		{
+			if (session.isOpen())
+			{
+				session.close();
+			}
+		}
+
+		return testList;
+	}
+
+	public static List<Test> getAllUnTakenTestOfUser(FetchType fetchType, int id)
+	{
+		List<Test> testList = null;
+		Session session = null;
+
+		try
+		{
+			session = SessionFactoryBuilder.getSessionFactory().openSession();
+
+			session.beginTransaction();
+
+			// SELECT test_builder.test.* FROM test_builder.test
+			// LEFT OUTER JOIN test_builder.answer
+			// ON test_builder.test.id = test_builder.answer.test_id
+			// WHERE (test_builder.answer.creator_id IS null OR
+			// test_builder.answer.creator_id != 18);
+
+			/*
+			 * Query for selecting unattempted question on particular User
+			 */
+
+			String sql = "SELECT t.* FROM Test t LEFT OUTER JOIN answer a " +
+					"ON t.id = a.test_id WHERE " +
+					"(a.creator_id IS null OR a.creator_id != :ID)";
+
+			SQLQuery query = (SQLQuery) session.createSQLQuery(sql).addEntity(Test.class).setParameter("ID", id);
 
 			testList = (List<Test>) query.list();
 
