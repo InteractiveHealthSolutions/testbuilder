@@ -11,6 +11,16 @@ public class SessionFactoryBuilder
 
 	public static SessionFactory getSessionFactory()
 	{
+		// Configuration configuration = new Configuration();
+		// configuration.configure("hibernate.cfg.xml");
+		/**
+		 * Use this import for ServiceRegistry
+		 * import org.hibernate.service.ServiceRegistry;
+		 */
+		// ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+		// SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+
+
 		if (sessionFactory == null)
 		{
 			sessionFactory = new Configuration().configure().setInterceptor(new AuditTrailFieldsInterceptor()).buildSessionFactory();
