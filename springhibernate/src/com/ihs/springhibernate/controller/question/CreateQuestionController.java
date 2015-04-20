@@ -92,7 +92,6 @@ public class CreateQuestionController
 		{
 			modelAndView = new ModelAndView(resources.getFOLDER_QUESTION() + "/" + resources.getJSP_CREATE_QUESTION());
 
-
 			modelAndView.getModel().put("newQuestion", newQuestion);
 
 			modelAndView.getModel().put("currentUser", userSession);
@@ -114,13 +113,9 @@ public class CreateQuestionController
 
 		if (userSession != null)
 		{
-			Privilege privilege = new Privilege();
-
-			privilege.setId(Privileges.TEST_MAKER.getRoleId());
-
 			Integer newlySavedId = -1;
 			
-			if (userSession.getRole().getPrivilegeList().contains(privilege))
+			if (UserDAO.hasPrivilegeFor(userSession, Privileges.TEST_MAKER) == true)		
 			{			
 				newlySavedId = QuestionDAO.save(newQuestion);
 				
