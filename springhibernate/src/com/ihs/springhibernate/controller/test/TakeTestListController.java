@@ -65,36 +65,47 @@ public class TakeTestListController
 
 	// / AJAX call response
 	@RequestMapping("/getTestList")
-	public @ResponseBody String getTestDataByAJAX()
+	public @ResponseBody
+	String getTestDataByAJAX()
 	{
-		List<Test> loadedTestList = TestDAO.getAllTest(FetchType.LAZY);
-
-		TestJsonWrapper testJsonObject = new TestJsonWrapper();
-		testJsonObject.setiTotalDisplayRecords(loadedTestList.size());
-		testJsonObject.setiTotalRecords(loadedTestList.size());
-		testJsonObject.setAaData(loadedTestList);
-
-		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 		String json = "";
-		try
+
+		/*
+		 * Have to load test which are not taken by that particular User
+		 */
+		if (userSession != null)
 		{
-			json = ow.writeValueAsString(testJsonObject);
+			List<Test> loadedTestList = TestDAO.getAllUnTakenTestOfUser(FetchType.LAZY, userSession.getId());
+			// List<Test> loadedTestList = TestDAO.getAllTest(FetchType.LAZY);
+
+			TestJsonWrapper testJsonObject = new TestJsonWrapper();
+			testJsonObject.setiTotalDisplayRecords(loadedTestList.size());
+			testJsonObject.setiTotalRecords(loadedTestList.size());
+			testJsonObject.setAaData(loadedTestList);
+
+			ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+
+			try
+			{
+				json = ow.writeValueAsString(testJsonObject);
+			}
+			catch (JsonGenerationException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			catch (JsonMappingException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			catch (IOException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		catch (JsonGenerationException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		catch (JsonMappingException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		catch (IOException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 
 		return json;
 	}
