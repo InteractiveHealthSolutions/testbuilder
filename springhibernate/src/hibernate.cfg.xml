@@ -43,7 +43,10 @@
 		<property name="hbm2ddl.auto">update</property>
 
 		<!-- Names the annotated entity class -->
-		<mapping class="com.ihs.springhibernate.model.AnswerType" />
+		<mapping class="com.ihs.springhibernate.model.Answer" />
+		<mapping class="com.ihs.springhibernate.model.AnswerData" />
+		<!-- <mapping class="com.ihs.springhibernate.model.AnswerType" /> -->
+
 		<mapping class="com.ihs.springhibernate.model.User" />
 		<mapping class="com.ihs.springhibernate.model.Role" />
 
