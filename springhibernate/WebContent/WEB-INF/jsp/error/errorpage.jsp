@@ -35,7 +35,7 @@
 					<p class="text-info">${message}</p>
 				</h3>
 
-				<c:url var="homeUrl" value="${resources.JSP_DETAIL_USER}">
+				<c:url var="homeUrl" value="/${resources.getJSP_HOME()}">
 				</c:url>
 
 <!-- class="btn btn-primary active" -->
