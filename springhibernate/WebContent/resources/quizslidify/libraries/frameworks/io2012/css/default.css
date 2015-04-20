@@ -240,7 +240,8 @@ slides > slide {
   display: none;
   font-family: 'Open Sans', Arial, sans-serif;
   font-size: 26px;
-  color: #797979;
+/*   color: #797979; */
+  color: #000000;
   width: 900px;
   height: 700px;
   margin-left: -450px;
