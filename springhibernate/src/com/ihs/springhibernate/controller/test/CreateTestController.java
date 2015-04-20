@@ -20,23 +20,23 @@ import com.ihs.springhibernate.dao.QuestionDAO;
 import com.ihs.springhibernate.dao.QuestionDAO.By;
 import com.ihs.springhibernate.dao.AnswerTypeDAO;
 import com.ihs.springhibernate.dao.QuestionTypeDAO;
-import com.ihs.springhibernate.dao.RoleDAO;
+
 import com.ihs.springhibernate.dao.TestDAO;
 import com.ihs.springhibernate.dao.UserDAO;
-import com.ihs.springhibernate.dao.RoleDAO.FetchType;
+
 import com.ihs.springhibernate.model.AnswerType;
 import com.ihs.springhibernate.model.Privilege;
 import com.ihs.springhibernate.model.Question;
 import com.ihs.springhibernate.model.QuestionData;
 import com.ihs.springhibernate.model.QuestionType;
-import com.ihs.springhibernate.model.Role;
+
 import com.ihs.springhibernate.model.Test;
-import com.ihs.springhibernate.model.User;
+
 import com.ihs.springhibernate.propertyeditor.Editor;
 import com.ihs.springhibernate.sessioninterface.IUserSession;
 import com.ihs.springhibernate.utility.Privileges;
 import com.ihs.springhibernate.utility.ResourcesName;
-import com.ihs.springhibernate.validator.QuestionValidator;
+
 
 @Controller
 @RequestMapping("/test")
@@ -102,13 +102,9 @@ public class CreateTestController
 
 		if (userSession != null)
 		{
-			Privilege privilege = new Privilege();
-
-			privilege.setId(Privileges.TEST_MAKER.getRoleId());
-
 			Integer newlySavedId = -1;
 
-			if (userSession.getRole().getPrivilegeList().contains(privilege))
+			if (UserDAO.hasPrivilegeFor(userSession, Privileges.TEST_MAKER) == true)
 			{
 				newlySavedId = TestDAO.save(newTest);
 
@@ -117,7 +113,6 @@ public class CreateTestController
 					modelAndView = new ModelAndView("redirect:/" + resources.getFOLDER_TEST() + "/" + resources.getJSP_VIEW_TEST() + "?id=" + newlySavedId);
 					modelAndView.getModel().put("status", resources.getMESSAGE_ADD());
 				}
-
 
 				// if (TestDAO.save(newTest) == true)
 				// {
