@@ -168,7 +168,6 @@ public class QuestionDAO
 			}
 
 			session.getTransaction().commit();
-
 		}
 
 		catch (Exception ex)
