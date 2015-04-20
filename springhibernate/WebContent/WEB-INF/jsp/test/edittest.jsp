@@ -133,9 +133,7 @@
       <div class="col-md-9 column">
         <h3>Edit Test</h3>
 
-        <form:form id="frmSubmitQuestion" method="POST" action="/springhibernate/test/edittest"
-          modelAttribute="editTest"
-        >
+        <form:form id="frmSubmitQuestion" method="POST" action="/springhibernate/test/edittest" modelAttribute="editTest">
 
           <table border="1px" class="table table-bordered">
 
@@ -149,9 +147,9 @@
 
             <tr>
               <th>Test Description</th>
-              <td><form:textarea path="description" class="form-control input" required="true" /> <input
-                type="hidden" name="creatorId" value="${currentUser.getId()}"
-              /></td>
+              <td><form:textarea path="description" class="form-control input" required="true" /> 
+              <input type="hidden" name="creatorId" value="${currentUser.getId()}" />
+              </td>
 
               <td><form:errors path="description" /></td>
 
@@ -168,8 +166,8 @@
 
             <tr>
               <td><form:select id="slctQuestion" path="questionList" items="${loadedQuestionList}"
-                  itemLabel="title" itemValue="id" size="10" onclick="getQuestionData()" class="form-control input"
-                /></td>
+                  itemLabel="title" itemValue="id" size="10" onclick="getQuestionData()" class="form-control input" />
+                  </td>
               <td height="350px" width="400px" colspan="2">
 
                 <div id="divQuestionData"></div>
