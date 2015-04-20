@@ -28,7 +28,8 @@ public class ErrorController
 
 		if (userSession != null)
 		{
-			modelAndView = new ModelAndView( resources.getFOLDER_ERROR() + "/" +resources.getJSP_ERROR_PAGE());
+			modelAndView = new ModelAndView(resources.getFOLDER_ERROR() + "/" + resources.getJSP_ERROR_PAGE());
+			modelAndView.getModelMap().put("resources", resources);
 			modelAndView.getModelMap().put("message", message);
 		}
 
