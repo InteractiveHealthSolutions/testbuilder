@@ -13,9 +13,8 @@
 <t:header />
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="<c:url value='/resources/ckeditor/ckeditor.js'/>"></script>
-
-<script type="text/javascript" src="<c:url value='/resources/ckeditorinitializer.js'/>"></script>
+<%-- <script src="<c:url value='/resources/ckeditor/ckeditor.js'/>"></script> --%>
+<%-- <script type="text/javascript" src="<c:url value='/resources/ckeditorinitializer.js'/>"></script> --%>
 
 
 </head>
