@@ -2,6 +2,7 @@ package com.ihs.springhibernate.dao;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -15,6 +16,8 @@ import com.ihs.springhibernate.utility.SessionFactoryBuilder;
 
 public class UserDAO
 {
+	static Logger log = Logger.getLogger(UserDAO.class);
+
 	public enum By
 	{
 		LoginId, Id
@@ -145,6 +148,9 @@ public class UserDAO
 			if (query.uniqueResult() != null)
 			{
 				isAuthentic = true;
+
+				log.info("UserName: " + user.getName() + "logged in.");
+				log.info("UserId: " + user.getId() + "logged in");
 
 			}
 
