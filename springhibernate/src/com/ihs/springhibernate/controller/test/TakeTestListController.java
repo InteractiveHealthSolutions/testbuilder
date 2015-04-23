@@ -18,7 +18,8 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.ihs.springhibernate.dao.TestDAO;
 import com.ihs.springhibernate.dao.TestDAO.FetchType;
 import com.ihs.springhibernate.dao.UserDAO;
-import com.ihs.springhibernate.json.TestJsonWrapper;
+import com.ihs.springhibernate.json.wrapper.TestJsonWrapper;
+import com.ihs.springhibernate.json.wrapper.TestJsonWrapper2;
 import com.ihs.springhibernate.model.Test;
 import com.ihs.springhibernate.sessioninterface.IUserSession;
 import com.ihs.springhibernate.utility.Privileges;
@@ -75,10 +76,12 @@ public class TakeTestListController
 		 */
 		if (userSession != null)
 		{
-			List<Test> loadedTestList = TestDAO.getAllUnTakenTestOfUser(FetchType.LAZY, userSession.getId());
-			// List<Test> loadedTestList = TestDAO.getAllTest(FetchType.LAZY);
+			List<Test> loadedTestList = TestDAO.getAllUnTakenTestOfUser(FetchType.LAZY, userSession.getId());		
 
-			TestJsonWrapper testJsonObject = new TestJsonWrapper();
+			// TestJsonWrapper testJsonObject = new TestJsonWrapper();
+
+			TestJsonWrapper2 testJsonObject = new TestJsonWrapper2();
+
 			testJsonObject.setiTotalDisplayRecords(loadedTestList.size());
 			testJsonObject.setiTotalRecords(loadedTestList.size());
 			testJsonObject.setAaData(loadedTestList);
