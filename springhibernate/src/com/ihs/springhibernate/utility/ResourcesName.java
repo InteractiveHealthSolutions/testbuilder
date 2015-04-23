@@ -5,7 +5,7 @@ package com.ihs.springhibernate.utility;
  * Resources name are like DB Name, Table name, column name, XML files name etc.
  * 
  * @author Saad
- *
+ * 
  */
 public class ResourcesName
 {
@@ -25,9 +25,9 @@ public class ResourcesName
 	private final String JSP_INDEX = "index";
 
 	private final String JSP_HOME = "home";
-	
+
 	private final String JSP_MANAGE_TEST_QUESTION = "managetestquestion"; // main page for managing test and question
-	
+
 	private final String JSP_ADD_USER = "adduser";
 	private final String JSP_DETAIL_USER = "detailuser";
 	private final String JSP_EDIT_USER = "edituser";
@@ -41,13 +41,18 @@ public class ResourcesName
 	private final String JSP_CHECK_TEST = "checktest";
 	private final String JSP_MANAGE_TEST = "managetest"; // manage test
 	private final String JSP_CREATE_TEST = "createtest";
-	private final String JSP_EDIT_TEST = "edittest";	
+	private final String JSP_EDIT_TEST = "edittest";
 	private final String JSP_VIEW_TEST = "viewtest";
 	private final String JSP_TAKE_TEST_LIST = "taketestlist";
 	private final String JSP_TEST_BEGIN_SUMMARY = "testbeginsummary";
-	private final String JSP_TEST_END_SUMMARY = "testendsummary";	
+	private final String JSP_TEST_END_SUMMARY = "testendsummary";
 
 	private final String JSP_TAKING_TEST = "takingtest";
+	private final String JSP_TEST_CHECK_LIST = "checktestlist";
+	private final String JSP_TEST_CHECK_ALL_SOL = "checktestallsol";
+	
+
+
 
 	private final String JSP_ERROR_PAGE = "errorpage";
 
@@ -122,7 +127,17 @@ public class ResourcesName
 	// private final String MESSAGE_VALIDATION_ERROR = "Please fill required fields";
 
 	// / End of Labels ////
-	
+
+	public String getJSP_TEST_CHECK_ALL_SOL()
+	{
+		return JSP_TEST_CHECK_ALL_SOL;
+	}
+
+	public String getJSP_TEST_CHECK_LIST()
+	{
+		return JSP_TEST_CHECK_LIST;
+	}
+
 	public String getJSP_TAKING_TEST()
 	{
 		return JSP_TAKING_TEST;
@@ -347,7 +362,7 @@ public class ResourcesName
 	{
 		return MESSAGE_FAIL_UPDATE;
 	}
-	
+
 	public String getJSP_TEST_END_SUMMARY()
 	{
 		return JSP_TEST_END_SUMMARY;
