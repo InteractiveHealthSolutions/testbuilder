@@ -149,7 +149,7 @@ public class QuestionDAO
 		{
 			session = SessionFactoryBuilder.getSessionFactory().openSession();
 
-			session.beginTransaction();
+			//session.beginTransaction();
 
 			String hql = "FROM Question";
 			Query query = session.createQuery(hql);
@@ -167,7 +167,7 @@ public class QuestionDAO
 				}
 			}
 
-			session.getTransaction().commit();
+			//session.getTransaction().commit();
 		}
 
 		catch (Exception ex)
