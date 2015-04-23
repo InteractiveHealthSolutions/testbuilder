@@ -1,5 +1,6 @@
 package com.ihs.springhibernate.dao;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -9,6 +10,7 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.ihs.springhibernate.model.Answer;
 import com.ihs.springhibernate.model.Question;
 import com.ihs.springhibernate.model.Test;
 import com.ihs.springhibernate.utility.SessionFactoryBuilder;
@@ -339,5 +341,118 @@ public class TestDAO
 		}
 
 		return testList;
+	}
+
+	public static List<Test> getAllSolvedTest(FetchType fetchType, int testId)
+	{
+		List<Test> testList = null;
+		Session session = null;
+
+		try
+		{
+			session = SessionFactoryBuilder.getSessionFactory().openSession();
+
+			session.beginTransaction();
+
+			/*
+			 * Query for selecting unattempted question on particular User
+			 */
+
+			String sql = "SELECT t.* FROM Test t LEFT OUTER JOIN answer a " +
+					"ON t.id = a.test_id WHERE " +
+					"(a.creator_id IS null OR a.creator_id != :ID)";
+
+			SQLQuery query = (SQLQuery) session.createSQLQuery(sql).addEntity(Test.class).setParameter("ID", testId);
+
+			testList = (List<Test>) query.list();
+
+			if (testList != null)
+			{
+				if (fetchType == FetchType.EAGER)
+				{
+					for (Test _test : testList)
+					{
+						Hibernate.initialize(_test.getQuestionList());
+
+						// for (Question _question : _test.getQuestionList())
+						// {
+						// Hibernate.initialize(_question.getQuestionDataList());
+						// }
+					}
+
+				}
+			}
+
+			session.getTransaction().commit();
+		}
+
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+		}
+
+		finally
+		{
+			if (session.isOpen())
+			{
+				session.close();
+			}
+		}
+
+		return testList;
+	}
+
+	/**
+	 * Return integer representing total number of attempts of a particular test
+	 * 
+	 * @param testId
+	 * @return
+	 */
+	public static int getTestAllAnswers(int testId)
+	{
+		BigInteger answerCount = null;
+		Session session = null;
+
+		try
+		{
+			session = SessionFactoryBuilder.getSessionFactory().openSession();
+
+			// session.beginTransaction();
+
+			/*
+			 * Query for selecting total attempted question on particular User
+			 */
+
+			// SELECT COUNT(Distinct a.test_id) FROM answer a LEFT OUTER JOIN test t
+			// ON a.test_id = t.id WHERE a.test_id = 18;
+
+			String sql = "SELECT COUNT(Distinct a.test_id) FROM answer a LEFT OUTER JOIN test t " +
+					"ON a.test_id = t.id WHERE a.test_id = :testid";
+
+			SQLQuery query = (SQLQuery) session.createSQLQuery(sql);
+			query.setParameter("testid", testId);
+
+			// List<Test> testList;
+			// testList = query.list();
+			// testList.size();
+
+			answerCount = (BigInteger) query.uniqueResult();
+		}
+
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+		}
+
+		finally
+		{
+			if (session.isOpen())
+			{
+				session.close();
+			}
+		}
+
+		int intAnswerCount = answerCount.intValue();
+		return intAnswerCount;
 	}
 }
