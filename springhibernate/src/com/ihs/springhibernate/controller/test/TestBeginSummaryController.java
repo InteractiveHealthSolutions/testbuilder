@@ -28,7 +28,7 @@ public class TestBeginSummaryController
 	private IUserSession userSession;
 
 	@RequestMapping(value = "/testbeginsummary", method = RequestMethod.GET)
-	public ModelAndView getEditQuestion(@RequestParam("no") String testId)
+	public ModelAndView getTestSummary(@RequestParam("no") String testId)
 	{
 		ResourcesName resources = new ResourcesName();
 		ModelAndView modelAndView = null;
