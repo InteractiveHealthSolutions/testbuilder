@@ -26,7 +26,8 @@ public class AnswerDAO
 
 	public enum By
 	{
-		ID
+		ID,
+		TESTID;
 	}
 
 	public enum FetchType
@@ -34,7 +35,7 @@ public class AnswerDAO
 		LAZY, EAGER;
 	}
 
-	public static List<Answer> getAllAnswer(FetchType fetchType)
+	public static List<Answer> getAllAnwer(FetchType fetchType)
 	{
 		List<Answer> answerList = null;
 		Session session = null;
@@ -43,7 +44,7 @@ public class AnswerDAO
 		{
 			session = SessionFactoryBuilder.getSessionFactory().openSession();
 
-			session.beginTransaction();
+			// session.beginTransaction();
 
 			String hql = "FROM Answer";
 			Query query = session.createQuery(hql);
@@ -61,7 +62,7 @@ public class AnswerDAO
 				}
 			}
 
-			session.getTransaction().commit();
+			// session.getTransaction().commit();
 
 		}
 
@@ -100,9 +101,9 @@ public class AnswerDAO
 				useInteger = true;
 			}
 
-			// else if (by.toString().equalsIgnoreCase(By.TYPE_NAME.toString()))
+			// else if (by.toString().equalsIgnoreCase(By.TESTID.toString()))
 			// {
-			// sql += "type_name= :_value";
+			// sql += "test_id= :_value";
 			// }
 
 			Query query = session.createQuery(sql);
@@ -128,6 +129,71 @@ public class AnswerDAO
 			}
 
 			session.getTransaction().commit();
+		}
+
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+		}
+
+		finally
+		{
+			if (session.isOpen())
+			{
+				session.close();
+			}
+		}
+
+		return answer;
+	}
+
+	public static List<Answer> getAnswerList(By by, String value, FetchType fetchType)
+	{
+		List<Answer> answer = null;
+		Boolean useInteger = false;
+
+		Session session = null;
+		try
+		{
+			session = SessionFactoryBuilder.getSessionFactory().openSession();
+
+			String sql = "FROM Answer WHERE ";
+
+			if (by.toString().equalsIgnoreCase(By.ID.toString()))
+			{
+				sql += "id= :_value";
+				useInteger = true;
+			}
+
+			else if (by.toString().equalsIgnoreCase(By.TESTID.toString()))
+			{
+				sql += "test_id= :_value";
+			}
+
+			Query query = session.createQuery(sql);
+
+			if (useInteger)
+			{
+				query.setParameter("_value", Integer.valueOf(value));
+			}
+
+			else
+			{
+				query.setParameter("_value", value.toLowerCase());
+			}
+
+			answer = (List<Answer>) query.list();
+
+			if (answer != null)
+			{
+				if (fetchType == FetchType.EAGER)
+				{
+					for (Answer _answer : answer)
+					{
+						Hibernate.initialize(_answer.getAnswerDataList());
+					}
+				}
+			}
 		}
 
 		catch (Exception ex)
