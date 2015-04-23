@@ -52,7 +52,7 @@
       <c:if test="${right.getId() == 3}">
         <!--        if test checker -->
 
-        <c:url var="checkTest" value="/${Resource.FOLDER_TEST}/${Resource.JSP_CHECK_TEST}">
+        <c:url var="checkTest" value="/${Resource.FOLDER_TEST}/${Resource.JSP_TEST_CHECK_LIST}">
         </c:url>
 
         <li><a href="<c:out value="${checkTest}"/>">Check Test</a></li>
