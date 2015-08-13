@@ -423,11 +423,13 @@ public class TestDAO
 			 * Query for selecting total attempted question on particular User
 			 */
 
-			// SELECT COUNT(Distinct a.test_id) FROM answer a LEFT OUTER JOIN test t
-			// ON a.test_id = t.id WHERE a.test_id = 18;
+			// SELECT COUNT(*) FROM (SELECT * FROM test_builder.answer
+			// where test_builder.answer.test_id = 18
+			// GROUP BY test_builder.answer.creator_id) AS `a`
 
-			String sql = "SELECT COUNT(Distinct a.test_id) FROM answer a LEFT OUTER JOIN test t " +
-					"ON a.test_id = t.id WHERE a.test_id = :testid";
+			String sql = "SELECT COUNT(*) FROM (SELECT * FROM answer " +
+					"where answer.test_id = :testid " +
+					"GROUP BY answer.creator_id) AS `a`";
 
 			SQLQuery query = (SQLQuery) session.createSQLQuery(sql);
 			query.setParameter("testid", testId);

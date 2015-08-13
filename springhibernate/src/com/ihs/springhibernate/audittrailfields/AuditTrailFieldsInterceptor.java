@@ -6,9 +6,6 @@ import java.util.Date;
 import org.apache.commons.lang.ArrayUtils;
 import org.hibernate.EmptyInterceptor;
 import org.hibernate.type.Type;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.ihs.springhibernate.sessioninterface.IUserSession;
 
 public class AuditTrailFieldsInterceptor extends EmptyInterceptor
 {	

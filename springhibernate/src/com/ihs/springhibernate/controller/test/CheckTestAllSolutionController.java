@@ -1,7 +1,5 @@
 package com.ihs.springhibernate.controller.test;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,12 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.ihs.springhibernate.dao.AnswerDAO;
-import com.ihs.springhibernate.dao.AnswerDAO.By;
-import com.ihs.springhibernate.dao.AnswerDAO.FetchType;
 import com.ihs.springhibernate.dao.TestDAO;
 import com.ihs.springhibernate.dao.UserDAO;
-import com.ihs.springhibernate.model.Answer;
 import com.ihs.springhibernate.model.Test;
 import com.ihs.springhibernate.sessioninterface.IUserSession;
 import com.ihs.springhibernate.utility.Privileges;
@@ -40,7 +34,45 @@ public class CheckTestAllSolutionController
 			{
 				modelAndView = new ModelAndView(resources.getFOLDER_TEST() + "/" + resources.getJSP_TEST_CHECK_ALL_SOL());
 
-				List<Answer> answerList = AnswerDAO.getAnswerList(By.TESTID, testId, FetchType.LAZY);
+				Test test = TestDAO.getTest(TestDAO.By.ID, testId, TestDAO.FetchType.EAGER);
+
+
+
+				// FormTakingTest exam;
+				// exam = new FormTakingTest(test);
+
+				// List<QuestionAnswer> questionAnswerList = new ArrayList<QuestionAnswer>();
+				//
+				// exam.setQuestionAnswerList(new ArrayList<QuestionAnswer>());
+				//
+				// for (Question question : test.getQuestionList())
+				// {
+				// /*
+				// * Answer object should have atleast 1 answerData object
+				// */
+				// Answer answer = new Answer();
+				//
+				// // TODO: is it right?
+				// // answer.setQuestionId(question.getId());
+				// answer.setQuestion(question);
+				//
+				// answer.setAnswerDataList(new ArrayList<AnswerData>());
+				// int i = 0;
+				//
+				// do
+				// {
+				// AnswerData ansData = new AnswerData();
+				// answer.getAnswerDataList().add(ansData);
+				// i++;
+				// }
+				// while (i < question.getQuestionDataList().size());
+				//
+				// QuestionAnswer questionAnswer = new QuestionAnswer();
+				// questionAnswer.setQuestion(question);
+				// questionAnswer.setAnswer(answer);
+				//
+				// exam.getQuestionAnswerList().add(questionAnswer);
+
 
 				modelAndView.getModelMap().put("currentUser", userSession);
 				modelAndView.getModelMap().put("resources", resources);

@@ -17,8 +17,10 @@ public class FormTakingTest
 
 	}
 
-	
-	/** Use this constructor for making object for Form Binding
+
+	/**
+	 * Use this constructor for making object for Form Binding Only
+	 * 
 	 * @param test
 	 */
 	public FormTakingTest(Test test)

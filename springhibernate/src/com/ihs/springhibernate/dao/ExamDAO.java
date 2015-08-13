@@ -23,4 +23,19 @@ public class ExamDAO
 
 		AnswerDAO.save(answerList);
 	}
+
+	/**
+	 * Returns Test along with its question and solved answers
+	 * 
+	 * @param testId
+	 * @param testTakerId
+	 * @return FormTakingTest object
+	 */
+	public static FormTakingTest getExam(Integer testId, Integer testTakerId)
+	{
+		FormTakingTest exam = new FormTakingTest();
+
+		return exam;
+
+	}
 }

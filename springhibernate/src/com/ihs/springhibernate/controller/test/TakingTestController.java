@@ -43,6 +43,7 @@ public class TakingTestController
 	private IUserSession userSession;
 
 	@ModelAttribute("exam")
+	// @RequestMapping(method = RequestMethod.GET) // want to restrict this population with get request only
 	public FormTakingTest populateExam(@RequestParam String token)
 	{
 		System.out.println("populating FormTakingTest");

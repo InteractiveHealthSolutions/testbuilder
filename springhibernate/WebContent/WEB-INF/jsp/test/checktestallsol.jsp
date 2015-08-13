@@ -50,7 +50,7 @@
 <table border="1px" class="table table-bordered">
 
     <tr>
-      <th>Creator Id/Name</th>
+      <th>Test taker Id/Name</th>
         <th>Question Attempted</th>
         <th>Time taken</th>
         <th>Submitted On</th>
