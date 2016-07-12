@@ -31,12 +31,12 @@ public class DetailQuestionController
 		ModelAndView modelAndView = null;
 		ResourcesName resources = new ResourcesName();
 
+	if(userSession.getName() != null){
 		if (userSession.getRole().getId() != null)
 		{
 			if (UserDAO.hasPrivilegeFor(userSession, Privileges.TEST_MAKER) == true) //
 			{
 				modelAndView = new ModelAndView(resources.getFOLDER_QUESTION() + "/" + resources.getJSP_VIEW_QUESTION());
-
 				modelAndView.getModelMap().put("detailQuestion", question);
 				modelAndView.getModelMap().put("currentUser", userSession);
 				modelAndView.getModelMap().put("resources", resources);
@@ -48,6 +48,7 @@ public class DetailQuestionController
 				// modelAndView.getModel().put("status", status);
 			}
 		}
+	}
 
 		else
 		{

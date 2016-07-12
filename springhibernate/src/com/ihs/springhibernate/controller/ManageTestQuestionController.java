@@ -22,7 +22,7 @@ public class ManageTestQuestionController
 		ModelAndView modelAndView = null;
 		ResourcesName resources = new ResourcesName();
 
-		if (userSession != null)
+		if (userSession.getName() != null)
 		{
 			if (userSession.getRole().getId() == Privileges.ADMIN.getRoleId() || userSession.getRole().getId() == Privileges.TEST_MAKER.getRoleId()) // if admin then it is fine
 			{

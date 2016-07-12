@@ -67,6 +67,11 @@
       </c:if>
 
     </c:forEach>
+    
+   <c:url var="logoutUser" value="/${Resource.FOLDER_USER}/${Resource.JSP_LOGOUT_USER}">
+        </c:url>
+
+        <li><a href="<c:out value="${logoutUser}"/>">Logout</a></li>
 
   </ul>
 </div>

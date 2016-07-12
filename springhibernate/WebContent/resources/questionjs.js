@@ -54,15 +54,22 @@ function addMoreOption() {
         {
 
           var questionDiv = document.getElementById("divQuestionData");
-
+          var divInputGroup = document.getElementById("divInputGroup");
+          var divFormGroup = document.getElementById("divFormGroup");
+          
           var newDiv = document.createElement("div");
 
           newDiv.id = "div" + currentIndex;
           
           // creating div for composing Bootstrap input groups
 
-          var divInputGroup = document.createElement("div");         
+      /*    var divInputGroup = document.createElement("div");         
           divInputGroup.className = "input-group";
+          
+           var divFormGroup = document.createElement("div");
+           divFormGroup.className = "form-group";
+           divInputGroup.appendChild(divFormGroup);*/
+                 
 
           // creating option textbox if it is not image type question          
           
@@ -87,10 +94,32 @@ function addMoreOption() {
           removeButton.className = "btn btn-primary";
           
           var spanForButton = document.createElement("span");
-          spanForButton.className = "input-group-btn";        
-
+          spanForButton.className = "input-group-btn";      
+          
+          //add questiondatalist.iscorrect
+          
+          var checkbox = document.createElement('input');
+          checkbox.id = "chkBox" + currentIndex;
+          checkbox.type = "radio";
+          checkbox.name = "questionDataList[" + currentIndex + "].correct";     
+         // checkbox.value = "false";
+         // checkbox.checked = true;
+          checkbox.style="margin-left: 50px";
+          
+          var myLabel = document.createElement('Label');
+          myLabel.id = "radioLbl";
+          myLabel.className = "radio control-label";
+          myLabel.appendChild(checkbox);
+          
+          var radioDiv = document.createElement("div");
+          radioDiv.id = "div1"
+          radioDiv.className = "radio"
+          radioDiv.appendChild(myLabel);
+          
           divInputGroup.appendChild(spanForButton);
           spanForButton.appendChild(removeButton);
+          divFormGroup.appendChild(radioDiv);
+    
           
           var indexHiddenField = document.createElement("input");
           indexHiddenField.type = "hidden";

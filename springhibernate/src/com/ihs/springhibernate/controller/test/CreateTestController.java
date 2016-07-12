@@ -51,7 +51,7 @@ public class CreateTestController
 		ModelAndView modelAndView = null;
 		ResourcesName resources = new ResourcesName();
 
-		if (userSession != null)
+		if (userSession.getName() != null)
 		{
 			if (UserDAO.hasPrivilegeFor(userSession, Privileges.TEST_MAKER) == true)
 			{

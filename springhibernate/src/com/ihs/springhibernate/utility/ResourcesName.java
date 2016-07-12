@@ -32,10 +32,12 @@ public class ResourcesName
 	private final String JSP_DETAIL_USER = "detailuser";
 	private final String JSP_EDIT_USER = "edituser";
 	private final String JSP_MANAGE_USER = "manageuser";
+	private final String JSP_LOGOUT_USER = "logout";
 
 	private final String JSP_EDIT_QUESTION = "editquestion";
 	private final String JSP_VIEW_QUESTION = "viewquestion";
 	private final String JSP_CREATE_QUESTION = "createquestion";
+	private final String JSP_ADD_CATEGORY = "addcategory";
 	private final String JSP_MANAGE_QUESTION = "managequestion"; // manage questions
 
 	private final String JSP_CHECK_TEST = "checktest";
@@ -67,7 +69,6 @@ public class ResourcesName
 	private final String FOLDER_TEST = "test";
 
 	private final String FOLDER_QUESTION = "question";
-
 
 	private final String FOLDER_ERROR = "error";
 
@@ -152,6 +153,8 @@ public class ResourcesName
 	{
 		return MESSAGE_NOPRIVILEGE;
 	}
+	
+
 
 	public String getJSP_TAKE_TEST_LIST()
 	{
@@ -366,6 +369,14 @@ public class ResourcesName
 	public String getJSP_TEST_END_SUMMARY()
 	{
 		return JSP_TEST_END_SUMMARY;
+	}
+
+	public String getJSP_LOGOUT_USER() {
+		return JSP_LOGOUT_USER;
+	}
+
+	public String getJSP_ADD_CATEGORY() {
+		return JSP_ADD_CATEGORY;
 	}
 
 }

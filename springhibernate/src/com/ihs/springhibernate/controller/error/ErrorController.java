@@ -26,7 +26,7 @@ public class ErrorController
 		ModelAndView modelAndView = null;
 		ResourcesName resources = new ResourcesName();
 
-		if (userSession != null)
+		if (userSession.getName() != null)
 		{
 			modelAndView = new ModelAndView(resources.getFOLDER_ERROR() + "/" + resources.getJSP_ERROR_PAGE());
 			modelAndView.getModelMap().put("resources", resources);

@@ -4,9 +4,10 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%
-    response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");//HTTP 1.1
-    response.setHeader("Pragma","no-cache"); //HTTP 1.0
-    response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
+	response.setHeader("Cache-Control",
+			"no-cache,no-store,must-revalidate");//HTTP 1.1
+	response.setHeader("Pragma", "no-cache"); //HTTP 1.0
+	response.setDateHeader("Expires", 0); //prevents caching at the proxy server
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -34,15 +35,8 @@
 	src="<c:url value='/resources/jquerymultiselect/js/jquery.multi-select.js'/>"></script>
 <script type="text/javascript"
 	src="<c:url value='/resources/jquerymultiselect/jquerymsinitializer.js'/>"></script>
-<script>
-	$(document).ready(function() {
-		initJQMultiSelect("slctQuestion");
-	});
-</script>
-
 </head>
 <body>
-
 	<div class="container">
 
 		<div class="row clearfix">
@@ -57,22 +51,22 @@
 			<t:menu user="${currentUser}" />
 
 			<div class="col-md-9 column">
-				<h3>Create Test</h3>
-				<form:form id="frmSubmitQuestion" method="POST"
-					action="/springhibernate/test/createtest" modelAttribute="newTest">
+				<h3>Add Category</h3>
+				<form:form id="frmSubmitCategory" method="POST"
+					action="/springhibernate/question/addcategory"
+					modelAttribute="newCategory">
 
 					<table border="1px" class="table table-bordered">
-
 						<tr>
-							<th>Test Name</th>
-							<td><form:input path="name" size="50" maxlength="90"
+							<th>Type Name</th>
+							<td><form:input path="typeName" size="50" maxlength="90"
 									class="form-control input" required="true" /></td>
 
-							<td><form:errors path="name" /></td>
+							<td><form:errors path="typeName" /></td>
 						</tr>
 
 						<tr>
-							<th>Test Description</th>
+							<th>Type Description</th>
 							<td><form:textarea path="description"
 									class="form-control input" required="true" /> <input
 								type="hidden" name="creatorId" value="${currentUser.getId()}" />
@@ -80,30 +74,6 @@
 
 							<td><form:errors path="description" /></td>
 
-						</tr>
-						<tr>
-							<th>Comments for Test Maker</th>
-							<td colspan="2"><form:textarea path="comments"
-									class="form-control input" /></td>
-						</tr>
-
-						<tr>
-							<th>Select Question</th>
-							<th colspan="2">Question Data</th>
-						</tr>
-
-						<tr>
-							<td>
-								<%-- <form:select id="slctQuestion" path="questionList" items="${loadedQuestionList}" itemLabel="title" itemValue="id" size="10" onclick="getQuestionData()"/>          --%>
-								<form:select id="slctQuestion" path="questionList"
-									items="${loadedQuestionList}" itemLabel="title" itemValue="id"
-									onclick="getQuestionData()" class="form-control input" />
-
-							</td>
-							<td height="350px" width="400px" colspan="2">
-
-								<div id="divQuestionData"></div>
-							</td>
 						</tr>
 
 						<tr>
@@ -133,10 +103,8 @@
 							</td>
 						</tr>
 
-
 					</table>
 				</form:form>
-
 			</div>
 		</div>
 

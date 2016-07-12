@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -47,6 +48,11 @@ public class Question implements IAuditTrailFields
 	@OneToOne
 	@JoinColumn(name = "question_type_id")
 	private QuestionType questionType = new QuestionType();
+	
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name= "category_id")
+	private CategoryType categoryType = new CategoryType();
 
 	// It contains MCQ related options
 	//@NotEmpty
@@ -74,6 +80,8 @@ public class Question implements IAuditTrailFields
 
 	@Column(name = "last_editor_id")
 	private Integer lastEditorId;
+	
+	
 
 	
 	public String getTitle()
@@ -114,6 +122,15 @@ public class Question implements IAuditTrailFields
 	public void setQuestionType(QuestionType questionType)
 	{
 		this.questionType = questionType;
+	}
+	
+	public void setCategoryType (CategoryType categoryType)
+	{
+		this.categoryType = categoryType;
+	}
+	
+	public CategoryType getCategoryType (){
+		return categoryType;
 	}
 	
 	public List<QuestionData> getQuestionDataList()

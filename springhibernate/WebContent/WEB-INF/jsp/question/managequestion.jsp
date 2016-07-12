@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
+<%
+    response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");//HTTP 1.1
+    response.setHeader("Pragma","no-cache"); //HTTP 1.0
+    response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -40,6 +45,7 @@
           <table border="1px" class="table table-bordered">
             <tr>
               <th>Question Type</th>
+              <th>Question Category</th>
               <th>Question Title</th>
               <th>Question Data</th>
               <th>Action</th>
@@ -53,6 +59,7 @@
                 <c:when test="${question.getQuestionType().getId() != 1 }">
                   <tr>
                     <td rowspan="${question.getQuestionDataList().size()}">${question.getQuestionType().getTypeName()}</td>
+                    <td rowspan="${question.getQuestionDataList().size()}">${question.getCategoryType().getTypeName()}</td>
                     <td rowspan="${question.getQuestionDataList().size()}">${question.getTitle()}</td>
                     <td>${question.getQuestionDataList().get(0).getData()}</td>
 
@@ -84,6 +91,7 @@
                 <c:otherwise>
                   <tr>
                     <td>${question.getQuestionType().getTypeName()}</td>
+                    <td>${question.getCategoryType().getTypeName()}</td>
                     <td colspan="2">${question.getTitle()}</td>
 
                     <c:url var="editUrl" value="${resources.JSP_EDIT_QUESTION}">

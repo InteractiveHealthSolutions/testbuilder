@@ -36,6 +36,9 @@ public class QuestionData implements Comparable<QuestionData>, IAuditTrailFields
 
 	@Column(name = "image_data")
 	private byte[] imageData;
+	
+	@Column(name="iscorrect")
+	private boolean correct;
 
 	@Transient
 	private CommonsMultipartFile file;
@@ -113,6 +116,7 @@ public class QuestionData implements Comparable<QuestionData>, IAuditTrailFields
 		this.imageData = imagedata;
 	}
 
+
 	public Date getCreationTS()
 	{
 		return creationTS;
@@ -174,6 +178,18 @@ public class QuestionData implements Comparable<QuestionData>, IAuditTrailFields
 		hash = 17 * hash + (this.id != null ? this.id.hashCode() : 0);
 		return hash;
 	}
+
+	public boolean isCorrect() {
+		return correct;
+	}
+
+	public void setCorrect(boolean correct) {
+		this.correct = correct;
+	}
+
+
+
+	
 
 	// Collections.sort(_uniqueVoteList, Collections.reverseOrder());
 }

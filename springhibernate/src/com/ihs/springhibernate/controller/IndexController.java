@@ -35,6 +35,7 @@ public class IndexController
 	@RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
 	public ModelAndView indexDefault(@ModelAttribute("loginUser") User loginUser)
 	{
+
 		ResourcesName resources = new ResourcesName();
 
 		ModelAndView modelAndView = new ModelAndView(resources.getJSP_INDEX());

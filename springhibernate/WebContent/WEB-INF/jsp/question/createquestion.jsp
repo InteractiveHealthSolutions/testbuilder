@@ -2,8 +2,14 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
+<%
+    response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");//HTTP 1.1
+    response.setHeader("Pragma","no-cache"); //HTTP 1.0
+    response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
+%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -25,6 +31,7 @@
 		updateBtnAddMore();
 		// 		    $('#frmSubmitQuestion').bootstrapValidator();
 	});
+	
 </script>
 </head>
 
@@ -45,6 +52,12 @@
 
       <div class="col-md-9 column">
         <h3>Create Question</h3>
+        
+        <c:url var="createCategory" value="${resources.JSP_ADD_CATEGORY}">
+        </c:url>
+        <h4>
+          <a href="<c:out value="${createCategory}"/>">Add New Category</a>
+        </h4>
 
         <form:form id="frmSubmitQuestion" method="POST" action="/springhibernate/question/createquestion"
           modelAttribute="newQuestion" enctype="multipart/form-data" class="form-horizontal">
@@ -57,14 +70,22 @@
               <td colspan="2"><form:select path="questionType.id" id="slctQuestionType"
                   onchange="updateBtnAddMore()" class="form-control input">
                   <c:forEach var="questionType" items="${questionTypeList}">
-
                     <form:option value="${questionType.getId()}" label="${questionType.getTypeName()}" />
                   </c:forEach>
-
                 </form:select></td>
             </tr>
-            <tr>
             
+            <tr>
+              <th>Category</th>
+              <td colspan="2"><form:select path="categoryType.id" id="selectCategory" class="form-control input">
+                  <c:forEach var="category" items="${categoryType}">
+                    <form:option value="${category.getId()}" label="${category.getTypeName()}" />
+                  </c:forEach>
+                  </form:select>
+              </td>
+            </tr>
+            
+            <tr>
               <th>Question Title</th>
 
               <td>
@@ -92,14 +113,21 @@
 
               <td colspan="3" align="center"><input type="button" id="btnAddMore" class="btn btn-primary"
                 onclick="addMoreOption()" value="Click to add option" disabled
-              /></td>
-
+              />
+              <span style="font-weight: bold ; padding-left: 425px">Correct Answer</span>
+              </td>
+           
             </tr>
             <tr id="trQuestionData">
               <!--  <tr id="trQuestionData" > -->
               <th>Define options</th>
               <td>
-                <div id="divQuestionData"></div>
+                <div id="divQuestionData">
+                <div id="divInputGroup" class="input-group">
+                <div id="divFormGroup" class="form-group">
+                </div>
+                </div>
+                </div>
               </td>
             </tr>
 
