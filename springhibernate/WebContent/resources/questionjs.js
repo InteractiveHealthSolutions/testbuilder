@@ -186,6 +186,18 @@ function setDefaultValues() {
   document.getElementById("slctQuestionType").value = 1;
 }
 
+function setNewAnswer(elementId) {
+	for (var item in "questionDataList") {
+		  if(item.correct === true){
+			  item.correct = false;
+		  }
+	}
+	
+	var hiddenField = document.getElementById("hid1");
+		hiddenField.value = true;
+		hiddenField.name = "questionDataList[" + elementId + "].correct";
+}
+
 function testing() {
   alert(document.getElementById("slctQuestionType").value);
 }

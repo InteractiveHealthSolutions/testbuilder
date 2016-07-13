@@ -131,7 +131,21 @@
                   <span class="input-group-btn"> 
                   <input type="button" onclick="removeElement('divData${index2.count}')" class="btn btn-primary" value="x"  />
                    </span>
+                  <div id="div1" class="radio">
+                  <label id="radioLbl" class="radio control-label">
+                  <input id="${index2.count}" type="radio" name="selectedOption"  onclick="setNewAnswer('${index2.count}')" style="margin-left: 50px;"/>
+                  <c:if test="${data.correct == true }">
+                  <script>    
+                   var radioId = document.getElementById('${index2.count}');
+                   radioId.checked = "checked";
+                  </script>
+                  </c:if>
+                  </input>
+                  </label>
+                  </div> 
 </div>
+
+<input type="hidden" id="hid1"/>
    <input type="hidden" name="questionDataList[${index2.count}].id" value="${data.getId()}" /> 
                   <input type="hidden" name="questionDataList[${index2.count}].index" value="${data.getIndex()}"/>
                 </div>

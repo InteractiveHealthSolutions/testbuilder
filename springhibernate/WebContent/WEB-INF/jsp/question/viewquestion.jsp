@@ -95,6 +95,16 @@
             </tr>
           </c:if>
 
+			<tr> 
+			<th>Correct Option</th>
+			<td>
+			<c:forEach var= "iscorrect" items="${detailQuestion.getQuestionDataList() }">
+			<c:if test = "${iscorrect.correct == true}" >
+			${iscorrect.data}
+			</c:if>
+			</c:forEach>
+			</td>
+			</tr>
           <tr>
             <th>Max marks</th>
             <td>${detailQuestion.getMaxMarks()}</td>
