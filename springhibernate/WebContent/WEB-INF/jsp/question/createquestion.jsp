@@ -33,6 +33,7 @@
 	});
 	
 </script>
+
 </head>
 
 <body>
@@ -123,11 +124,8 @@
               <th>Define options</th>
               <td>
                 <div id="divQuestionData">
-                <div id="divInputGroup" class="input-group">
-                <div id="divFormGroup" class="form-group">
                 </div>
-                </div>
-                </div>
+          <input type="hidden" id="hid1" /> 
               </td>
             </tr>
 

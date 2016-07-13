@@ -38,6 +38,8 @@ function updateBtnAddMore() {
       addMoreOption();
     }
   }
+  
+ 
 
   console.log("function ended");
 }
@@ -54,8 +56,8 @@ function addMoreOption() {
         {
 
           var questionDiv = document.getElementById("divQuestionData");
-          var divInputGroup = document.getElementById("divInputGroup");
-          var divFormGroup = document.getElementById("divFormGroup");
+         // var divInputGroup = document.getElementById("divInputGroup");
+          //var divFormGroup = document.getElementById("divFormGroup");
           
           var newDiv = document.createElement("div");
 
@@ -63,10 +65,10 @@ function addMoreOption() {
           
           // creating div for composing Bootstrap input groups
 
-      /*    var divInputGroup = document.createElement("div");         
+          var divInputGroup = document.createElement("div");         
           divInputGroup.className = "input-group";
           
-           var divFormGroup = document.createElement("div");
+         /*  var divFormGroup = document.createElement("div");
            divFormGroup.className = "form-group";
            divInputGroup.appendChild(divFormGroup);*/
                  
@@ -99,13 +101,24 @@ function addMoreOption() {
           //add questiondatalist.iscorrect
           
           var checkbox = document.createElement('input');
-          checkbox.id = "chkBox" + currentIndex;
+          checkbox.id = currentIndex;
           checkbox.type = "radio";
-          checkbox.name = "questionDataList[" + currentIndex + "].correct";     
-         // checkbox.value = "false";
-         // checkbox.checked = true;
+          checkbox.name = "selectedOption";
           checkbox.style="margin-left: 50px";
+          checkbox.onclick = function(){ 
+        	  	var hiddenField = document.getElementById("hid1");
+          		hiddenField.value = true;
+          		hiddenField.name = "questionDataList[" + checkbox.id + "].correct";     
+          }
+         /* $("#chkBox" + currentIndex)
+          .on(
+               'click',
+                  function() {
+            	   $("#hid1").val(true);
+            	   $("#hid1").name("questionDataList[" + currentIndex + "].correct");
+                  });*/
           
+          	         
           var myLabel = document.createElement('Label');
           myLabel.id = "radioLbl";
           myLabel.className = "radio control-label";
@@ -118,8 +131,8 @@ function addMoreOption() {
           
           divInputGroup.appendChild(spanForButton);
           spanForButton.appendChild(removeButton);
-          divFormGroup.appendChild(radioDiv);
-    
+          divInputGroup.appendChild(radioDiv);
+   
           
           var indexHiddenField = document.createElement("input");
           indexHiddenField.type = "hidden";
@@ -140,7 +153,7 @@ function addMoreOption() {
               });
 
           currentIndex++;
-        } else {
+          } else {
           // Remove all elements because text type of question is selected
         }
       });
