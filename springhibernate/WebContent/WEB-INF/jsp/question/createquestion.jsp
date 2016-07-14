@@ -54,12 +54,7 @@
       <div class="col-md-9 column">
         <h3>Create Question</h3>
         
-        <c:url var="createCategory" value="${resources.JSP_ADD_CATEGORY}">
-        </c:url>
-        <h4>
-          <a href="<c:out value="${createCategory}"/>">Add New Category</a>
-        </h4>
-
+        
         <form:form id="frmSubmitQuestion" method="POST" action="/springhibernate/question/createquestion"
           modelAttribute="newQuestion" enctype="multipart/form-data" class="form-horizontal">
 
