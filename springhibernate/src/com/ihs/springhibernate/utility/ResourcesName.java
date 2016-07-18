@@ -42,7 +42,7 @@ public class ResourcesName
 
 	private final String JSP_CHECK_TEST = "checktest";
 	private final String JSP_MANAGE_TEST = "managetest"; // manage test
-	private final String JSP_CREATE_TEST = "createtest";
+	private final String JSP_CREATE_SCHEME = "createtest";
 	private final String JSP_EDIT_TEST = "edittest";
 	private final String JSP_VIEW_TEST = "viewtest";
 	private final String JSP_TAKE_TEST_LIST = "taketestlist";
@@ -204,11 +204,6 @@ public class ResourcesName
 	public String getJSP_MANAGE_QUESTION()
 	{
 		return JSP_MANAGE_QUESTION;
-	}
-
-	public String getJSP_CREATE_TEST()
-	{
-		return JSP_CREATE_TEST;
 	}
 
 	public String getFOLDER_USER()
@@ -377,6 +372,10 @@ public class ResourcesName
 
 	public String getJSP_ADD_CATEGORY() {
 		return JSP_ADD_CATEGORY;
+	}
+
+	public String getJSP_CREATE_SCHEME() {
+		return JSP_CREATE_SCHEME;
 	}
 
 }

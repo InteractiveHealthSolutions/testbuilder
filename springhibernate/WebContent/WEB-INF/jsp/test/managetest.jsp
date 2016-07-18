@@ -33,10 +33,10 @@
       <div class="col-md-9 column">
 
         <h3>Manage Test</h3>
-        <c:url var="createTest" value="${resources.getJSP_CREATE_TEST()}">
+        <c:url var="createTest" value="${resources.getJSP_CREATE_SCHEME()}">
         </c:url>
         <h4>
-          <a href="<c:out value="${createTest}"/>">Create New Test</a>
+          <a href="<c:out value="${createTest}"/>">Create New Test Scheme</a>
         </h4>
         <div>
           <table border="1px" class="table table-bordered">

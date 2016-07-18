@@ -19,33 +19,31 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ihs.springhibernate.dao.QuestionDAO;
 import com.ihs.springhibernate.dao.QuestionDAO.By;
 import com.ihs.springhibernate.dao.AnswerTypeDAO;
+import com.ihs.springhibernate.dao.CategoryTypeDAO;
 import com.ihs.springhibernate.dao.QuestionTypeDAO;
-
 import com.ihs.springhibernate.dao.TestDAO;
 import com.ihs.springhibernate.dao.UserDAO;
-
 import com.ihs.springhibernate.model.AnswerType;
+import com.ihs.springhibernate.model.CategoryType;
 import com.ihs.springhibernate.model.Privilege;
 import com.ihs.springhibernate.model.Question;
 import com.ihs.springhibernate.model.QuestionData;
 import com.ihs.springhibernate.model.QuestionType;
-
 import com.ihs.springhibernate.model.Test;
-
 import com.ihs.springhibernate.propertyeditor.Editor;
 import com.ihs.springhibernate.sessioninterface.IUserSession;
 import com.ihs.springhibernate.utility.Privileges;
 import com.ihs.springhibernate.utility.ResourcesName;
-
+/*
 
 @Controller
-@RequestMapping("/test")
-public class CreateTestController
+//@RequestMapping("/test")
+ public class CreateTestController
 {
 	@Autowired
 	private IUserSession userSession;
 
-	@RequestMapping(value = "/createtest", method = RequestMethod.GET)
+	//@RequestMapping(value = "/createtest", method = RequestMethod.GET)
 	public ModelAndView getCreateTest(@ModelAttribute("newTest") Test newTest)
 	{
 		ModelAndView modelAndView = null;
@@ -62,6 +60,9 @@ public class CreateTestController
 
 				List<Question> loadedQuestionList = QuestionDAO.getAllQuestion(QuestionDAO.FetchType.EAGER);
 				modelAndView.getModelMap().put("loadedQuestionList", loadedQuestionList);
+				
+				List<CategoryType> categoryType = CategoryTypeDAO.getCategoryTypes();
+				modelAndView.getModel().put("categoryType", categoryType);
 			}
 			else
 			{
@@ -77,7 +78,7 @@ public class CreateTestController
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/createtest", method = RequestMethod.POST)
+	//@RequestMapping(value = "/createtest", method = RequestMethod.POST)
 	public ModelAndView submitTest(@ModelAttribute("newTest") @Valid Test newTest, BindingResult result)
 	{
 		ResourcesName resources = new ResourcesName();
@@ -94,7 +95,7 @@ public class CreateTestController
 		{
 			List<Question> loadedQuestionList = QuestionDAO.getAllQuestion(QuestionDAO.FetchType.EAGER);
 			modelAndView.getModelMap().put("loadedQuestionList", loadedQuestionList);
-
+			
 			modelAndView.getModel().put("status", resources.getMESSAGE_VALIDATION_ERROR());
 
 			return modelAndView;
@@ -183,4 +184,4 @@ public class CreateTestController
 
 		return response;
 	}
-}
+}*/
