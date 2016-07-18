@@ -57,7 +57,7 @@
 			<t:menu user="${currentUser}" />
 
 			<div class="col-md-9 column">
-				<h3>Create Test</h3>
+				<h3>Create Test Sceheme</h3>
 				<form:form id="frmSubmitQuestion" method="POST"
 					action="/springhibernate/test/createtest" modelAttribute="newTest">
 
@@ -81,6 +81,14 @@
 							<td><form:errors path="description" /></td>
 
 						</tr>
+						
+						<tr>
+							<th>Total Questions</th>
+							<td colspan="2">
+							<form:input type="number" path="" class="form-control input" required="true" min="1" max="999" />
+							</td>
+						</tr>
+						
 						<tr>
 							<th>Comments for Test Maker</th>
 							<td colspan="2"><form:textarea path="comments"
