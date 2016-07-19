@@ -1,5 +1,5 @@
-function getQuestionData() {
 
+function getQuestionData() {
 		var selectedValues = [];
 		$("#slctQuestion :selected").each(function() {
 			selectedValues.push($(this).val());
@@ -17,6 +17,84 @@ function getQuestionData() {
 			});
 		}
 }
+
+
+function addMoreCategories() {
+   	  
+		var selectedItem = document.getElementById('selectCategoryList');
+		var selectedItemValue = selectedItem.options[selectedItem.selectedIndex];
+		var deletedValue = selectedItem.selectedIndex;
+	
+	    	// alert(currentIndex);
+	    	 var mainDiv = document.getElementById("dataDiv"); 
+	    	 
+	    	 var categoryDiv = document.createElement("div");
+	    	 categoryDiv.id= "div" + selectedItemValue.value;
+	    	 
+	    	 var inputDiv = document.createElement("div");
+	    	 inputDiv.className="input-group";
+	    	 
+	    	 var categoryLabel = document.createElement("Label");
+	    	 categoryLabel.style.width = "220px";
+	    	 categoryLabel.id = selectedItemValue.value;
+	    	 categoryLabel.innerHTML  = selectedItemValue.text;
+	    	 
+	    	 var percentageBox = document.createElement("input");
+	    	 percentageBox.type = "number";
+	    	 percentageBox.min = "1";
+	    	 percentageBox.max = "100";
+	    	 percentageBox.id = "percentage" +  selectedItemValue.value;
+	    	 percentageBox.style.width = "50px";
+	    	 
+	    	 var percentageLabel = document.createElement("Label");
+	    	 percentageLabel.innerHTML = "%";
+	    	 percentageLabel.className = "label label-primary";
+	    	 percentageLabel.style.marginLeft = "5px";
+	     	 
+	          var removeButton = document.createElement("input");
+	          removeButton.type = "button";
+	          removeButton.id = "btnRemove" + selectedItemValue.value;
+	          removeButton.value = "X";
+	          removeButton.className = "btn btn-primary";
+	          removeButton.style.marginLeft = "28px";
+	    	 
+	    	 
+	    	 inputDiv.appendChild(categoryLabel);
+	    	 inputDiv.appendChild(percentageBox);
+	    	 inputDiv.appendChild(percentageLabel);
+	    	 inputDiv.appendChild(removeButton);
+	    	 
+	    	 categoryDiv.appendChild(inputDiv);
+	    	 mainDiv.appendChild(categoryDiv);
+	    	 inputDiv.style.marginTop = "10px";
+	    	 
+	    	 var selectList = document.getElementById("selectCategoryList");
+	    	 selectList.remove(deletedValue);
+	    	 
+	    	 $("#btnRemove" + selectedItemValue.value)
+	            .on(
+	              'click',
+	              function() {
+	                removeElement($(categoryDiv).attr('id'), $(categoryLabel).text(), $(categoryLabel).attr('id'));
+	              });
+}
+
+function removeElement(elementId, text, id) {
+
+	  $(document).ready(function() {
+
+	    var questionDiv = document.getElementById("dataDiv");    
+	      var reAdd = document.getElementById("selectCategoryList");	
+	      var option = document.createElement("option");
+	      option.value = id;
+	      option.text = text;
+	      //alert(option.text);
+	      reAdd.add(option);
+	      var elem = document.getElementById(elementId);
+	      elem.parentNode.removeChild(elem);
+	      return false;
+	  });
+	}
 
 function renderDataOption(rawJSON) {
 
