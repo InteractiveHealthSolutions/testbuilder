@@ -96,7 +96,7 @@
 						<table>
 						<tr>
 						  <td>
-						  <form:select path="categoryType.id" id="selectCategoryList" class="form-control input" style="width: 302px">
+						  <form:select path="" id="selectCategoryList" class="form-control input" style="width: 302px">
 						  <c:forEach var="category" items="${categoryType}">
         		            <form:option value="${category.getId()}" label="${category.getTypeName()}" />
 		                  </c:forEach>

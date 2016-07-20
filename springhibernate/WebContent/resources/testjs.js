@@ -38,10 +38,12 @@ function addMoreCategories() {
 	    	 categoryLabel.style.width = "220px";
 	    	 categoryLabel.id = selectedItemValue.value;
 	    	 categoryLabel.innerHTML  = selectedItemValue.text;
+	    	// categoryLabel.name = "category";
 	    	 
 	    	 var percentageBox = document.createElement("input");
 	    	 percentageBox.type = "number";
 	    	 percentageBox.min = "1";
+	    	 percentageBox.name = "percentage" + selectedItemValue.value;
 	    	 percentageBox.max = "100";
 	    	 percentageBox.id = "percentage" +  selectedItemValue.value;
 	    	 percentageBox.style.width = "50px";

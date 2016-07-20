@@ -1,13 +1,19 @@
 package com.ihs.springhibernate.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 
@@ -28,19 +34,11 @@ public class Scheme  {
 	@Column(name = "total_questions")
 	private String totalQuestions;
 	
-	
-	@NotEmpty
+	@NotNull
 	@OneToMany
 	@JoinTable(name = "scheme_category", joinColumns = @JoinColumn(name = "scheme_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
-	private CategoryType categoryType = new CategoryType();
+	private List<CategoryType> categoryType = new ArrayList<CategoryType>();
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return name;
@@ -66,11 +64,20 @@ public class Scheme  {
 		this.totalQuestions = totalQuestions;
 	}
 
-	public CategoryType getCategoryType() {
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public List<CategoryType> getCategoryType() {
 		return categoryType;
 	}
 
-	public void setCategoryType(CategoryType categoryType) {
+	public void setCategoryType(List<CategoryType> categoryType) {
 		this.categoryType = categoryType;
 	}
 	

@@ -49,7 +49,7 @@
 
 		<mapping class="com.ihs.springhibernate.model.User" />
 		<mapping class="com.ihs.springhibernate.model.Role" />
-
+		<mapping class="com.ihs.springhibernate.model.Scheme" />
 		<mapping class="com.ihs.springhibernate.model.Privilege" />
 		<mapping class="com.ihs.springhibernate.model.Question" />
 		<mapping class="com.ihs.springhibernate.model.QuestionData" />
