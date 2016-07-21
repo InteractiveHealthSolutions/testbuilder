@@ -76,11 +76,10 @@ public class CreateSchemeController {
 			@ModelAttribute("newScheme") @Valid Scheme newScheme,
 			BindingResult result, HttpServletRequest request) {
 		ResourcesName resources = new ResourcesName();
-		
+
 		List<CategoryType> categories = CategoryTypeDAO.getCategoryTypes();
 		LinkedHashMap<Integer, Integer> percentageList = new LinkedHashMap<Integer, Integer>();
 		List<Integer> labelList = new ArrayList<Integer>();
-		
 
 		ModelAndView modelAndView = new ModelAndView(resources.getFOLDER_TEST()
 				+ "/" + resources.getJSP_CREATE_SCHEME());
@@ -110,9 +109,7 @@ public class CreateSchemeController {
 							resources.getMESSAGE_FAIL_ADD());
 				}
 			}
-			
-			
-			
+
 			// String a = "";
 
 			for (CategoryType cat : categories) {
@@ -121,43 +118,45 @@ public class CreateSchemeController {
 				} else {
 					percentageList.put(cat.getId(), Integer.parseInt(a));
 					labelList.add(cat.getId());
-					//String s = labelList.get(cat.getId());
 				}
 			}
-			
-			//SchemeCategory schemeCategory =  new SchemeCategory();
-			
-		//	schemeCategory.setScheme_id(2);
-		//	schemeCategory.setCategory_id(2);
-		//	schemeCategory.setWeightage(25);
-			
-		//	schemeCategory.setScheme_id(2);
-		//	schemeCategory.setCategory_id(3);
-		//	schemeCategory.setWeightage(25);
-			
-		//	//schemeCategory.setId(5);
-		//	schemeCategory.setScheme_id(2);
-		//	schemeCategory.setCategory_id(5);
-		//	schemeCategory.setWeightage(25);
-			
-			
-			
-			
-		//	int a = SchemeCategoryDAO.saveSchemeCategory(schemeCategory);
-	
-			
+
+			// SchemeCategory schemeCategory = new SchemeCategory();
+
+			// schemeCategory.setScheme_id(2);
+			// schemeCategory.setCategory_id(2);
+			// schemeCategory.setWeightage(25);
+
+			// schemeCategory.setScheme_id(2);
+			// schemeCategory.setCategory_id(3);
+			// schemeCategory.setWeightage(25);
+
+			// //schemeCategory.setId(5);
+			// schemeCategory.setScheme_id(2);
+			// schemeCategory.setCategory_id(5);
+			// schemeCategory.setWeightage(25);
+
+			// int a = SchemeCategoryDAO.saveSchemeCategory(schemeCategory);
+
 			List<SchemeCategory> schemeCategoryList = new ArrayList<SchemeCategory>();
+			List<Scheme> schemeIdList;
+			Scheme schemeID;
 			int size = labelList.size();
 			SchemeCategory obj;
-			for(int i=0 ; i < size ; i++){
+			
+			for (int i = 0; i < size; i++) {
 				obj = new SchemeCategory();
 				obj.setCategory_id(labelList.get(i));
 				obj.setWeightage(percentageList.get(labelList.get(i)));
-				obj.setScheme_id(2);
-				
+				schemeIdList = new ArrayList<Scheme>();
+				schemeID = new Scheme();
+				schemeIdList = SchemeDAO.getSchemeData(newScheme.getName());
+				schemeID = schemeIdList.get(0);
+				obj.setScheme_id(schemeID.getId());
+
 				schemeCategoryList.add(obj);
 			}
-			
+
 			int a = SchemeCategoryDAO.saveSchemeCategory(schemeCategoryList);
 
 		}

@@ -27,7 +27,7 @@ public class AnswerTypeDAO
 
 			session.beginTransaction();
 
-			String hql = "FROM AnswerType";
+			String hql = "FROM AnswerType WHERE";
 			Query query = session.createQuery(hql);
 			answerTypeList = (List<AnswerType>) query.list();
 
