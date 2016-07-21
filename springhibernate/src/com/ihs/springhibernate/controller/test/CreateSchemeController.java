@@ -2,7 +2,9 @@ package com.ihs.springhibernate.controller.test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,10 +22,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ihs.springhibernate.dao.CategoryTypeDAO;
+import com.ihs.springhibernate.dao.SchemeCategoryDAO;
 import com.ihs.springhibernate.dao.SchemeDAO;
 import com.ihs.springhibernate.dao.UserDAO;
 import com.ihs.springhibernate.model.CategoryType;
 import com.ihs.springhibernate.model.Scheme;
+import com.ihs.springhibernate.model.SchemeCategory;
 import com.ihs.springhibernate.sessioninterface.IUserSession;
 import com.ihs.springhibernate.utility.Privileges;
 import com.ihs.springhibernate.utility.ResourcesName;
@@ -72,6 +76,11 @@ public class CreateSchemeController {
 			@ModelAttribute("newScheme") @Valid Scheme newScheme,
 			BindingResult result, HttpServletRequest request) {
 		ResourcesName resources = new ResourcesName();
+		
+		List<CategoryType> categories = CategoryTypeDAO.getCategoryTypes();
+		LinkedHashMap<Integer, Integer> percentageList = new LinkedHashMap<Integer, Integer>();
+		List<Integer> labelList = new ArrayList<Integer>();
+		
 
 		ModelAndView modelAndView = new ModelAndView(resources.getFOLDER_TEST()
 				+ "/" + resources.getJSP_CREATE_SCHEME());
@@ -101,10 +110,9 @@ public class CreateSchemeController {
 							resources.getMESSAGE_FAIL_ADD());
 				}
 			}
-
-/*			List<CategoryType> categories = CategoryTypeDAO.getCategoryTypes();
-			HashMap<Integer, Integer> percentageList = new HashMap<Integer, Integer>();
-			HashMap<Integer, String> labelList = new HashMap<Integer, String>();
+			
+			
+			
 			// String a = "";
 
 			for (CategoryType cat : categories) {
@@ -112,10 +120,45 @@ public class CreateSchemeController {
 				if (a == null) {
 				} else {
 					percentageList.put(cat.getId(), Integer.parseInt(a));
-					labelList.put(cat.getId(), cat.getTypeName());
-					String s = labelList.get(cat.getId());
+					labelList.add(cat.getId());
+					//String s = labelList.get(cat.getId());
 				}
-			}*/
+			}
+			
+			//SchemeCategory schemeCategory =  new SchemeCategory();
+			
+		//	schemeCategory.setScheme_id(2);
+		//	schemeCategory.setCategory_id(2);
+		//	schemeCategory.setWeightage(25);
+			
+		//	schemeCategory.setScheme_id(2);
+		//	schemeCategory.setCategory_id(3);
+		//	schemeCategory.setWeightage(25);
+			
+		//	//schemeCategory.setId(5);
+		//	schemeCategory.setScheme_id(2);
+		//	schemeCategory.setCategory_id(5);
+		//	schemeCategory.setWeightage(25);
+			
+			
+			
+			
+		//	int a = SchemeCategoryDAO.saveSchemeCategory(schemeCategory);
+	
+			
+			List<SchemeCategory> schemeCategoryList = new ArrayList<SchemeCategory>();
+			int size = labelList.size();
+			SchemeCategory obj;
+			for(int i=0 ; i < size ; i++){
+				obj = new SchemeCategory();
+				obj.setCategory_id(labelList.get(i));
+				obj.setWeightage(percentageList.get(labelList.get(i)));
+				obj.setScheme_id(2);
+				
+				schemeCategoryList.add(obj);
+			}
+			
+			int a = SchemeCategoryDAO.saveSchemeCategory(schemeCategoryList);
 
 		}
 		return modelAndView;
