@@ -67,14 +67,14 @@
 						<tr>
 							<th>Scheme Name</th>
 							<td><form:input path="name" size="50" maxlength="90"
-									class="form-control input" required="true" /></td>
+									class="form-control input" required="true" id="nameTxt" /></td>
 
 							<td><form:errors path="name" /></td>
 						</tr>
 
 						<tr>
 							<th>Scheme Description</th>
-							<td><form:textarea path="description"
+							<td><form:textarea path="description" id="descriptionTxt"
 									class="form-control input" required="true" /> <input
 								type="hidden" name="creatorId" value="${currentUser.getId()}" />
 							</td>
@@ -86,7 +86,7 @@
 						<tr>
 							<th>Total Questions</th>
 							<td colspan="2">
-							<form:input type="number" path="totalQuestions" class="form-control input" required="true" min="1" max="999" />
+							<form:input type="number" id="questionTxt" path="totalQuestions" class="form-control input" required="true" min="1" max="999" />
 							</td>
 						</tr>
 					
@@ -120,7 +120,7 @@
 						
 						<tr>
 							<td colspan="3" align="center">
-							<label id="errorLabel" style="display: none; color: red ">Incorrect weightage of questions</label>
+							<label id="errorLabel" style="display: none; color: red "></label>
 							</td>
 						</tr>
 
