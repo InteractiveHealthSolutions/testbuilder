@@ -60,7 +60,7 @@
 			<div class="col-md-9 column">
 				<h3>Create Test Scheme</h3>
 				<form:form id="formSubmitScheme" method="POST"
-					action="/springhibernate/test/createtest" modelAttribute="newScheme">
+					action="/springhibernate/test/createtest?type=" modelAttribute="newScheme">
 
 					<table border="1px" class="table table-bordered">
 
@@ -128,15 +128,23 @@
 							<td colspan="3">
 								<div class="control-group">
 
-									<div class="col-md-6">
+									<div class="col-md-4">
 										<div class="text-center">
-											<input type="button" value="Save" id="singlebutton"
-												name="singlebutton" class="btn btn-success" onclick="checkError()" />
+											<input type="button" value="Save" id="save"
+												name="singlebutton" class="btn btn-success" onclick="checkError(this.id)" />
+										</div>
+
+									</div>
+									
+									<div class="col-md-4">
+										<div class="text-center">
+											<input type="button" value="Generate Test" id="generate"
+												name="singlebutton" class="btn btn-success" onclick="checkError(this.id)" />
 										</div>
 
 									</div>
 
-									<div class="col-md-6">
+									<div class="col-md-4">
 										<div class="text-center">
 											<a href="/springhibernate/home">
 											<input type="button"

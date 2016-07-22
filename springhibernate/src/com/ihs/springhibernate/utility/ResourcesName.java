@@ -40,11 +40,13 @@ public class ResourcesName
 	private final String JSP_ADD_CATEGORY = "addcategory";
 	private final String JSP_MANAGE_QUESTION = "managequestion"; // manage questions
 
+	
 	private final String JSP_CHECK_TEST = "checktest";
 	private final String JSP_MANAGE_TEST = "managetest"; // manage test
 	private final String JSP_CREATE_SCHEME = "createtest";
 	private final String JSP_EDIT_TEST = "edittest";
 	private final String JSP_VIEW_TEST = "viewtest";
+	private final String JSP_FINALIZE_TEST = "finalizetest";
 	private final String JSP_TAKE_TEST_LIST = "taketestlist";
 	private final String JSP_TEST_BEGIN_SUMMARY = "testbeginsummary";
 	private final String JSP_TEST_END_SUMMARY = "testendsummary";
@@ -376,6 +378,10 @@ public class ResourcesName
 
 	public String getJSP_CREATE_SCHEME() {
 		return JSP_CREATE_SCHEME;
+	}
+
+	public String getJSP_FINALIZE_TEST() {
+		return JSP_FINALIZE_TEST;
 	}
 
 }

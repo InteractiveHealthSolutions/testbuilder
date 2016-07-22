@@ -108,7 +108,7 @@ function removeElement(elementId, text, id) {
 	});
 }
 
-function checkError() {
+function checkError(btnType) {
 	var err = document.getElementById("errorLabel");
 	var schemeName = document.getElementById("nameTxt");
 	var schemeDescription = document.getElementById("descriptionTxt");
@@ -149,7 +149,9 @@ function checkError() {
 		}
 
 		if (totalSum == 100) {
-			document.getElementById("formSubmitScheme").submit();
+			var form = document.getElementById("formSubmitScheme");
+			form.action += btnType;
+			form.submit();
 		}
 
 		else if (totalSum == 0) {

@@ -89,6 +89,9 @@ public class CreateSchemeController {
 		modelAndView.getModel().put("newScheme", newScheme);
 
 		modelAndView.getModel().put("currentUser", userSession);
+		
+		
+	String parameter = request.getParameter("type");
 
 		if (userSession.getName() != null) {
 
@@ -127,8 +130,12 @@ public class CreateSchemeController {
 
 				int newSaved = SchemeCategoryDAO.saveSchemeCategory(schemeCategoryList);
 				
-				if (newlySavedId != -1 && newSaved!= -1) {
+				if (newlySavedId != -1 && newSaved!= -1 && parameter.equals("save")) {
 					 modelAndView = new ModelAndView("redirect:/" + resources.getJSP_HOME());
+				}
+				
+				else if (newlySavedId != -1 && newSaved!= -1 && parameter.equals("generate")) {
+					 modelAndView = new ModelAndView("redirect:/" + resources.getFOLDER_TEST() + "/" + resources.getJSP_FINALIZE_TEST());
 				}
 
 				else {
