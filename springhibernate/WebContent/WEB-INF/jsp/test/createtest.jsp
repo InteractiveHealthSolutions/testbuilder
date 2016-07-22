@@ -38,6 +38,7 @@
 	$(document).ready(function() {
 		initJQMultiSelect("slctQuestion");
 	});
+	
 </script>
 
 </head>
@@ -58,7 +59,7 @@
 
 			<div class="col-md-9 column">
 				<h3>Create Test Scheme</h3>
-				<form:form id="frmSubmitQuestion" method="POST"
+				<form:form id="formSubmitScheme" method="POST"
 					action="/springhibernate/test/createtest" modelAttribute="newScheme">
 
 					<table border="1px" class="table table-bordered">
@@ -118,7 +119,9 @@
 						</tr>
 						
 						<tr>
-							<td colspan="3">${status}</td>
+							<td colspan="3" align="center">
+							<label id="errorLabel" style="display: none; color: red ">Incorrect weightage of questions</label>
+							</td>
 						</tr>
 
 						<tr>
@@ -127,15 +130,15 @@
 
 									<div class="col-md-6">
 										<div class="text-center">
-											<input type="submit" value="Save" id="singlebutton"
-												name="singlebutton" class="btn btn-primary" />
+											<input type="button" value="Save" id="singlebutton"
+												name="singlebutton" class="btn btn-success" onclick="checkError()" />
 										</div>
 
 									</div>
 
 									<div class="col-md-6">
 										<div class="text-center">
-											<a href="managetest">
+											<a href="/springhibernate/home">
 											<input type="button"
 												class="btn btn-default" value="Cancel & Go Back" /></a>
 										</div>

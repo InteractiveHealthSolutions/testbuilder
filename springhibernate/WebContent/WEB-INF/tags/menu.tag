@@ -45,14 +45,15 @@
           <a href="<c:out value="${createCategory}"/>">Add New Category</a>
         </li>
         
-
         <c:url var="manageTest" value="/${Resource.FOLDER_TEST}/${Resource.JSP_MANAGE_TEST}">
         </c:url>
 
-
-
-        <%--         <li><a href="<c:out value="${manageTest}"/>">${right.getRight()}</a></li> --%>
         <li><a href="<c:out value="${manageTest}"/>">Manage Test</a></li>
+        
+        <c:url var="createTestScheme" value="/${Resource.FOLDER_TEST}/${Resource.JSP_CREATE_SCHEME}">
+        </c:url>
+
+        <li><a href="<c:out value="${createTestScheme}"/>">Create Test Scheme</a></li>
 
 
 

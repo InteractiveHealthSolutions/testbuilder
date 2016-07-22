@@ -1,3 +1,16 @@
+var array = [];
+
+$(document)
+.ready(
+	      function() {
+	    	//  alert('dfssdfsdfs')
+	    	  var selectTag = document.getElementById('selectCategoryList');  
+	    	  var k = selectTag.options;
+	    	  for(var j=0 ; j < selectTag.length; j++){
+	    		array.push(k[j].value);
+	    	  }
+	      });
+
 
 function getQuestionData() {
 		var selectedValues = [];
@@ -19,6 +32,11 @@ function getQuestionData() {
 }
 
 
+
+function checkError(){
+	
+}
+
 function addMoreCategories() {
    	  
 		var selectedItem = document.getElementById('selectCategoryList');
@@ -38,7 +56,6 @@ function addMoreCategories() {
 	    	 categoryLabel.style.width = "220px";
 	    	 categoryLabel.id = selectedItemValue.value;
 	    	 categoryLabel.innerHTML  = selectedItemValue.text;
-	    	// categoryLabel.name = "category";
 	    	 
 	    	 var percentageBox = document.createElement("input");
 	    	 percentageBox.type = "number";
@@ -97,6 +114,35 @@ function removeElement(elementId, text, id) {
 	      return false;
 	  });
 	}
+
+function checkError() { 
+	var totalSum = 0;
+	var selectTag = document.getElementById('selectCategoryList'); 
+	
+	for (var b=0 ; b < array.length ; b++) {
+	
+		var checkId = "percentage" + array[b];
+		
+		if(document.getElementById(checkId) == null) {
+		}
+		
+		else {
+			
+			var perBox = document.getElementById(checkId);
+			totalSum += Number(perBox.value);
+		}
+	}
+	
+	if(totalSum == 100){
+		document.getElementById("formSubmitScheme").submit();
+	}
+	
+	else {
+		var err = document.getElementById("errorLabel");
+		err.style.display = "block";
+	}
+	
+}
 
 function renderDataOption(rawJSON) {
 
