@@ -135,7 +135,7 @@ public class CreateSchemeController {
 				}
 				
 				else if (newlySavedId != -1 && newSaved!= -1 && parameter.equals("generate")) {
-					 modelAndView = new ModelAndView("redirect:/" + resources.getFOLDER_TEST() + "/" + resources.getJSP_FINALIZE_TEST());
+					 modelAndView = new ModelAndView("redirect:/" + resources.getFOLDER_TEST() + "/" + resources.getJSP_FINALIZE_TEST()+"?id="+ newlySavedId);
 				}
 
 				else {

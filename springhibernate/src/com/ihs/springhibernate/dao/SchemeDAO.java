@@ -86,4 +86,40 @@ public static List<Scheme> getSchemeData (String name)
 
 	return schemeList;
 }
+
+public static List<Scheme> getSchemeById (Integer id)
+{
+	List<Scheme> schemeList = null;
+
+	try
+	{
+		Session session = SessionFactoryBuilder.getSessionFactory().openSession();
+
+		session.beginTransaction();
+
+		String hql = "FROM Scheme WHERE id = :_value ";		
+		Query query = session.createQuery(hql);
+		query.setParameter("_value", id);
+		
+		schemeList = (List<Scheme>) query.list();
+
+		if (schemeList != null)
+		{
+
+		}
+
+		session.getTransaction().commit();
+
+		session.close();
+	}
+
+	catch (Exception exc)
+	{
+		exc.printStackTrace();
+	}
+
+	return schemeList;
+}
+
+
 }
