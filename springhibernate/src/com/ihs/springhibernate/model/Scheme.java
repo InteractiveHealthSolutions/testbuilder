@@ -32,7 +32,7 @@ public class Scheme  {
 	private String description;
 
 	@Column(name = "total_questions")
-	private String totalQuestions;
+	private int totalQuestions;
 	
 	@NotNull
 	@OneToMany
@@ -56,13 +56,6 @@ public class Scheme  {
 		this.description = description;
 	}
 
-	public String getTotalQuestions() {
-		return totalQuestions;
-	}
-
-	public void setTotalQuestions(String totalQuestions) {
-		this.totalQuestions = totalQuestions;
-	}
 
 
 	public Integer getId() {
@@ -79,6 +72,14 @@ public class Scheme  {
 
 	public void setCategoryType(List<CategoryType> categoryType) {
 		this.categoryType = categoryType;
+	}
+
+	public int getTotalQuestions() {
+		return totalQuestions;
+	}
+
+	public void setTotalQuestions(int totalQuestions) {
+		this.totalQuestions = totalQuestions;
 	}
 	
 	
