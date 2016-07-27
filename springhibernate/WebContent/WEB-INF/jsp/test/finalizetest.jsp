@@ -38,35 +38,56 @@
 </head>
 <body>
 
-<div class="container">
+	<div class="container">
 
 
-    <div class="row clearfix">
-      <div class="col-md-12 column">
-        <h3 class="text-left">Hi ${currentUser.getName()}</h3>
-      </div>
-    </div>
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<h3 class="text-left">Hi ${currentUser.getName()}</h3>
+			</div>
+		</div>
 
-    <div class="row clearfix">
+		<div class="row clearfix">
 
-      <!-- Menu tag is called -->
-      <t:menu user="${currentUser}" />
+			<!-- Menu tag is called -->
+			<t:menu user="${currentUser}" />
 
-      <div class="col-md-9 column">
+			<div class="col-md-9 column">
 
-        <h3>Create Test Paper</h3>
+				<h3>Create Test Paper</h3>
 
-        <div>
-          <table border="1px" class="table table-bordered">
-            <tr>
-              <th>Question Category</th>
-              <th>Question List</th>
-              <th>Action</th>
-			</tr>
-</table>
-</div>
-</div>
-</div>
-</div>
+				<div>
+					<table border="1px" class="table table-bordered">
+						<tr>
+							<th>Question Category</th>
+							<th>Question List</th>
+							<th>Action</th>
+						</tr>
+
+						<c:forEach var="question" items="${questionCollection}">
+							<tr>
+								<td>${question.get(0).getCategoryType().getTypeName()}</td>
+								<td><c:forEach var="questionData" items="${question}"
+										varStatus="loop">
+       								  ${loop.index + 1}. ${questionData.getTitle()} <br>
+										<br>
+									</c:forEach></td>
+								<td><c:forEach var="questionData" items="${question}"
+										varStatus="loop">
+										<c:url var="detailUrl" value="/question/viewquestion">
+											<c:param name="id" value="${questionData.getId()}" />
+										</c:url>
+										<a
+											onclick='javascript:window.open("<c:out value="${detailUrl}"/>" , "_blank", "scrollbars=1,resizable=1,height=500,width=1050");' style="cursor: pointer;">Details</a>
+										<br>
+										<br>
+									</c:forEach></td>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

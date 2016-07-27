@@ -83,7 +83,6 @@ public class GenerateTestPaper {
 						.getQuestionForTest(categoryWeightageList);
 				modelAndView.getModelMap().put("questionCollection",
 						questionCollection);
-
 			}
 
 			else {
