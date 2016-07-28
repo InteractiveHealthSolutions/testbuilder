@@ -5,9 +5,12 @@ import java.math.*;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,10 +20,12 @@ import java.util.List;
 import com.ihs.springhibernate.dao.QuestionDAO;
 import com.ihs.springhibernate.dao.SchemeCategoryDAO;
 import com.ihs.springhibernate.dao.SchemeDAO;
+import com.ihs.springhibernate.dao.TestDAO;
 import com.ihs.springhibernate.dao.UserDAO;
 import com.ihs.springhibernate.model.Question;
 import com.ihs.springhibernate.model.Scheme;
 import com.ihs.springhibernate.model.SchemeCategory;
+import com.ihs.springhibernate.model.Test;
 import com.ihs.springhibernate.sessioninterface.IUserSession;
 import com.ihs.springhibernate.utility.Privileges;
 import com.ihs.springhibernate.utility.ResourcesName;
@@ -32,10 +37,11 @@ public class GenerateTestPaper {
 	private IUserSession userSession;
 
 	@RequestMapping(value = "/finalizetest", method = RequestMethod.GET)
-	public ModelAndView getSchemeData(HttpServletRequest request) {
+	public ModelAndView getSchemeData(@ModelAttribute("newTest") Test newTest, HttpServletRequest request) {
 		ModelAndView modelAndView = null;
 		ResourcesName resources = new ResourcesName();
 		List<List<Question>> questionCollection = new ArrayList<List<Question>>();
+//		List<Question> questionList = new ArrayList<Question>();
 		int totalQuestions = 0;
 		int categoryId = 0;
 		double calculateVal = 0;
@@ -49,9 +55,14 @@ public class GenerateTestPaper {
 			if (UserDAO.hasPrivilegeFor(userSession, Privileges.TEST_MAKER) == true) {
 				modelAndView = new ModelAndView(resources.getFOLDER_TEST()
 						+ "/" + resources.getJSP_FINALIZE_TEST());
+				
+			    //Test newTest = new Test();
 				modelAndView.getModelMap().put("currentUser", userSession);
 				modelAndView.getModelMap().put("resources", resources);
-
+				modelAndView.getModelMap().put("newTest", newTest);
+				modelAndView.getModelMap().put("schemeId", schemeId);
+//				modelAndView.getModelMap().put("questionList", questionList);
+				
 				List<Scheme> schemeList = new ArrayList<Scheme>();
 				schemeList = SchemeDAO.getSchemeById(schemeId);
 
@@ -93,4 +104,28 @@ public class GenerateTestPaper {
 
 		return modelAndView;
 	}
+	
+	@RequestMapping(value = "/finalizetest", method = RequestMethod.POST)
+	ModelAndView submitTest(
+			@ModelAttribute("newTest") @Valid Test newTest,
+			BindingResult result, HttpServletRequest request) {
+			
+		ResourcesName resources = new ResourcesName();
+	
+		
+		ModelAndView modelAndView = new ModelAndView("redirect:/" + resources.getJSP_HOME());
+
+		modelAndView.getModel().put("resources", resources);
+
+		modelAndView.getModel().put("newTest", newTest);
+
+		modelAndView.getModel().put("currentUser", userSession);
+
+		Integer newlySavedId = -1;
+		newlySavedId = TestDAO.save(newTest);
+		
+		return modelAndView;
+	
+	}
+	
 }

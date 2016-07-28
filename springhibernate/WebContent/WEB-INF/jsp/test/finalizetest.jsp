@@ -56,21 +56,50 @@
 
 				<h3>Create Test Paper</h3>
 
-				<div>
+				<form:form id="formSubmitTest" method="POST"
+					action="/springhibernate/test/finalizetest"
+					modelAttribute="newTest">
+
+
+					<table border="1px" class="table table-bordered">
+						<tr>
+							<th>Test Name</th>
+							<td><form:input path="name" size="50" maxlength="90"
+									class="form-control input" required="true" /></td>
+							<td>
+							<input type="hidden" name="scheme.id" value="${schemeId }"/>
+							</td>
+							
+						</tr>
+
+						<tr>
+							<th>Test Description</th>
+							<td><form:textarea path="description"
+									class="form-control input" required="true" /> <input
+								type="hidden" name="creatorId" value="${currentUser.getId()}" />
+							</td>
+						</tr>
+
+					</table>
+					<br>
 					<table border="1px" class="table table-bordered">
 						<tr>
 							<th>Question Category</th>
 							<th>Question List</th>
 							<th>Action</th>
 						</tr>
-
+						<c:set var="questionIndex" scope="session" value="${0}"/>
 						<c:forEach var="question" items="${questionCollection}">
 							<tr>
 								<td>${question.get(0).getCategoryType().getTypeName()}</td>
 								<td><c:forEach var="questionData" items="${question}"
 										varStatus="loop">
-       								  ${loop.index + 1}. ${questionData.getTitle()} <br>
+       								  ${loop.index + 1}. ${questionData.getTitle()}
+       								  <input type="hidden" name="questionList[${questionIndex}].id"
+											value="${questionData.getId() }" />
 										<br>
+										<br>
+									<c:set var="questionIndex" scope="session" value="${questionIndex + 1}"/>
 									</c:forEach></td>
 								<td><c:forEach var="questionData" items="${question}"
 										varStatus="loop">
@@ -78,14 +107,40 @@
 											<c:param name="id" value="${questionData.getId()}" />
 										</c:url>
 										<a
-											onclick='javascript:window.open("<c:out value="${detailUrl}"/>" , "_blank", "scrollbars=1,resizable=1,height=500,width=1050");' style="cursor: pointer;">Details</a>
+											onclick='javascript:window.open("<c:out value="${detailUrl}"/>" , "_blank", "scrollbars=1,resizable=1,height=500,width=1050");'
+											style="cursor: pointer;">Details</a>
 										<br>
 										<br>
 									</c:forEach></td>
 							</tr>
 						</c:forEach>
+
+						<tr>
+							<td colspan="3">
+
+								<div class="control-group">
+									<div class="col-md-6">
+										<div class="text-center">
+											<input type="submit" value="Save" id="singlebutton"
+												name="singlebutton" class="btn btn-primary" />
+										</div>
+
+									</div>
+
+
+									<div class="col-md-6">
+										<div class="text-center">
+											<a href="createtest"><input type="button"
+												class="btn btn-success" value="Cancel & Go Back" /></a>
+										</div>
+									</div>
+
+								</div>
+
+							</td>
+						</tr>
 					</table>
-				</div>
+				</form:form>
 			</div>
 		</div>
 	</div>

@@ -10,8 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -38,6 +40,11 @@ public class Test implements IAuditTrailFields
 	@OneToMany
 	@JoinTable(name = "test_question", joinColumns = @JoinColumn(name = "test_id"), inverseJoinColumns = @JoinColumn(name = "question_id"))
 	private List<Question> questionList = new ArrayList<Question>();
+	
+//	@NotEmpty
+//	@OneToMany
+//	@JoinTable(name = "test_question", joinColumns = @JoinColumn(name = "test_id"), inverseJoinColumns = @JoinColumn(name = "question_id"))
+//	List<List<Question>> questionCollection = new ArrayList<List<Question>>();
 
 	// @Column(name = "test_maker_id")
 	// private Integer testMakerId;
@@ -53,6 +60,11 @@ public class Test implements IAuditTrailFields
 
 	@Column(name = "last_editor_id")
 	private Integer lastEditorId;
+	
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name= "scheme_id")
+	private Scheme scheme = new Scheme();
 
 	public Integer getId()
 	{
@@ -157,4 +169,20 @@ public class Test implements IAuditTrailFields
 	{
 		this.lastEditorId = lastEditorId;
 	}
+
+	public Scheme getScheme() {
+		return scheme;
+	}
+
+	public void setScheme(Scheme scheme) {
+		this.scheme = scheme;
+	}
+
+//	public List<List<Question>> getQuestionCollection() {
+//		return questionCollection;
+//	}
+//
+//	public void setQuestionCollection(List<List<Question>> questionCollection) {
+//		this.questionCollection = questionCollection;
+//	}
 }
