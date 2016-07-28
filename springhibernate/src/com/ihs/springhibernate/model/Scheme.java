@@ -32,7 +32,7 @@ public class Scheme  {
 	private String description;
 
 	@Column(name = "total_questions")
-	private int totalQuestions;
+	private Integer totalQuestions;
 	
 	@NotNull
 	@OneToMany
@@ -74,13 +74,15 @@ public class Scheme  {
 		this.categoryType = categoryType;
 	}
 
-	public int getTotalQuestions() {
+	public Integer getTotalQuestions() {
 		return totalQuestions;
 	}
 
-	public void setTotalQuestions(int totalQuestions) {
+	public void setTotalQuestions(Integer totalQuestions) {
 		this.totalQuestions = totalQuestions;
 	}
+
+	
 	
 	
 	

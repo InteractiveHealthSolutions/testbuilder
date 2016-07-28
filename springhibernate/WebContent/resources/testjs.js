@@ -127,7 +127,7 @@ function checkError(btnType) {
 		err.style.display = "block";
 	}
 
-	else if (schemeQuestions.value == "") {
+	else if (schemeQuestions.value == "" || schemeQuestions.value == 0) {
 		err.style.display = "none";
 		err.innerText = "No Of Questions Incorrect or Missing!!";
 		err.style.display = "block";

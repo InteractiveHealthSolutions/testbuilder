@@ -66,10 +66,9 @@
 							<th>Test Name</th>
 							<td><form:input path="name" size="50" maxlength="90"
 									class="form-control input" required="true" /></td>
-							<td>
-							<input type="hidden" name="scheme.id" value="${schemeId }"/>
-							</td>
-							
+							<td><input type="hidden" name="scheme.id"
+								value="${schemeId }" /></td>
+
 						</tr>
 
 						<tr>
@@ -88,18 +87,20 @@
 							<th>Question List</th>
 							<th>Action</th>
 						</tr>
-						<c:set var="questionIndex" scope="session" value="${0}"/>
+						<c:set var="questionIndex" scope="session" value="${0}" />
 						<c:forEach var="question" items="${questionCollection}">
 							<tr>
 								<td>${question.get(0).getCategoryType().getTypeName()}</td>
 								<td><c:forEach var="questionData" items="${question}"
 										varStatus="loop">
        								  ${loop.index + 1}. ${questionData.getTitle()}
-       								  <input type="hidden" name="questionList[${questionIndex}].id"
+       								  <input type="hidden"
+											name="questionList[${questionIndex}].id"
 											value="${questionData.getId() }" />
 										<br>
 										<br>
-									<c:set var="questionIndex" scope="session" value="${questionIndex + 1}"/>
+										<c:set var="questionIndex" scope="session"
+											value="${questionIndex + 1}" />
 									</c:forEach></td>
 								<td><c:forEach var="questionData" items="${question}"
 										varStatus="loop">
@@ -116,22 +117,33 @@
 						</c:forEach>
 
 						<tr>
+							<td colspan="3">${status}</td>
+						</tr>
+
+						<tr>
 							<td colspan="3">
 
 								<div class="control-group">
-									<div class="col-md-6">
+									<div class="col-md-4">
 										<div class="text-center">
 											<input type="submit" value="Save" id="singlebutton"
-												name="singlebutton" class="btn btn-primary" />
+												name="singlebutton" class="btn btn-success" />
 										</div>
 
 									</div>
+									
+									<div class="col-md-4">
+										<div class="text-center">
+											<input type="button" value="Print"
+												 class="btn btn-primary" />
+										</div>
+									</div>
 
 
-									<div class="col-md-6">
+									<div class="col-md-4">
 										<div class="text-center">
 											<a href="createtest"><input type="button"
-												class="btn btn-success" value="Cancel & Go Back" /></a>
+												class="btn btn-danger" value="Cancel & Go Back" /></a>
 										</div>
 									</div>
 

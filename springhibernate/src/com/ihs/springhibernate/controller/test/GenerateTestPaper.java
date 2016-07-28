@@ -121,9 +121,17 @@ public class GenerateTestPaper {
 
 		modelAndView.getModel().put("currentUser", userSession);
 
-		Integer newlySavedId = -1;
-		newlySavedId = TestDAO.save(newTest);
+
+		if (userSession.getName() != null) {
 		
+			Integer newlySavedId = -1;
+			newlySavedId = TestDAO.save(newTest);
+			
+			if(newlySavedId == -1){
+				modelAndView.getModel().put("status",
+						resources.getMESSAGE_FAIL_ADD());
+			}
+		}
 		return modelAndView;
 	
 	}
