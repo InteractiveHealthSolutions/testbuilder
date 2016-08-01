@@ -37,8 +37,8 @@
         <div>
           <table border="1px" class="table table-bordered">
             <tr>
-              <th>Tile</th>
-              <th>Description</th>
+              <th>Test Name</th>
+              <th>Scheme Name</th>
               <th>Created on</th>
               <th>Action</th>
             </tr>
@@ -47,21 +47,19 @@
               <tr>
                 <td>${test.getName()}</td>
 
-                <td>${test.getDescription()}</td>
+                <td>${test.getScheme().getName()}</td>
 
                 <td>${test.getCreationTS()}</td>
-
-                <c:url var="editUrl" value="${resources.JSP_EDIT_TEST}">
-                  <c:param name="id" value="${test.getId()}" />
-                </c:url>
-                <td>
-                <a href="<c:out value="${editUrl}"/>">Edit</a> | 
-                    
-                    <c:url var="detailUrl" value="${resources.JSP_VIEW_TEST}">                        
-                        <c:param name="id" value="${test.getId()}" />
-                      </c:url> <a href="<c:out value="${detailUrl}"/>">Details</a>
                 
-                </td>
+                <td></td>
+
+        
+<%--                 <td><c:url var="detailUrl" --%>
+<%-- 										value="${resources.JSP_VIEW_TEST}"> --%>
+
+
+<%-- 										<c:param name="id" value="${test.getId()}" /> --%>
+<%-- 									</c:url> <a href="<c:out value="${detailUrl}"/>">Details</a></td> --%>
 
               </tr>
 
