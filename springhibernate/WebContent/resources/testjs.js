@@ -168,6 +168,12 @@ function checkError(btnType) {
 
 }
 
+function submitFormByType(typeBtn){
+	var name = document.getElementById("formSubmitTest");
+	name.action += typeBtn;
+	name.submit();
+}
+
 function renderDataOption(rawJSON) {
 
 	// Remove table if exist

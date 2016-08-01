@@ -18,14 +18,17 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 import com.ihs.springhibernate.dao.QuestionDAO;
+import com.ihs.springhibernate.dao.QuestionDataDAO;
 import com.ihs.springhibernate.dao.SchemeCategoryDAO;
 import com.ihs.springhibernate.dao.SchemeDAO;
 import com.ihs.springhibernate.dao.TestDAO;
 import com.ihs.springhibernate.dao.UserDAO;
 import com.ihs.springhibernate.model.Question;
+import com.ihs.springhibernate.model.QuestionData;
 import com.ihs.springhibernate.model.Scheme;
 import com.ihs.springhibernate.model.SchemeCategory;
 import com.ihs.springhibernate.model.Test;
+import com.ihs.springhibernate.model.TestQuestion;
 import com.ihs.springhibernate.sessioninterface.IUserSession;
 import com.ihs.springhibernate.utility.Privileges;
 import com.ihs.springhibernate.utility.ResourcesName;
@@ -37,11 +40,12 @@ public class GenerateTestPaper {
 	private IUserSession userSession;
 
 	@RequestMapping(value = "/finalizetest", method = RequestMethod.GET)
-	public ModelAndView getSchemeData(@ModelAttribute("newTest") Test newTest, HttpServletRequest request) {
+	public ModelAndView getSchemeData(@ModelAttribute("newTest") Test newTest,
+			HttpServletRequest request) {
 		ModelAndView modelAndView = null;
 		ResourcesName resources = new ResourcesName();
 		List<List<Question>> questionCollection = new ArrayList<List<Question>>();
-//		List<Question> questionList = new ArrayList<Question>();
+		// List<Question> questionList = new ArrayList<Question>();
 		int totalQuestions = 0;
 		int categoryId = 0;
 		double calculateVal = 0;
@@ -55,14 +59,14 @@ public class GenerateTestPaper {
 			if (UserDAO.hasPrivilegeFor(userSession, Privileges.TEST_MAKER) == true) {
 				modelAndView = new ModelAndView(resources.getFOLDER_TEST()
 						+ "/" + resources.getJSP_FINALIZE_TEST());
-				
-			    //Test newTest = new Test();
+
+				// Test newTest = new Test();
 				modelAndView.getModelMap().put("currentUser", userSession);
 				modelAndView.getModelMap().put("resources", resources);
 				modelAndView.getModelMap().put("newTest", newTest);
 				modelAndView.getModelMap().put("schemeId", schemeId);
-//				modelAndView.getModelMap().put("questionList", questionList);
-				
+				// modelAndView.getModelMap().put("questionList", questionList);
+
 				List<Scheme> schemeList = new ArrayList<Scheme>();
 				schemeList = SchemeDAO.getSchemeById(schemeId);
 
@@ -104,16 +108,17 @@ public class GenerateTestPaper {
 
 		return modelAndView;
 	}
-	
+
 	@RequestMapping(value = "/finalizetest", method = RequestMethod.POST)
-	ModelAndView submitTest(
-			@ModelAttribute("newTest") @Valid Test newTest,
+	ModelAndView submitTest(@ModelAttribute("newTest") @Valid Test newTest,
 			BindingResult result, HttpServletRequest request) {
-			
+
 		ResourcesName resources = new ResourcesName();
-	
-		
-		ModelAndView modelAndView = new ModelAndView("redirect:/" + resources.getJSP_HOME());
+
+		String btnClick = request.getParameter("type");
+
+		ModelAndView modelAndView = new ModelAndView();
+		// new ModelAndView("redirect:/" + resources.getJSP_HOME());
 
 		modelAndView.getModel().put("resources", resources);
 
@@ -121,19 +126,61 @@ public class GenerateTestPaper {
 
 		modelAndView.getModel().put("currentUser", userSession);
 
-
 		if (userSession.getName() != null) {
-		
+
 			Integer newlySavedId = -1;
 			newlySavedId = TestDAO.save(newTest);
-			
-			if(newlySavedId == -1){
-				modelAndView.getModel().put("status",
-						resources.getMESSAGE_FAIL_ADD());
+
+			if (btnClick.equals("save")) {
+
+				if (newlySavedId == -1) {
+					modelAndView.getModel().put("status",
+							resources.getMESSAGE_FAIL_ADD());
+				}
+
+				else {
+					modelAndView.getModel().put("status",
+							resources.getMESSAGE_ADD());
+				}
 			}
+
+			else if (btnClick.equals("print")) {
+
+				List<TestQuestion> questionList = new ArrayList<TestQuestion>();
+				questionList = QuestionDAO.getQuestionForTest(newlySavedId);
+
+				List<Question> allQuestionList = QuestionDAO
+						.getAllQuestion(QuestionDAO.FetchType.EAGER);
+
+				List<Question> finalQuestionList = new ArrayList<Question>();
+
+				for (int i = 0; i < questionList.size(); i++) {
+					for (int j = 0; j < allQuestionList.size(); j++) {
+						if (questionList.get(i).getQuestion_id()
+								.equals(allQuestionList.get(j).getId())
+								&& allQuestionList.get(j).getQuestionType()
+										.getId() == 3) {
+							finalQuestionList.add(allQuestionList.get(j));
+							break;
+						}
+					}
+				}
+				
+				List<Question> aa = new ArrayList<Question>();
+				aa.addAll(finalQuestionList);
+				int a =1;
+
+				// modelAndView = new ModelAndView("redirect:/" +
+				// resources.getJSP_HOME());
+			}
+
+			else {
+
+			}
+
 		}
 		return modelAndView;
-	
+
 	}
-	
+
 }

@@ -58,6 +58,7 @@
 		<mapping class="com.ihs.springhibernate.model.QuestionType" />
 		<mapping class = "com.ihs.springhibernate.model.CategoryType"/>
 		<mapping class="com.ihs.springhibernate.model.Test" />
+		<mapping class="com.ihs.springhibernate.model.TestQuestion" />
 
 	</session-factory>
 

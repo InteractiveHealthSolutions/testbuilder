@@ -57,7 +57,7 @@
 				<h3>Create Test Paper</h3>
 
 				<form:form id="formSubmitTest" method="POST"
-					action="/springhibernate/test/finalizetest"
+					action="/springhibernate/test/finalizetest?type="
 					modelAttribute="newTest">
 
 
@@ -126,16 +126,16 @@
 								<div class="control-group">
 									<div class="col-md-4">
 										<div class="text-center">
-											<input type="submit" value="Save" id="singlebutton"
-												name="singlebutton" class="btn btn-success" />
+											<input type="button" value="Save" id="save" class="btn btn-success"
+											onclick="submitFormByType(this.id)" />
 										</div>
 
 									</div>
 									
 									<div class="col-md-4">
 										<div class="text-center">
-											<input type="button" value="Print"
-												 class="btn btn-primary" />
+											<input type="button" id="print" value="Print"
+												 class="btn btn-primary" onclick="submitFormByType(this.id)" />
 										</div>
 									</div>
 

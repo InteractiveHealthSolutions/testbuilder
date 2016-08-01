@@ -15,6 +15,7 @@ import com.ihs.springhibernate.model.Question;
 import com.ihs.springhibernate.model.QuestionData;
 import com.ihs.springhibernate.model.QuestionType;
 import com.ihs.springhibernate.model.SchemeCategory;
+import com.ihs.springhibernate.model.TestQuestion;
 import com.ihs.springhibernate.model.User;
 import com.ihs.springhibernate.utility.SessionFactoryBuilder;
 
@@ -162,6 +163,9 @@ public class QuestionDAO {
 		return questionList;
 
 	}
+	
+	
+	
 
 	public static Question getQuestion(By by, String value, FetchType fetchType) {
 		Question question = null;
@@ -272,5 +276,38 @@ public class QuestionDAO {
 		}
 
 		return finalQuestionList;
+	}
+	
+	public static List<TestQuestion> getQuestionForTest(Integer testId){
+		List<TestQuestion> questionList = new ArrayList<TestQuestion>();
+		
+		try
+		{
+			Session session = SessionFactoryBuilder.getSessionFactory().openSession();
+
+			session.beginTransaction();
+
+			String hql = "FROM TestQuestion WHERE test_id = :_value ";		
+			Query query = session.createQuery(hql);
+			query.setParameter("_value", testId);
+			
+			questionList = (List<TestQuestion>) query.list();
+
+			if (questionList != null)
+			{
+
+			}
+
+			session.getTransaction().commit();
+
+			session.close();
+		}
+
+		catch (Exception exc)
+		{
+			exc.printStackTrace();
+		}
+
+		return questionList;
 	}
 }
