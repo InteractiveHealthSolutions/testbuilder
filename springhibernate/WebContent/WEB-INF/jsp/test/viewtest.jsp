@@ -58,42 +58,27 @@
       <th>Comments for Test Maker</th>
       <td>${detailTest.getComments()}</td>
     </tr>
+ 
+      <tr>
+      <th>Created On</th>
+      <td>${detailTest.getCreationTS()}</td>
+    </tr>
 
-    <tr>
+	 <tr>
       <th>Question Type</th>
       <th>Question Title</th>
     </tr>
-
+	
     <c:forEach var="question" items="${detailTest.getQuestionList()}" varStatus="index">
       <tr>
-        <td align="center">${question.getQuestionType().getTypeName()}</td>
+        <td>${question.getQuestionType().getTypeName()}</td>
         <td>${question.getTitle()}</td>
       </tr>
     </c:forEach>
 
-    <tr>
-      <th>Created By</th>
-      <td>Show Creator Name</td>
-    </tr>
-
-    <tr>
-      <th>Creation Time</th>
-      <td>Show Time</td>
-    </tr>
-
-    <tr>
-      <th>Last Editor</th>
-      <td>Show Editor Name</td>
-    </tr>
-
-    <tr>
-      <th>Last Editing Time</th>
-      <td>Show Last Editing Time</td>
-    </tr>
-    <tr>
-      <td colspan="2">${status}</td>
-    </tr>
-
+   
+  
+  
 
   </table>
 

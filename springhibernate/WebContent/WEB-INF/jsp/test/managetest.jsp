@@ -51,19 +51,13 @@
 
                 <td>${test.getCreationTS()}</td>
                 
-                <td></td>
+                <td>
+                <c:url var="detailUrl" value="${resources.JSP_VIEW_TEST}">
+                <c:param name="id" value="${test.getId()}" /> 
+				</c:url> <a href="<c:out value="${detailUrl}"/>">
+				Details</a></td>
 
-        
-<%--                 <td><c:url var="detailUrl" --%>
-<%-- 										value="${resources.JSP_VIEW_TEST}"> --%>
-
-
-<%-- 										<c:param name="id" value="${test.getId()}" /> --%>
-<%-- 									</c:url> <a href="<c:out value="${detailUrl}"/>">Details</a></td> --%>
-
-              </tr>
-
-            </c:forEach>
+				</c:forEach>
 
           </table>
         </div>
