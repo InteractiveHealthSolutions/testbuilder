@@ -1,6 +1,8 @@
 package com.ihs.springhibernate.controller.test;
 
 import java.util.ArrayList;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.math.*;
 import java.util.HashMap;
 
@@ -32,6 +34,19 @@ import com.ihs.springhibernate.model.TestQuestion;
 import com.ihs.springhibernate.sessioninterface.IUserSession;
 import com.ihs.springhibernate.utility.Privileges;
 import com.ihs.springhibernate.utility.ResourcesName;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.draw.VerticalPositionMark;
 
 @Controller
 @RequestMapping("/test")
@@ -165,13 +180,96 @@ public class GenerateTestPaper {
 						}
 					}
 				}
-				
-				List<Question> aa = new ArrayList<Question>();
-				aa.addAll(finalQuestionList);
-				int a =1;
 
-				// modelAndView = new ModelAndView("redirect:/" +
-				// resources.getJSP_HOME());
+				Document document = new Document();
+				Chunk glue = new Chunk(new VerticalPositionMark());
+				try {
+
+					Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
+							Font.BOLD);
+					Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12,
+							Font.NORMAL, BaseColor.RED);
+					Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16,
+							Font.BOLD);
+					Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
+							Font.BOLD);
+					
+					
+					PdfPTable table = new PdfPTable(3);
+					table.setSpacingBefore(300);
+					PdfPCell fake = new PdfPCell();
+					fake.setBorder(Rectangle.NO_BORDER);
+
+					
+					PdfPCell dataCell = new PdfPCell();
+					dataCell.setHorizontalAlignment(Element.ALIGN_LEFT);
+					dataCell.setBorder(Rectangle.NO_BORDER);
+					
+					Paragraph title = new Paragraph("Recruitment Test", catFont);
+					title.setAlignment(Element.ALIGN_CENTER);
+					
+					Paragraph subTitle = new Paragraph("Interactive Health Solutions", subFont);
+					subTitle.setAlignment(Element.ALIGN_CENTER);
+						
+					float[] columnWidths = {30f, 50f, 20f};
+					
+					dataCell.addElement(new Paragraph("Name:            ___________________",smallBold));
+					dataCell.addElement(new Phrase("\n")); 
+					dataCell.addElement(new Paragraph("Email:            ___________________",smallBold));
+					dataCell.addElement(new Phrase("\n"));
+					dataCell.addElement(new Paragraph("Phone No:     ___________________",smallBold));
+					dataCell.addElement(new Phrase("\n"));
+					dataCell.addElement(new Paragraph("Date:              ___________________",smallBold));
+					 
+					
+					table.addCell(fake);
+					table.addCell(dataCell);
+					table.addCell(fake);
+
+					table.setWidths(columnWidths);
+					
+					PdfWriter.getInstance(document, new FileOutputStream(
+							"c:/pdf/helloworld.pdf"));
+					document.open();
+				
+					
+					document.add(title);
+					document.add(subTitle);
+					document.add(table);
+					document.newPage();
+					
+					int i = 1 ;
+					char c = 65;
+					
+					for(Question question : finalQuestionList){
+						String garbageData = question.getDescription();
+						String finalData = garbageData.replaceAll("[\\<p>\\</p>]", "");
+						
+						Paragraph questionTitle = new Paragraph(i + ". " + finalData);
+						document.add(questionTitle);
+						document.add(new Phrase("\n"));
+						
+						List<QuestionData> choiceList = question.getQuestionDataList();
+					    for(QuestionData data : choiceList){
+					    	Paragraph choiceParagraph = new Paragraph(c + ". " + data.getData());
+					    	document.add(choiceParagraph);
+					    	c++;
+					    }
+					    
+					    document.add(new Phrase("\n"));
+					    choiceList.clear();
+					    c= 65;
+					    i++;
+					}
+				
+					
+				} catch (DocumentException e) {
+					System.err.println(e.getMessage());
+				} catch (IOException ex) {
+					System.err.println(ex.getMessage());
+				}
+				document.close();
+
 			}
 
 			else {
