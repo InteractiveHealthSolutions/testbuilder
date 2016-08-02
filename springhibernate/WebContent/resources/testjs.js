@@ -193,6 +193,13 @@ function submitFormByType(typeBtn) {
 	}
 }
 
+function submitScheme(){
+	var schemeForm = document.getElementById("selectScheme");
+	var finalForm = document.getElementById("selecttestScheme");
+	finalForm.action += schemeForm.options[schemeForm.selectedIndex].value;
+	finalForm.submit();
+}
+
 function renderDataOption(rawJSON) {
 
 	// Remove table if exist

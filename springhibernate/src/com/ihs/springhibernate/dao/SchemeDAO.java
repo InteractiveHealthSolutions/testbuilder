@@ -121,5 +121,37 @@ public static List<Scheme> getSchemeById (Integer id)
 	return schemeList;
 }
 
+public static List<Scheme> getAllSchemes()
+{
+	List<Scheme> schemeList = null;
+
+	try
+	{
+		Session session = SessionFactoryBuilder.getSessionFactory().openSession();
+
+		session.beginTransaction();
+
+		String hql = "FROM Scheme";
+		Query query = session.createQuery(hql);
+		schemeList = (List<Scheme>) query.list();
+
+		if (schemeList != null)
+		{
+
+		}
+
+		session.getTransaction().commit();
+
+		session.close();
+	}
+
+	catch (Exception exc)
+	{
+		exc.printStackTrace();
+	}
+
+	return schemeList;
+}
+
 
 }

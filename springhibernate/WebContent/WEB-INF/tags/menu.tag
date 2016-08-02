@@ -54,6 +54,11 @@
         </c:url>
 
         <li><a href="<c:out value="${createTestScheme}"/>">Create Test Scheme</a></li>
+        
+          <c:url var="selectScheme" value="/${Resource.FOLDER_TEST}/${Resource.JSP_SELECT_SCHEME}">
+        </c:url>
+
+        <li><a href="<c:out value="${selectScheme}"/>">Generate Test</a></li>
 
 
 

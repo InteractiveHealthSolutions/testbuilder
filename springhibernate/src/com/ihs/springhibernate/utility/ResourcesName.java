@@ -46,6 +46,11 @@ public class ResourcesName
 	private final String JSP_CREATE_SCHEME = "createtest";
 	private final String JSP_EDIT_TEST = "edittest";
 	private final String JSP_VIEW_TEST = "viewtest";
+	private final String JSP_SELECT_SCHEME = "selectscheme";
+	public String getJSP_SELECT_SCHEME() {
+		return JSP_SELECT_SCHEME;
+	}
+
 	private final String JSP_FINALIZE_TEST = "finalizetest";
 	private final String JSP_TAKE_TEST_LIST = "taketestlist";
 	private final String JSP_TEST_BEGIN_SUMMARY = "testbeginsummary";

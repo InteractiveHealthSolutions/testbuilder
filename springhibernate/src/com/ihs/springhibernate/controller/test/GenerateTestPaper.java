@@ -19,12 +19,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
+import com.ihs.springhibernate.dao.CategoryTypeDAO;
 import com.ihs.springhibernate.dao.QuestionDAO;
 import com.ihs.springhibernate.dao.QuestionDataDAO;
 import com.ihs.springhibernate.dao.SchemeCategoryDAO;
 import com.ihs.springhibernate.dao.SchemeDAO;
 import com.ihs.springhibernate.dao.TestDAO;
 import com.ihs.springhibernate.dao.UserDAO;
+import com.ihs.springhibernate.model.CategoryType;
 import com.ihs.springhibernate.model.Question;
 import com.ihs.springhibernate.model.QuestionData;
 import com.ihs.springhibernate.model.Scheme;
@@ -53,6 +55,7 @@ import com.itextpdf.text.pdf.draw.VerticalPositionMark;
 public class GenerateTestPaper {
 	@Autowired
 	private IUserSession userSession;
+	String secondPara;
 
 	@RequestMapping(value = "/finalizetest", method = RequestMethod.GET)
 	public ModelAndView getSchemeData(@ModelAttribute("newTest") Test newTest,
@@ -65,9 +68,12 @@ public class GenerateTestPaper {
 		double calculateVal = 0;
 		int weightage = 0;
 		int questionAmount = 0;
-
-		String id = request.getParameter("id");
+		
+		String id = request.getParameter("id");	
+		
+		secondPara = request.getParameter("type");
 		Integer schemeId = Integer.parseInt(id);
+		
 
 		if (userSession.getName() != null) {
 			if (UserDAO.hasPrivilegeFor(userSession, Privileges.TEST_MAKER) == true) {
@@ -83,6 +89,9 @@ public class GenerateTestPaper {
 
 				List<Scheme> schemeList = new ArrayList<Scheme>();
 				schemeList = SchemeDAO.getSchemeById(schemeId);
+
+				List<Scheme> schemeListAll = SchemeDAO.getAllSchemes();
+				modelAndView.getModel().put("schemeListAll", schemeListAll);
 
 				List<SchemeCategory> schemeCategoryList = new ArrayList<SchemeCategory>();
 				schemeCategoryList = SchemeCategoryDAO
@@ -188,8 +197,6 @@ public class GenerateTestPaper {
 
 					Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
 							Font.BOLD);
-					Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12,
-							Font.NORMAL, BaseColor.RED);
 					Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16,
 							Font.BOLD);
 					Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
@@ -280,11 +287,19 @@ public class GenerateTestPaper {
 				document.close();
 
 				modelAndView = new ModelAndView("redirect:/"
-						+ resources.getJSP_INDEX());
+						+ resources.getJSP_HOME());
 			}
 
 			else {
-
+				
+				if(!(secondPara == null)){
+					modelAndView = new ModelAndView("redirect:/" + resources.getFOLDER_TEST() + "/" + resources.getJSP_SELECT_SCHEME());
+				}
+				
+				else {
+					modelAndView = new ModelAndView("redirect:/" + resources.getFOLDER_TEST() + "/" + resources.getJSP_CREATE_SCHEME());
+				}
+				
 			}
 		}
 		return modelAndView;

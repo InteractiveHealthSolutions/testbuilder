@@ -65,9 +65,8 @@
 						<tr>
 							<th>Test Name</th>
 							<td><form:input path="name" size="50" maxlength="90"
-									class="form-control input" required="true" /></td>
-							<td><input type="hidden" name="scheme.id"
-								value="${schemeId }" /></td>
+									class="form-control input" required="true" /> <input
+								type="hidden" name="scheme.id" value="${schemeId }" /></td>
 
 						</tr>
 
@@ -126,24 +125,24 @@
 								<div class="control-group">
 									<div class="col-md-4">
 										<div class="text-center">
-											<input type="button" value="Save" id="save" class="btn btn-success"
-											onclick="submitFormByType(this.id)" />
+											<input type="button" value="Save" id="save"
+												class="btn btn-success" onclick="submitFormByType(this.id)" />
 										</div>
 
 									</div>
-									
+
 									<div class="col-md-4">
 										<div class="text-center">
 											<input type="button" id="print" value="Print"
-												 class="btn btn-primary" onclick="submitFormByType(this.id)" />
+												class="btn btn-primary" onclick="submitFormByType(this.id)" />
 										</div>
 									</div>
 
 
 									<div class="col-md-4">
 										<div class="text-center">
-											<a href="createtest"><input type="button"
-												class="btn btn-danger" value="Cancel & Go Back" /></a>
+											<input type="button" class="btn btn-danger" id="cancel"
+												value="Cancel & Go Back" onclick="submitFormByType(this.id)" /></a>
 										</div>
 									</div>
 
