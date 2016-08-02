@@ -168,10 +168,29 @@ function checkError(btnType) {
 
 }
 
-function submitFormByType(typeBtn){
+function submitFormByType(typeBtn) {
 	var name = document.getElementById("formSubmitTest");
-	name.action += typeBtn;
-	name.submit();
+
+	if (typeBtn == "print") {
+		while (true) {
+			var fileName = prompt("Please enter file name", "");
+			if (fileName != "") {
+				break;
+			}
+			else {
+			  alert("Invalid file name");
+			}
+		}
+
+		name.action += typeBtn + "/" + fileName;
+		alert("Test has been saved in Downloads folder");
+		name.submit();
+	}
+
+	else {
+		name.action += typeBtn;
+		name.submit();
+	}
 }
 
 function renderDataOption(rawJSON) {

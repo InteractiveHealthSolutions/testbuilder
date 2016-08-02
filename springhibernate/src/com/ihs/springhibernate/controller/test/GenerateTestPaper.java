@@ -60,7 +60,6 @@ public class GenerateTestPaper {
 		ModelAndView modelAndView = null;
 		ResourcesName resources = new ResourcesName();
 		List<List<Question>> questionCollection = new ArrayList<List<Question>>();
-		// List<Question> questionList = new ArrayList<Question>();
 		int totalQuestions = 0;
 		int categoryId = 0;
 		double calculateVal = 0;
@@ -159,8 +158,10 @@ public class GenerateTestPaper {
 				}
 			}
 
-			else if (btnClick.equals("print")) {
+			else if (btnClick.substring(0, 5).equals("print")) {
 
+				String[] splitter = btnClick.split("/");
+				String fileName = splitter[1];
 				List<TestQuestion> questionList = new ArrayList<TestQuestion>();
 				questionList = QuestionDAO.getQuestionForTest(newlySavedId);
 
@@ -193,76 +194,84 @@ public class GenerateTestPaper {
 							Font.BOLD);
 					Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
 							Font.BOLD);
-					
-					
+
 					PdfPTable table = new PdfPTable(3);
 					table.setSpacingBefore(300);
 					PdfPCell fake = new PdfPCell();
 					fake.setBorder(Rectangle.NO_BORDER);
 
-					
 					PdfPCell dataCell = new PdfPCell();
 					dataCell.setHorizontalAlignment(Element.ALIGN_LEFT);
 					dataCell.setBorder(Rectangle.NO_BORDER);
-					
+
 					Paragraph title = new Paragraph("Recruitment Test", catFont);
 					title.setAlignment(Element.ALIGN_CENTER);
-					
-					Paragraph subTitle = new Paragraph("Interactive Health Solutions", subFont);
+
+					Paragraph subTitle = new Paragraph(
+							"Interactive Health Solutions", subFont);
 					subTitle.setAlignment(Element.ALIGN_CENTER);
-						
-					float[] columnWidths = {30f, 50f, 20f};
-					
-					dataCell.addElement(new Paragraph("Name:            ___________________",smallBold));
-					dataCell.addElement(new Phrase("\n")); 
-					dataCell.addElement(new Paragraph("Email:            ___________________",smallBold));
+
+					float[] columnWidths = { 30f, 50f, 20f };
+
+					dataCell.addElement(new Paragraph(
+							"Name:            ___________________", smallBold));
 					dataCell.addElement(new Phrase("\n"));
-					dataCell.addElement(new Paragraph("Phone No:     ___________________",smallBold));
+					dataCell.addElement(new Paragraph(
+							"Email:            ___________________", smallBold));
 					dataCell.addElement(new Phrase("\n"));
-					dataCell.addElement(new Paragraph("Date:              ___________________",smallBold));
-					 
-					
+					dataCell.addElement(new Paragraph(
+							"Phone No:     ___________________", smallBold));
+					dataCell.addElement(new Phrase("\n"));
+					dataCell.addElement(new Paragraph(
+							"Date:              ___________________", smallBold));
+
 					table.addCell(fake);
 					table.addCell(dataCell);
 					table.addCell(fake);
 
 					table.setWidths(columnWidths);
-					
-					PdfWriter.getInstance(document, new FileOutputStream(
-							"c:/pdf/helloworld.pdf"));
+
+					String userName = System.getProperty("user.home");
+					String userSplit[] = userName.split("\\\\");
+					String file = userSplit[0] + "/" + userSplit[1] + "/"
+							+ userSplit[2] + "/Downloads/" + fileName + ".pdf";
+
+					PdfWriter.getInstance(document, new FileOutputStream(file));
 					document.open();
-				
-					
+
 					document.add(title);
 					document.add(subTitle);
 					document.add(table);
 					document.newPage();
-					
-					int i = 1 ;
+
+					int i = 1;
 					char c = 65;
-					
-					for(Question question : finalQuestionList){
+
+					for (Question question : finalQuestionList) {
 						String garbageData = question.getDescription();
-						String finalData = garbageData.replaceAll("[\\<p>\\</p>]", "");
-						
-						Paragraph questionTitle = new Paragraph(i + ". " + finalData);
+						String finalData = garbageData.replaceAll(
+								"[\\<p>\\</p>]", "");
+
+						Paragraph questionTitle = new Paragraph(i + ". "
+								+ finalData);
 						document.add(questionTitle);
 						document.add(new Phrase("\n"));
-						
-						List<QuestionData> choiceList = question.getQuestionDataList();
-					    for(QuestionData data : choiceList){
-					    	Paragraph choiceParagraph = new Paragraph(c + ". " + data.getData());
-					    	document.add(choiceParagraph);
-					    	c++;
-					    }
-					    
-					    document.add(new Phrase("\n"));
-					    choiceList.clear();
-					    c= 65;
-					    i++;
+
+						List<QuestionData> choiceList = question
+								.getQuestionDataList();
+						for (QuestionData data : choiceList) {
+							Paragraph choiceParagraph = new Paragraph(c + ". "
+									+ data.getData());
+							document.add(choiceParagraph);
+							c++;
+						}
+
+						document.add(new Phrase("\n"));
+						choiceList.clear();
+						c = 65;
+						i++;
 					}
-				
-					
+
 				} catch (DocumentException e) {
 					System.err.println(e.getMessage());
 				} catch (IOException ex) {
@@ -270,12 +279,13 @@ public class GenerateTestPaper {
 				}
 				document.close();
 
+				modelAndView = new ModelAndView("redirect:/"
+						+ resources.getJSP_INDEX());
 			}
 
 			else {
 
 			}
-
 		}
 		return modelAndView;
 
