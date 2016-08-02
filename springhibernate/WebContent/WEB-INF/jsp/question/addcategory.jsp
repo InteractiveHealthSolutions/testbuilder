@@ -96,7 +96,7 @@
 										<div class="text-center">
 											<a href="/springhibernate/home">
 											<input type="button"
-												class="btn btn-default" value="Cancel & Go Back" /></a>
+												class="btn btn-danger" value="Cancel & Go Back" /></a>
 										</div>
 									</div>
 

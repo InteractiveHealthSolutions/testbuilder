@@ -43,8 +43,6 @@
           <tr>
             <th>Name</th>
             <th>Login ID</th>
-            <th>Password</th>
-            <%--            <th colspan="2">Action</th> --%>
             <th>Action</th>
           </tr>
 
@@ -52,12 +50,9 @@
             <tr>
               <td>${user.getName()}</td>
               <td>${user.getLogin_Id()}</td>
-<%--               <td>${user.getPassword()}</td> --%>
-
               <c:url var="editUrl" value="${resources.JSP_EDIT_USER}">
                 <c:param name="id" value="${user.getId()}" />
               </c:url>
-
               <td><a href="<c:out value="${editUrl}"/>">Edit</a> | <c:url var="detailUrl"
                value="${resources.JSP_DETAIL_USER}">
                   
@@ -65,8 +60,6 @@
                 </c:url> <a href="<c:out value="${detailUrl}"/>">Details</a>
                 
               </td>
-
-              <%--               <td><a href="<c:out value="${detailUrl}"/>">&nbsp;Details</a></td> --%>
             </tr>
           </c:forEach>
         </table>

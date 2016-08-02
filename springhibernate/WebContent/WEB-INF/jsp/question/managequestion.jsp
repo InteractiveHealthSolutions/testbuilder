@@ -35,12 +35,6 @@
 
         <h3>Manage Questions</h3>
 
-        <c:url var="createQuestion" value="${resources.JSP_CREATE_QUESTION}">
-        </c:url>
-        <h4>
-          <a href="<c:out value="${createQuestion}"/>">Create New Question</a>
-        </h4>
-
         <div>
           <table border="1px" class="table table-bordered">
             <tr>

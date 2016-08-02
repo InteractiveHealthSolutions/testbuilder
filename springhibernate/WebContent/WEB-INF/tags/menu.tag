@@ -39,6 +39,14 @@
 
         <li><a href="<c:out value="${manageQuestion}"/>">Manage Question</a></li>
         
+        
+         <c:url var="createQuestion" value="/${Resource.FOLDER_QUESTION}/${Resource.JSP_CREATE_QUESTION}">
+        </c:url>
+        
+        <li>
+          <a href="<c:out value="${createQuestion}"/>">Create New Question</a>
+        </li>
+        
         <c:url var="createCategory" value="/${Resource.FOLDER_QUESTION}/${Resource.JSP_ADD_CATEGORY}">
         </c:url>
         <li>

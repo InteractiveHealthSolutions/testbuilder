@@ -156,7 +156,7 @@
 
                   <div class="col-md-6">
                     <div class="text-center">
-                      <a href="managequestion"><input type="button" class="btn btn-default" value="Cancel & Go Back" /></a>
+                      <a href="/springhibernate/home"><input type="button" class="btn btn-danger" value="Cancel & Go Back" /></a>
                     </div>
                   </div>
 

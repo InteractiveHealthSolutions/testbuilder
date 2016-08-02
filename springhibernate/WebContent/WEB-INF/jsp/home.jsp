@@ -38,7 +38,7 @@
    
     <div class="col-md-9 column"> 
   
-  <h2 class="text-Center">
+  <h2 class="text-Center" style="margin-left: 100px">
    Welcome to Test Manager
       </h2>
    
