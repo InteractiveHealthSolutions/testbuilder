@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.ihs.springhibernate.dao.CategoryTypeDAO;
 import com.ihs.springhibernate.dao.UserDAO;
 import com.ihs.springhibernate.model.CategoryType;
@@ -35,6 +38,10 @@ public class AddQuestionCategory {
 						+ "/" + resources.getJSP_ADD_CATEGORY());
 				modelAndView.getModelMap().put("currentUser", userSession);
 				modelAndView.getModelMap().put("resources", resources);
+
+				List<CategoryType> categoryList = CategoryTypeDAO
+						.getCategoryTypes();
+				modelAndView.getModelMap().put("categoryList", categoryList);
 			}
 
 			else {
@@ -45,42 +52,58 @@ public class AddQuestionCategory {
 
 		return modelAndView;
 	}
-	
-	@RequestMapping(value="/addcategory", method= RequestMethod.POST)
-	public ModelAndView submitCategory(@ModelAttribute("newCategory") @Valid CategoryType newCategory){
+
+	@RequestMapping(value = "/addcategory", method = RequestMethod.POST)
+	public ModelAndView submitCategory(
+			@ModelAttribute("newCategory") @Valid CategoryType newCategory) {
 		ResourcesName resources = new ResourcesName();
 
-		ModelAndView modelAndView = new ModelAndView(resources.getFOLDER_QUESTION() + "/" + resources.getJSP_ADD_CATEGORY());
+		ModelAndView modelAndView = new ModelAndView(
+				resources.getFOLDER_QUESTION() + "/"
+						+ resources.getJSP_ADD_CATEGORY());
 
 		modelAndView.getModel().put("resources", resources);
 
 		modelAndView.getModel().put("newCategory", newCategory);
 
 		modelAndView.getModel().put("currentUser", userSession);
-		
-		if(userSession != null){
-			
+
+		if (userSession != null) {
+
+			boolean a = true;
+			String name = newCategory.getTypeName();
+			List<CategoryType> cateList = CategoryTypeDAO.getCategoryTypes();
+
+			for (CategoryType cat : cateList) {
+				if (cat.getTypeName().equals(name)) {
+					a = false;
+				}
+			}
+
 			Integer newlySavedId = -1;
-			if(UserDAO.hasPrivilegeFor(userSession, Privileges.TEST_MAKER) == true){
-				newlySavedId = CategoryTypeDAO.saveCategory(newCategory);
-			
-			
-			if (newlySavedId != -1)
-			{
-				modelAndView = new ModelAndView("redirect:/" + resources.getFOLDER_QUESTION()+ "/" + resources.getJSP_CREATE_QUESTION());
-				modelAndView.getModel().put("status", resources.getMESSAGE_ADD());
+
+			if (a == false) {
+				modelAndView.getModel().put("status",
+						"Category already exists");
 			}
-			
-			else
-			{
-				modelAndView.getModel().put("status", resources.getMESSAGE_FAIL_ADD());
+
+			else {
+
+				if (UserDAO.hasPrivilegeFor(userSession, Privileges.TEST_MAKER) == true) {
+					newlySavedId = CategoryTypeDAO.saveCategory(newCategory);
+
+					if (newlySavedId != -1) {
+						modelAndView = new ModelAndView("redirect:/"
+								+ resources.getJSP_HOME());
+						modelAndView.getModel().put("status",
+								resources.getMESSAGE_ADD());
+					}
+
+				}
 			}
-			
-			}
-			
 
 		}
-		
+
 		return modelAndView;
 	}
 }

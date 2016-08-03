@@ -174,6 +174,7 @@ function removeElement(elementId) {
   });
 }
 
+
 function removeChildren(elementId) {
   var targetElement = document.getElementById(elementId);
 
@@ -185,6 +186,7 @@ function removeChildren(elementId) {
 function setDefaultValues() {
   document.getElementById("slctQuestionType").value = 1;
 }
+
 
 function setNewAnswer(elementId) {
 	for (var item in "questionDataList") {

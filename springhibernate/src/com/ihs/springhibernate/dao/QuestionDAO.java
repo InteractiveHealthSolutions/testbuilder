@@ -249,7 +249,6 @@ public class QuestionDAO {
 			try {
 				Session session = SessionFactoryBuilder.getSessionFactory()
 						.openSession();
-				session.clear();
 
 				session.beginTransaction();
 
