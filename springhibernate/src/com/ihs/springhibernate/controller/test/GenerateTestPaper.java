@@ -83,7 +83,7 @@ public class GenerateTestPaper {
 				// Test newTest = new Test();
 				modelAndView.getModelMap().put("currentUser", userSession);
 				modelAndView.getModelMap().put("resources", resources);
-				modelAndView.getModelMap().put("newTest", newTest);
+				//modelAndView.getModelMap().put("newTest", newTest);
 				modelAndView.getModelMap().put("schemeId", schemeId);
 				// modelAndView.getModelMap().put("questionList", questionList);
 
@@ -171,6 +171,7 @@ public class GenerateTestPaper {
 
 				String[] splitter = btnClick.split("/");
 				String fileName = splitter[1];
+				
 				List<TestQuestion> questionList = new ArrayList<TestQuestion>();
 				questionList = QuestionDAO.getQuestionForTest(newlySavedId);
 
@@ -192,7 +193,6 @@ public class GenerateTestPaper {
 				}
 
 				Document document = new Document();
-				Chunk glue = new Chunk(new VerticalPositionMark());
 				try {
 
 					Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,

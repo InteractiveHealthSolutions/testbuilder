@@ -200,6 +200,24 @@ function submitScheme(){
 	finalForm.submit();
 }
 
+function printTest(){
+	
+	var name = document.getElementById("formViewTest");
+	while (true) {
+		var fileName = prompt("Please enter file name", "");
+		if (fileName != "") {
+			break;
+		}
+		else {
+		  alert("Invalid file name");
+		}
+	}
+
+	name.action += fileName;
+	alert("Test has been saved in Downloads folder");
+	name.submit();
+}
+
 function renderDataOption(rawJSON) {
 
 	// Remove table if exist
