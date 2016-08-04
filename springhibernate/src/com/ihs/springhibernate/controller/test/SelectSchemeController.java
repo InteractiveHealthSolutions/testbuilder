@@ -25,7 +25,7 @@ import com.ihs.springhibernate.utility.ResourcesName;
 
 @Controller
 @RequestMapping("/test")
-public class SelectSchemeCategory {
+public class SelectSchemeController {
 
 	@Autowired
 	private IUserSession userSession;

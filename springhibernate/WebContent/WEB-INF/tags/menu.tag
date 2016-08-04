@@ -73,6 +73,13 @@
 
 				<li><a href="<c:out value="${manageTest}"/>">View Created
 						Tests</a></li>
+						
+				<c:url var="viewTest"
+					value="/${Resource.FOLDER_TEST}/${Resource.JSP_VIEWSCHEME}">
+				</c:url>
+
+				<li><a href="<c:out value="${viewTest}"/>">View Created
+						Schemes</a></li>
 
 				<c:url var="createTestScheme"
 					value="/${Resource.FOLDER_TEST}/${Resource.JSP_CREATE_SCHEME}">

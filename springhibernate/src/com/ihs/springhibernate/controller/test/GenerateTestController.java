@@ -52,7 +52,7 @@ import com.itextpdf.text.pdf.draw.VerticalPositionMark;
 
 @Controller
 @RequestMapping("/test")
-public class GenerateTestPaper {
+public class GenerateTestController {
 	@Autowired
 	private IUserSession userSession;
 	String secondPara;
