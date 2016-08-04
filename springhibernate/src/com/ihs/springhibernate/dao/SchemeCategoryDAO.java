@@ -87,4 +87,37 @@ public class SchemeCategoryDAO {
 		return schemeCategoryList;
 	}
 	
+	public static List<SchemeCategory> getAllSchemes ()
+	{
+		List<SchemeCategory> schemeCategoryList = null;
+
+		try
+		{
+			Session session = SessionFactoryBuilder.getSessionFactory().openSession();
+
+			session.beginTransaction();
+
+			String hql = "FROM SchemeCategory";		
+			Query query = session.createQuery(hql);
+			
+			schemeCategoryList = (List<SchemeCategory>) query.list();
+
+			if (schemeCategoryList != null)
+			{
+
+			}
+
+			session.getTransaction().commit();
+
+			session.close();
+		}
+
+		catch (Exception exc)
+		{
+			exc.printStackTrace();
+		}
+
+		return schemeCategoryList;
+	}
+	
 }

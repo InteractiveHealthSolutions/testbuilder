@@ -59,14 +59,26 @@
 					<table border="1px" class="table table-bordered">
 						<tr>
 							<th>Scheme Name</th>
-							<th>Total Questions</th>
-							<th>Scheme Categories</th>
-							<th>Weightage</th>
-							<th>Action</th>
+							<th>Total Question</th>
+							<th>Scheme Category & Weightage</th>
 						</tr>
-						
-						<tr>
-						</tr>
+
+						<c:forEach var="scheme" items="${schemeList}">
+							<tr>
+								<td>${scheme.getName() }</td>
+								<td>${scheme.getTotalQuestions() }</td>
+
+								<td><c:forEach var="schemeCat"
+										items="${schemeCategoryList}">
+										<c:if test="${scheme.getId() == schemeCat.getScheme_id() }">
+										
+							   ${schemeCat.getCategory().getTypeName()} = ${schemeCat.getWeightage()} %
+								<br>
+								<br>
+										</c:if>
+									</c:forEach></td>
+							</tr>
+						</c:forEach>
 					</table>
 				</div>
 			</div>

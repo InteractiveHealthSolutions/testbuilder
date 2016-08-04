@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ihs.springhibernate.dao.SchemeCategoryDAO;
 import com.ihs.springhibernate.dao.SchemeDAO;
 import com.ihs.springhibernate.model.Scheme;
 import com.ihs.springhibernate.model.SchemeCategory;
@@ -31,7 +32,7 @@ public class ViewSchemeController {
 		
 		List<Scheme> schemeList = SchemeDAO.getAllSchemes();
 		
-		List<SchemeCategory> schemeCategoryList = new ArrayList<SchemeCategory>();
+		List<SchemeCategory> schemeCategoryList = SchemeCategoryDAO.getAllSchemes();
 		
 		modelAndView.getModelMap().put("currentUser", userSession);
 		modelAndView.getModel().put("schemeList", schemeList);

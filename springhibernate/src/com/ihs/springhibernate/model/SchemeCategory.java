@@ -1,5 +1,7 @@
 package com.ihs.springhibernate.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -7,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.ForeignKey;
@@ -23,17 +26,24 @@ public class SchemeCategory {
 	Integer weightage;
 	
 	private Integer scheme_id;
-	@ManyToOne(fetch =  FetchType.LAZY)
+	@ManyToOne(fetch =  FetchType.EAGER)
 	@JoinColumn(name = "scheme_id", insertable = false, updatable = false)
 	@ForeignKey(name = "scheme_id_idx")
 	private Scheme	scheme;
 	
 	private Integer category_id;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "category_id", insertable = false, updatable = false)
 	@ForeignKey(name = "category_id_idx")
 	private CategoryType category;
 	
+
+	public CategoryType getCategory() {
+		return category;
+	}
+	public void setCategory(CategoryType category) {
+		this.category = category;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -58,12 +68,7 @@ public class SchemeCategory {
 	public void setCategory_id(Integer category_id) {
 		this.category_id = category_id;
 	}
-	public CategoryType getCategory() {
-		return category;
-	}
-	public void setCategory(CategoryType category) {
-		this.category = category;
-	}
+
 	public Integer getWeightage() {
 		return weightage;
 	}
