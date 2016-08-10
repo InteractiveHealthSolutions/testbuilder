@@ -37,8 +37,7 @@
 					value="/${Resource.FOLDER_USER}/${Resource.JSP_MANAGE_USER}">
 				</c:url>
 
-				<li><a href="<c:out value="${manageUser}"/>">Account
-						Management</a></li>
+				<li><a href="<c:out value="${manageUser}"/>">Manage Users</a></li>
 
 			</c:if>
 
@@ -58,14 +57,12 @@
 					value="/${Resource.FOLDER_QUESTION}/${Resource.JSP_CREATE_QUESTION}">
 				</c:url>
 
-				<li><a href="<c:out value="${createQuestion}"/>">Create New
-						Question</a></li>
+				<li><a href="<c:out value="${createQuestion}"/>">Create Question</a></li>
 
 				<c:url var="createCategory"
 					value="/${Resource.FOLDER_QUESTION}/${Resource.JSP_ADD_CATEGORY}">
 				</c:url>
-				<li><a href="<c:out value="${createCategory}"/>">Add New
-						Category</a></li>
+				<li><a href="<c:out value="${createCategory}"/>">Add Category</a></li>
 
 				<c:url var="manageTest"
 					value="/${Resource.FOLDER_TEST}/${Resource.JSP_MANAGE_TEST}">

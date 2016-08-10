@@ -121,7 +121,20 @@ function checkError(btnType) {
 		err.style.display = "block";
 	}
 
+	else if (!schemeName.value.replace(/\s/g, '').length) {
+		err.style.display = "none";
+		err.innerText = "Scheme Name Missing!!";
+		err.style.display = "block";
+	}
+
+	
 	else if (schemeDescription.value == "") {
+		err.style.display = "none";
+		err.innerText = "Scheme Description Missing!!";
+		err.style.display = "block";
+	}
+	
+	else if (!schemeDescription.value.replace(/\s/g, '').length) {
 		err.style.display = "none";
 		err.innerText = "Scheme Description Missing!!";
 		err.style.display = "block";
