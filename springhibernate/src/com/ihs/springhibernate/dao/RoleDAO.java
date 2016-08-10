@@ -6,10 +6,7 @@ import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import com.ihs.springhibernate.dao.UserDAO.By;
-import com.ihs.springhibernate.dao.UserDAO.FetchType;
 import com.ihs.springhibernate.model.Role;
-import com.ihs.springhibernate.model.User;
 import com.ihs.springhibernate.utility.SessionFactoryBuilder;
 
 public class RoleDAO

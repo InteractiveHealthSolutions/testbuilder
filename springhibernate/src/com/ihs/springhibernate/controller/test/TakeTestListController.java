@@ -18,7 +18,6 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.ihs.springhibernate.dao.TestDAO;
 import com.ihs.springhibernate.dao.TestDAO.FetchType;
 import com.ihs.springhibernate.dao.UserDAO;
-import com.ihs.springhibernate.json.wrapper.TestJsonWrapper;
 import com.ihs.springhibernate.json.wrapper.TestJsonWrapper2;
 import com.ihs.springhibernate.model.Test;
 import com.ihs.springhibernate.sessioninterface.IUserSession;

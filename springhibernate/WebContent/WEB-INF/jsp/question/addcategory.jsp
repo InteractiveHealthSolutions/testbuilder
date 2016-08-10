@@ -24,6 +24,15 @@
 <script type="text/javascript" src="<c:url value='/resources/ckeditorinitializer.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/resources/questionjs.js'/>"></script>
 
+<style type="text/css">
+<!--
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+-->
+</style>
+
 </head>
 <body>
 	<div class="container">
@@ -43,22 +52,22 @@
 				<h3>Add Category</h3>
 				<form:form id="frmSubmitCategory" method="POST"
 					action="/springhibernate/question/addcategory"
-					modelAttribute="newCategory">
+					modelAttribute="newCategory" autocomplete="off">
 
 					<table border="1px" class="table table-bordered">
 						<tr>
-							<th>Type Name</th>
-							<td><form:input path="typeName" size="50" maxlength="90"
-									class="form-control input" id="typeName" required="true" /></td>
+							<th>Type Name *</th>
+							<td><form:input path="typeName" size="50" maxlength="40"
+									class="form-control input" id="typeName" required="true" onkeypress="return blockSpecialChar(event)" /></td>
 
 							<td><form:errors path="typeName" /></td>
 						</tr>
 
 						<tr>
-							<th>Type Description</th>
+							<th>Type Description *</th>
 							<td><form:textarea path="description"
-									class="form-control input" required="true" /> <input
-								type="hidden" name="creatorId" value="${currentUser.getId()}" />
+									class="form-control input" required="true" maxlength="100" id ="descriptionTxt"  /> <input
+								type="hidden" name="creatorId" value="${currentUser.getId()}" onkeypress="return blockSpecialChar(event)" />
 							</td>
 
 							<td><form:errors path="description" /></td>
@@ -66,7 +75,7 @@
 						</tr>
 
 						<tr>
-							<td colspan="3" style="color: red ; font-weight: bold ; text-align: center">${status}</td>
+							<td id="errorLbl" colspan="3" style="font-weight: bold ; text-align: center">${status}</td>
 						</tr>
 
 						<tr>
@@ -75,8 +84,8 @@
 
 									<div class="col-md-6">
 										<div class="text-center">
-											<input value="Save" id="singlebutton" type="submit"
-												name="singlebutton" class="btn btn-success" />
+											<input value="Save" id="singlebutton" type="button"
+												name="singlebutton" class="btn btn-success" onclick="submitCatForm()" />
 										</div>
 
 									</div>

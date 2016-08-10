@@ -14,6 +14,15 @@
 <!-- Header tag is called -->
 <t:header />
 
+
+<style type="text/css">
+<!--
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+-->
+</style>
 </head>
 <body>
 

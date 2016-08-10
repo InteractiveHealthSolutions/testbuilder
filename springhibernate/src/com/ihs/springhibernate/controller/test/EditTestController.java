@@ -18,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ihs.springhibernate.dao.QuestionDAO;
 import com.ihs.springhibernate.dao.TestDAO;
 import com.ihs.springhibernate.dao.UserDAO;
-import com.ihs.springhibernate.model.Privilege;
 import com.ihs.springhibernate.model.Question;
 import com.ihs.springhibernate.model.Test;
 import com.ihs.springhibernate.propertyeditor.Editor;

@@ -89,7 +89,7 @@
             <input type="hidden" name="creatorId" value="${editQuestion.getCreatorId()}" />
             
               </td>
-              <td><form:errors path="title" /></td>
+           
             </tr>
 
             <tr>
@@ -100,7 +100,7 @@
               <td colspan="2">
               <form:textarea path="description" id="editor" required="true" />
               </td>
-                <td ><form:errors path="description" /></td>
+               
             </tr>
             <tr>
               <td colspan="3"></td>
@@ -159,7 +159,7 @@
       <tr>
         <th>Max marks</th>
         <td><form:input type="number" path="maxMarks" class="form-control input" required="true" min="0" /></td>
-        <td><form:errors path="maxMarks" /></td>
+    
       </tr>
 
             <tr>

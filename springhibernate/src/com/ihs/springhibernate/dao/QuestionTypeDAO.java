@@ -2,14 +2,10 @@ package com.ihs.springhibernate.dao;
 
 import java.util.List;
 
-import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import com.ihs.springhibernate.dao.RoleDAO.By;
-import com.ihs.springhibernate.dao.RoleDAO.FetchType;
 import com.ihs.springhibernate.model.QuestionType;
-import com.ihs.springhibernate.model.Role;
 import com.ihs.springhibernate.utility.SessionFactoryBuilder;
 
 public class QuestionTypeDAO

@@ -35,6 +35,16 @@
 	src="<c:url value='/resources/jquerymultiselect/js/jquery.multi-select.js'/>"></script>
 <script type="text/javascript"
 	src="<c:url value='/resources/jquerymultiselect/jquerymsinitializer.js'/>"></script>
+	
+<style type="text/css">
+<!--
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+-->
+</style>
+	
 </head>
 <body>
 

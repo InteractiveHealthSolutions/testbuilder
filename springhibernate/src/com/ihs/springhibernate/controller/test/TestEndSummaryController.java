@@ -1,23 +1,15 @@
 package com.ihs.springhibernate.controller.test;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ihs.springhibernate.dao.AnswerTypeDAO;
-import com.ihs.springhibernate.dao.QuestionTypeDAO;
 import com.ihs.springhibernate.dao.UserDAO;
 import com.ihs.springhibernate.formwrapper.FormTakingTest;
-import com.ihs.springhibernate.model.AnswerType;
-import com.ihs.springhibernate.model.Question;
-import com.ihs.springhibernate.model.QuestionType;
 import com.ihs.springhibernate.model.User;
 import com.ihs.springhibernate.sessioninterface.IUserSession;
 import com.ihs.springhibernate.utility.Privileges;

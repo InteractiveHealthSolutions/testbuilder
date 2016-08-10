@@ -2,8 +2,6 @@ package com.ihs.springhibernate.formwrapper;
 
 import java.util.ArrayList;
 
-import com.ihs.springhibernate.model.Answer;
-import com.ihs.springhibernate.model.Question;
 import com.ihs.springhibernate.model.Test;
 
 public class FormTakingTest

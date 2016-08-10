@@ -10,13 +10,9 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.ihs.springhibernate.dao.UserDAO.FetchType;
 import com.ihs.springhibernate.model.Question;
 import com.ihs.springhibernate.model.QuestionData;
-import com.ihs.springhibernate.model.QuestionType;
-import com.ihs.springhibernate.model.SchemeCategory;
 import com.ihs.springhibernate.model.TestQuestion;
-import com.ihs.springhibernate.model.User;
 import com.ihs.springhibernate.utility.SessionFactoryBuilder;
 
 public class QuestionDAO {

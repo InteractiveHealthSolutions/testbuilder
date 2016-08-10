@@ -7,7 +7,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.ihs.springhibernate.model.CategoryType;
 import com.ihs.springhibernate.model.Scheme;
 import com.ihs.springhibernate.utility.SessionFactoryBuilder;
 

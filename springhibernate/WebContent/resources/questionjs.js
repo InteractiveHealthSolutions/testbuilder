@@ -174,6 +174,29 @@ function removeElement(elementId) {
   });
 }
 
+function blockSpecialChar(e) {
+	var k;
+	document.all ? k = e.keyCode : k = e.which;
+	return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 32 || k == 8 || (k >= 48 && k <= 57));
+}
+
+function submitCatForm(){
+	var typename = document.getElementById("typeName");
+	var description = document.getElementById("descriptionTxt");
+	var error = document.getElementById("errorLbl");
+	var form = document.getElementById("frmSubmitCategory");
+	
+	if (!typename.value.replace(/\s/g, '').length || !description.value.replace(/\s/g, '').length ) {
+		error.innerHTML = "Required Fields Missing";
+	}
+	
+	else {
+		form.submit();
+	}
+}
+
+
+
 
 function removeChildren(elementId) {
   var targetElement = document.getElementById(elementId);

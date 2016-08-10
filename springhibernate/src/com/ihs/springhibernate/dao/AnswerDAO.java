@@ -10,14 +10,9 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.ihs.springhibernate.dao.QuestionDAO.By;
-import com.ihs.springhibernate.dao.QuestionDAO.FetchType;
 import com.ihs.springhibernate.formwrapper.FormTakingTest;
-import com.ihs.springhibernate.formwrapper.QuestionAnswer;
 import com.ihs.springhibernate.model.Answer;
 import com.ihs.springhibernate.model.AnswerData;
-import com.ihs.springhibernate.model.Question;
-import com.ihs.springhibernate.model.QuestionData;
 import com.ihs.springhibernate.utility.SessionFactoryBuilder;
 
 public class AnswerDAO

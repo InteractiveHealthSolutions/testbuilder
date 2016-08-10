@@ -117,6 +117,8 @@ public class ResourcesName
 	private final String MESSAGE_FAIL_UPDATE = "Update failed";
 
 	private final String MESSAGE_VALIDATION_ERROR = "Please fill required fields";
+	
+	private final String DESCRIPTION_ERROR = "Description is required";
 
 	private final String MESSAGE_NOPRIVILEGE = "Sorry! You dont have privilege for this";
 
@@ -282,6 +284,10 @@ public class ResourcesName
 	public String getTABLE_ANSWER()
 	{
 		return TABLE_ANSWER;
+	}
+
+	public String getDESCRIPTION_ERROR() {
+		return DESCRIPTION_ERROR;
 	}
 
 	public String getTABLE_ANSWER_TYPE()

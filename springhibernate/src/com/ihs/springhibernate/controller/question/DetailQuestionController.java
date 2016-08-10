@@ -9,9 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ihs.springhibernate.dao.QuestionDAO;
 import com.ihs.springhibernate.dao.UserDAO;
-
 import com.ihs.springhibernate.model.Question;
-
 import com.ihs.springhibernate.sessioninterface.IUserSession;
 import com.ihs.springhibernate.utility.Privileges;
 import com.ihs.springhibernate.utility.ResourcesName;

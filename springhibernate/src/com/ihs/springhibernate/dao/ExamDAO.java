@@ -6,7 +6,6 @@ import org.apache.log4j.Logger;
 
 import com.ihs.springhibernate.formwrapper.FormTakingTest;
 import com.ihs.springhibernate.model.Answer;
-import com.mysql.fabric.xmlrpc.base.Array;
 
 public class ExamDAO
 {

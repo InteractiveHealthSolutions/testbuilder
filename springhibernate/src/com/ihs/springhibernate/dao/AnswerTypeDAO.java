@@ -5,9 +5,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import com.ihs.springhibernate.dao.QuestionTypeDAO.By;
 import com.ihs.springhibernate.model.AnswerType;
-import com.ihs.springhibernate.model.QuestionType;
 import com.ihs.springhibernate.utility.SessionFactoryBuilder;
 
 public class AnswerTypeDAO

@@ -1,6 +1,7 @@
 package com.ihs.springhibernate.json.object;
 
 import java.util.Date;
+
 import com.ihs.springhibernate.utility.Utility;
 
 public class TestJson

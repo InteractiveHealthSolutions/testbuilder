@@ -10,7 +10,6 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.ihs.springhibernate.model.Answer;
 import com.ihs.springhibernate.model.Question;
 import com.ihs.springhibernate.model.Test;
 import com.ihs.springhibernate.utility.SessionFactoryBuilder;

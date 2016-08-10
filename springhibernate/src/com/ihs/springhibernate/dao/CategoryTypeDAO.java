@@ -2,13 +2,13 @@ package com.ihs.springhibernate.dao;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.ihs.springhibernate.model.CategoryType;
 import com.ihs.springhibernate.utility.SessionFactoryBuilder;
-import org.apache.log4j.Logger;
 
 public class CategoryTypeDAO {
 

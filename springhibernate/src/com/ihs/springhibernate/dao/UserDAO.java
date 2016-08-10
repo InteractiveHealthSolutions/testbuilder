@@ -7,7 +7,6 @@ import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import com.ihs.springhibernate.daointerface.IUserDAO;
 import com.ihs.springhibernate.model.Privilege;
 import com.ihs.springhibernate.model.User;
 import com.ihs.springhibernate.sessioninterface.IUserSession;

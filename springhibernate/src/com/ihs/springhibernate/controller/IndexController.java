@@ -98,11 +98,12 @@ public class IndexController
 
 		else
 		{
-			notice = "Invalid ID or Password";
-
+			//notice = "Invalid ID or Password";
 			modelAndView = new ModelAndView(resources.getJSP_INDEX());
+			modelAndView.getModel().put("errorLabel",
+					"Incorrect ID or Password");
 			modelAndView.getModelMap().put("loginUser", new User());
-			modelAndView.getModelMap().put("notice", notice);
+		//	modelAndView.getModelMap().put("notice", notice);
 		}
 
 		return modelAndView;

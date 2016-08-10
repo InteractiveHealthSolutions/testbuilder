@@ -3,21 +3,16 @@ package com.ihs.springhibernate.controller.test;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ihs.springhibernate.dao.CategoryTypeDAO;
 import com.ihs.springhibernate.dao.SchemeDAO;
 import com.ihs.springhibernate.dao.UserDAO;
-import com.ihs.springhibernate.model.CategoryType;
 import com.ihs.springhibernate.model.Scheme;
-import com.ihs.springhibernate.model.Test;
 import com.ihs.springhibernate.sessioninterface.IUserSession;
 import com.ihs.springhibernate.utility.Privileges;
 import com.ihs.springhibernate.utility.ResourcesName;

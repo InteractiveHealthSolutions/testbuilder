@@ -6,11 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ihs.springhibernate.dao.QuestionDAO;
 import com.ihs.springhibernate.dao.TestDAO;
 import com.ihs.springhibernate.dao.UserDAO;
-import com.ihs.springhibernate.model.CategoryType;
 import com.ihs.springhibernate.model.Question;
 import com.ihs.springhibernate.model.QuestionData;
 import com.ihs.springhibernate.model.Test;

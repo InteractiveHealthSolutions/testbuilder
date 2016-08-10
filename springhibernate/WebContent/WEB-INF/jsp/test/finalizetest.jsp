@@ -116,7 +116,7 @@
 						</c:forEach>
 
 						<tr>
-							<td colspan="3">${status}</td>
+							<td colspan="3" >${status}</td>
 						</tr>
 
 						<tr>

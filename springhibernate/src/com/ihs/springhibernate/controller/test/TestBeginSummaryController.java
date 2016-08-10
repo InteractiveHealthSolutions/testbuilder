@@ -1,7 +1,5 @@
 package com.ihs.springhibernate.controller.test;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +11,6 @@ import com.ihs.springhibernate.dao.TestDAO;
 import com.ihs.springhibernate.dao.TestDAO.By;
 import com.ihs.springhibernate.dao.TestDAO.FetchType;
 import com.ihs.springhibernate.dao.UserDAO;
-
 import com.ihs.springhibernate.model.Test;
 import com.ihs.springhibernate.model.User;
 import com.ihs.springhibernate.sessioninterface.IUserSession;

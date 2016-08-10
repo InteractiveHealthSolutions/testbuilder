@@ -1,10 +1,13 @@
 package com.ihs.springhibernate.controller.test;
 
-import java.util.ArrayList;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.math.*;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -17,16 +20,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-
-import com.ihs.springhibernate.dao.CategoryTypeDAO;
 import com.ihs.springhibernate.dao.QuestionDAO;
-import com.ihs.springhibernate.dao.QuestionDataDAO;
 import com.ihs.springhibernate.dao.SchemeCategoryDAO;
 import com.ihs.springhibernate.dao.SchemeDAO;
 import com.ihs.springhibernate.dao.TestDAO;
 import com.ihs.springhibernate.dao.UserDAO;
-import com.ihs.springhibernate.model.CategoryType;
 import com.ihs.springhibernate.model.Question;
 import com.ihs.springhibernate.model.QuestionData;
 import com.ihs.springhibernate.model.Scheme;
@@ -36,8 +34,6 @@ import com.ihs.springhibernate.model.TestQuestion;
 import com.ihs.springhibernate.sessioninterface.IUserSession;
 import com.ihs.springhibernate.utility.Privileges;
 import com.ihs.springhibernate.utility.ResourcesName;
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -48,7 +44,6 @@ import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.draw.VerticalPositionMark;
 
 @Controller
 @RequestMapping("/test")
@@ -239,11 +234,22 @@ public class GenerateTestController {
 					table.setWidths(columnWidths);
 
 					String userName = System.getProperty("user.home");
-					String userSplit[] = userName.split("\\\\");
-					String file = userSplit[0] + "/" + userSplit[1] + "/"
-							+ userSplit[2] + "/Downloads/" + fileName + ".pdf";
+				//	String userSplit[] = userName.split(File.separator);
+					//	String userSplit[] = userName.split("\\\\");
+					
+					String file = "";
+					
+				/*	for(String s : userSplit ) {
+						file = file + s + File.separator;
+					}*/
+					
+					file = userName.replace("\\" ,File.separator + File.separator) + File.separator + "Downloads"+ File.separator + fileName + ".pdf";
+					
+					/*String file = userSplit[0] + "/" + userSplit[1] + "/"
+							+ userSplit[2] + "/Downloads/" + fileName + ".pdf";*/
 
-					PdfWriter.getInstance(document, new FileOutputStream(file));
+			//		PdfWriter.getInstance(document, new FileOutputStream(file));
+					PdfWriter.getInstance(document, new FileOutputStream(fileName + ".pdf"));
 					document.open();
 
 					document.add(title);

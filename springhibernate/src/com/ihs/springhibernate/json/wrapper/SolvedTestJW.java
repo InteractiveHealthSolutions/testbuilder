@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.ihs.springhibernate.dao.TestDAO;
 import com.ihs.springhibernate.json.object.SolvedTestJson;
-import com.ihs.springhibernate.json.object.TestJson;
 import com.ihs.springhibernate.model.Test;
 
 public class SolvedTestJW extends JsonWrapper

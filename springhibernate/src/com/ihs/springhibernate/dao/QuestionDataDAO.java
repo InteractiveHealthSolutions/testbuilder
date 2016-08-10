@@ -1,14 +1,9 @@
 package com.ihs.springhibernate.dao;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.coyote.Request;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.ihs.springhibernate.model.QuestionData;
-import com.ihs.springhibernate.model.TestQuestion;
 import com.ihs.springhibernate.utility.SessionFactoryBuilder;
 
 public class QuestionDataDAO {

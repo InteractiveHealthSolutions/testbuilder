@@ -1,10 +1,14 @@
 package com.ihs.springhibernate.controller.question;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -20,7 +24,6 @@ import com.ihs.springhibernate.dao.QuestionTypeDAO;
 import com.ihs.springhibernate.dao.UserDAO;
 import com.ihs.springhibernate.model.AnswerType;
 import com.ihs.springhibernate.model.CategoryType;
-import com.ihs.springhibernate.model.Privilege;
 import com.ihs.springhibernate.model.Question;
 import com.ihs.springhibernate.model.QuestionType;
 import com.ihs.springhibernate.model.User;
@@ -31,23 +34,21 @@ import com.ihs.springhibernate.validator.QuestionValidator;
 
 @Controller
 @RequestMapping("/question")
-public class CreateQuestionController
-{
+public class CreateQuestionController {
 	@Autowired
 	private IUserSession userSession;
 
 	@RequestMapping(value = "/createquestion", method = RequestMethod.GET)
-	public ModelAndView getMakeQuestion(@ModelAttribute("newQuestion") Question newQuestion)
-	{
+	public ModelAndView getMakeQuestion(
+			@ModelAttribute("newQuestion") Question newQuestion) {
 		ResourcesName resources = new ResourcesName();
 		ModelAndView modelAndView = null;
 
-		if (userSession.getName() != null)
-		{
+		if (userSession.getName() != null) {
 
-			if (UserDAO.hasPrivilegeFor(userSession, Privileges.TEST_MAKER) == true)
-			{
-				modelAndView = new ModelAndView(resources.getFOLDER_QUESTION() + "/" + resources.getJSP_CREATE_QUESTION());		
+			if (UserDAO.hasPrivilegeFor(userSession, Privileges.TEST_MAKER) == true) {
+				modelAndView = new ModelAndView(resources.getFOLDER_QUESTION()
+						+ "/" + resources.getJSP_CREATE_QUESTION());
 
 				modelAndView.getModel().put("newQuestion", newQuestion);
 
@@ -55,122 +56,173 @@ public class CreateQuestionController
 
 				modelAndView.getModel().put("resources", resources);
 
-				List<QuestionType> questionTypeList = QuestionTypeDAO.getAllTypes();
+				List<QuestionType> questionTypeList = QuestionTypeDAO
+						.getAllTypes();
 
-				modelAndView.getModel().put("questionTypeList", questionTypeList);
+				modelAndView.getModel().put("questionTypeList",
+						questionTypeList);
 
 				List<AnswerType> answerTypeList = AnswerTypeDAO.getAllTypes();
 
 				modelAndView.getModel().put("answerTypeList", answerTypeList);
-				
-				List<CategoryType> categoryType = CategoryTypeDAO.getCategoryTypes();
-				
+
+				List<CategoryType> categoryType = CategoryTypeDAO
+						.getCategoryTypes();
+
+				Collections.sort(categoryType, new Comparator<CategoryType>() {
+					@Override
+					public int compare(final CategoryType object1,
+							final CategoryType object2) {
+						return object1.getTypeName().toLowerCase()
+								.compareTo(object2.getTypeName().toLowerCase());
+					}
+				});
+
 				modelAndView.getModel().put("categoryType", categoryType);
 			}
 
-			else
-			{
-				modelAndView = new ModelAndView("redirect:/" + resources.getJSP_INDEX());
+			else {
+				modelAndView = new ModelAndView("redirect:/"
+						+ resources.getJSP_INDEX());
 				modelAndView.getModel().put("loginUser", new User());
 			}
 		}
 
-		else
-		{
-			modelAndView = new ModelAndView("redirect:/" + resources.getJSP_INDEX());
+		else {
+			modelAndView = new ModelAndView("redirect:/"
+					+ resources.getJSP_INDEX());
 		}
 
 		return modelAndView;
 	}
 
 	@RequestMapping(value = "/createquestion", method = RequestMethod.POST)
-	public ModelAndView submitQuestion(@ModelAttribute("newQuestion") @Valid Question newQuestion, BindingResult result, HttpServletRequest httpServletRequest)
-	{
-		String s = 	httpServletRequest.getParameter("questionDataList[1].correct");
-		
+	public ModelAndView submitQuestion(
+			@ModelAttribute("newQuestion") @Valid Question newQuestion,
+			BindingResult result, HttpServletRequest httpServletRequest) {
+		String s = httpServletRequest
+				.getParameter("questionDataList[1].correct");
+
 		ResourcesName resources = new ResourcesName();
 
-		ModelAndView modelAndView = new ModelAndView(resources.getFOLDER_QUESTION() + "/" + resources.getJSP_CREATE_QUESTION());
+		ModelAndView modelAndView = new ModelAndView(
+				resources.getFOLDER_QUESTION() + "/"
+						+ resources.getJSP_CREATE_QUESTION());
+
+		modelAndView.getModel().put("resources", resources);
+
+		modelAndView.getModel().put("newQuestion", newQuestion);
+
+		modelAndView.getModel().put("currentUser", userSession);
 
 		newQuestion = QuestionDAO.removeNullQuestionData(newQuestion);
 
-		QuestionValidator questionValidator = new QuestionValidator();
-		questionValidator.validate(newQuestion, result);
+		/*
+		 * QuestionValidator questionValidator = new QuestionValidator();
+		 * questionValidator.validate(newQuestion, result);
+		 * 
+		 * if (result.hasErrors()) { modelAndView = new
+		 * ModelAndView(resources.getFOLDER_QUESTION() + "/" +
+		 * resources.getJSP_CREATE_QUESTION());
+		 * 
+		 * modelAndView.getModel().put("newQuestion", newQuestion);
+		 * 
+		 * modelAndView.getModel().put("currentUser", userSession);
+		 * 
+		 * modelAndView.getModel().put("resources", resources);
+		 * 
+		 * List<QuestionType> questionTypeList = QuestionTypeDAO.getAllTypes();
+		 * 
+		 * modelAndView.getModel().put("questionTypeList", questionTypeList);
+		 * 
+		 * List<CategoryType> categoryType = CategoryTypeDAO
+		 * .getCategoryTypes();
+		 * 
+		 * modelAndView.getModel().put("categoryType", categoryType);
+		 * 
+		 * List<AnswerType> answerTypeList = AnswerTypeDAO.getAllTypes();
+		 * 
+		 * modelAndView.getModel().put("answerTypeList", answerTypeList);
+		 * 
+		 * modelAndView.getModel().put("status",
+		 * resources.getDESCRIPTION_ERROR());
+		 * 
+		 * return modelAndView; }
+		 */
 
-		if (result.hasErrors())
-		{
-			modelAndView = new ModelAndView(resources.getFOLDER_QUESTION() + "/" + resources.getJSP_CREATE_QUESTION());
+		if (userSession.getName() != null) {
 
-			modelAndView.getModel().put("newQuestion", newQuestion);
-
-			modelAndView.getModel().put("currentUser", userSession);
-
-			modelAndView.getModel().put("resources", resources);
-
-			List<QuestionType> questionTypeList = QuestionTypeDAO.getAllTypes();
-
-			modelAndView.getModel().put("questionTypeList", questionTypeList);
-			
-			List<CategoryType> categoryType = CategoryTypeDAO.getCategoryTypes();
-			
-			modelAndView.getModel().put("categoryType", categoryType);
-
-			List<AnswerType> answerTypeList = AnswerTypeDAO.getAllTypes();
-
-			modelAndView.getModel().put("answerTypeList", answerTypeList);
-
-			modelAndView.getModel().put("status", resources.getMESSAGE_VALIDATION_ERROR());
-
-			return modelAndView;
-		}
-
-		if (userSession != null)
-		{
-			Integer newlySavedId = -1;
-			
-			if (UserDAO.hasPrivilegeFor(userSession, Privileges.TEST_MAKER) == true)		
-			{			
-				newlySavedId = QuestionDAO.save(newQuestion);
+			if (StringUtils.isBlank(newQuestion.getTitle())
+					|| StringUtils.isBlank(newQuestion.getDescription())) {
+	
+				modelAndView.getModel()
+						.put("status", "Required fields missing");
 				
-				if (newlySavedId != -1)
-				{					
-					modelAndView = new ModelAndView("redirect:/" + resources.getFOLDER_QUESTION() + "/" + resources.getJSP_VIEW_QUESTION() + "?id=" + newlySavedId);
-					modelAndView.getModel().put("status", resources.getMESSAGE_ADD());
-				}
+				List<QuestionType> questionTypeList = QuestionTypeDAO
+						.getAllTypes();
 
+				modelAndView.getModel().put("questionTypeList",
+						questionTypeList);
+				
+				List<CategoryType> categoryType = CategoryTypeDAO
+						.getCategoryTypes();
 
-//				if (QuestionDAO.save(newQuestion) == true)
-//				{
-//					modelAndView = new ModelAndView(resources.getFOLDER_QUESTION() + "/" + resources.getJSP_CREATE_QUESTION());
-//
-//					modelAndView.getModel().put("status", resources.getMESSAGE_ADD());
-//				}
+				Collections.sort(categoryType, new Comparator<CategoryType>() {
+					@Override
+					public int compare(final CategoryType object1,
+							final CategoryType object2) {
+						return object1.getTypeName().toLowerCase()
+								.compareTo(object2.getTypeName().toLowerCase());
+					}
+				});
 
-				else
-				{
-					modelAndView.getModel().put("newQuestion", newQuestion);
+				modelAndView.getModel().put("categoryType", categoryType);
+			}
 
-					modelAndView.getModel().put("currentUser", userSession);
+			else {
 
-					modelAndView.getModel().put("resources", resources);
+				Integer newlySavedId = -1;
 
-					List<QuestionType> questionTypeList = QuestionTypeDAO.getAllTypes();
+				if (UserDAO.hasPrivilegeFor(userSession, Privileges.TEST_MAKER) == true) {
+					newlySavedId = QuestionDAO.save(newQuestion);
 
-					modelAndView.getModel().put("questionTypeList", questionTypeList);
-					
-					List<CategoryType> categoryType = CategoryTypeDAO.getCategoryTypes();
-					
-					modelAndView.getModel().put("categoryType", categoryType);
+					if (newlySavedId != -1) {
+						modelAndView = new ModelAndView("redirect:/"
+								+ resources.getFOLDER_QUESTION() + "/"
+								+ resources.getJSP_VIEW_QUESTION() + "?id="
+								+ newlySavedId);
+						modelAndView.getModel().put("status",
+								resources.getMESSAGE_ADD());
+					}
 
-					List<AnswerType> answerTypeList = AnswerTypeDAO.getAllTypes();
+					else {
 
-					modelAndView.getModel().put("answerTypeList", answerTypeList);
+						List<QuestionType> questionTypeList = QuestionTypeDAO
+								.getAllTypes();
 
-					modelAndView.getModel().put("status", resources.getMESSAGE_FAIL_ADD());
+						modelAndView.getModel().put("questionTypeList",
+								questionTypeList);
+
+						List<CategoryType> categoryType = CategoryTypeDAO
+								.getCategoryTypes();
+
+						modelAndView.getModel().put("categoryType",
+								categoryType);
+
+						List<AnswerType> answerTypeList = AnswerTypeDAO
+								.getAllTypes();
+
+						modelAndView.getModel().put("answerTypeList",
+								answerTypeList);
+
+						modelAndView.getModel().put("status",
+								resources.getMESSAGE_FAIL_ADD());
+					}
 				}
 			}
-		}
 
+		}
 		return modelAndView;
+
 	}
 }

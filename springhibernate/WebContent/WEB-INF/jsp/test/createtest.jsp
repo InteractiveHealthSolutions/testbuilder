@@ -69,7 +69,6 @@
 							<td><form:input path="name" size="50" maxlength="90"
 									class="form-control input" required="true" id="nameTxt" /></td>
 
-							<td><form:errors path="name" /></td>
 						</tr>
 
 						<tr>
@@ -78,8 +77,6 @@
 									class="form-control input" required="true" /> <input
 								type="hidden" name="creatorId" value="${currentUser.getId()}" />
 							</td>
-
-							<td><form:errors path="description" /></td>
 
 						</tr>
 						
