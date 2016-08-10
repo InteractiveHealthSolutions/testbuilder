@@ -22,7 +22,7 @@ public class ManageTestController
 	@Autowired
 	private IUserSession userSession;
 
-	@RequestMapping(value = "/managetest", method = RequestMethod.GET)
+	@RequestMapping(value = "/viewtests", method = RequestMethod.GET)
 	public ModelAndView getManageTest()
 	{
 		ModelAndView modelAndView = null;

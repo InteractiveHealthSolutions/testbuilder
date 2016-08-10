@@ -42,8 +42,8 @@ public class ResourcesName
 
 	
 	private final String JSP_CHECK_TEST = "checktest";
-	private final String JSP_MANAGE_TEST = "managetest"; // manage test
-	private final String JSP_CREATE_SCHEME = "createtest";
+	private final String JSP_MANAGE_TEST = "viewtests"; // manage test
+	private final String JSP_CREATE_SCHEME = "createtestscheme";
 	private final String JSP_EDIT_TEST = "edittest";
 	private final String JSP_VIEW_TEST = "viewtest";
 	private final String JSP_SELECT_SCHEME = "selectscheme";
@@ -51,7 +51,7 @@ public class ResourcesName
 		return JSP_SELECT_SCHEME;
 	}
 
-	private final String JSP_FINALIZE_TEST = "finalizetest";
+	private final String JSP_FINALIZE_TEST = "generatetest";
 	private final String JSP_VIEWSCHEME = "viewscheme";
 	private final String JSP_TAKE_TEST_LIST = "taketestlist";
 	private final String JSP_TEST_BEGIN_SUMMARY = "testbeginsummary";

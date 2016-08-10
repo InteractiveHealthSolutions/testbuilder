@@ -60,7 +60,6 @@ html, body {
 							<td><form:input path="typeName" size="50" maxlength="40"
 									class="form-control input" id="typeName" required="true" onkeypress="return blockSpecialChar(event)" /></td>
 
-							<td><form:errors path="typeName" /></td>
 						</tr>
 
 						<tr>
@@ -70,7 +69,6 @@ html, body {
 								type="hidden" name="creatorId" value="${currentUser.getId()}" onkeypress="return blockSpecialChar(event)" />
 							</td>
 
-							<td><form:errors path="description" /></td>
 
 						</tr>
 

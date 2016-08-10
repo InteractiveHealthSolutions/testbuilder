@@ -60,7 +60,7 @@
 			<div class="col-md-9 column">
 				<h3>Create Test Scheme</h3>
 				<form:form id="formSubmitScheme" method="POST" autocomplete="off"
-					action="/springhibernate/test/createtest?type=" modelAttribute="newScheme">
+					action="/springhibernate/test/createtestscheme?type=" modelAttribute="newScheme">
 
 					<table border="1px" class="table table-bordered">
 

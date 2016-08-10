@@ -33,7 +33,7 @@ public class CreateSchemeController {
 	@Autowired
 	private IUserSession userSession;
 
-	@RequestMapping(value = "/createtest", method = RequestMethod.GET)
+	@RequestMapping(value = "/createtestscheme", method = RequestMethod.GET)
 	public ModelAndView getCreateScheme(
 			@ModelAttribute("newScheme") Scheme newScheme) {
 

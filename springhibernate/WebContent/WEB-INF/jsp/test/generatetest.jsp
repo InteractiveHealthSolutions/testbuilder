@@ -57,7 +57,7 @@
 				<h3>Create Test Paper</h3>
 
 				<form:form id="formSubmitTest" method="POST"
-					action="/springhibernate/test/finalizetest?type="
+					action="/springhibernate/test/generatetest?type="
 					modelAttribute="newTest">
 
 

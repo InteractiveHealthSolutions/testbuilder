@@ -52,7 +52,7 @@ public class GenerateTestController {
 	private IUserSession userSession;
 	String secondPara;
 
-	@RequestMapping(value = "/finalizetest", method = RequestMethod.GET)
+	@RequestMapping(value = "/generatetest", method = RequestMethod.GET)
 	public ModelAndView getSchemeData(@ModelAttribute("newTest") Test newTest,
 			HttpServletRequest request) {
 		ModelAndView modelAndView = null;

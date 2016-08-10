@@ -43,7 +43,7 @@ html, body {
 
 			<div class="col-md-9 column">
 
-				<h3>View Created Tests</h3>
+				<h3>View Tests</h3>
 
 				<div>
 					<table border="1px" class="table table-bordered">
