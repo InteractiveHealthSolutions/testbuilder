@@ -112,45 +112,48 @@ function removeElement(elementId, text, id) {
 }
 
 function checkError(btnType) {
-	var err = document.getElementById("errorLabel");
+	var err = document.getElementById("schemeNameChecker");
 	var schemeName = document.getElementById("nameTxt");
 	var schemeDescription = document.getElementById("descriptionTxt");
 	var schemeQuestions = document.getElementById("questionTxt");
 	var totalSum = 0;
 	var selectTag = document.getElementById('selectCategoryList');
+	
+	
+	//schemeNameErr.innerHTML = "";
 
 	if (schemeName.value == "") {
-		err.innerText = "Scheme Name Missing!!";
-		err.style.display = "block";
+		err.innerHTML = "Scheme Name Missing!!";
+		//err.style.display = "block";
 	}
 
 	else if (!schemeName.value.replace(/\s/g, '').length) {
-		err.style.display = "none";
-		err.innerText = "Scheme Name Missing!!";
-		err.style.display = "block";
+		//err.style.display = "none";
+		err.innerHTML = "Scheme Name Missing!!";
+		//err.style.display = "block";
 	}
 
 	
 	else if (schemeDescription.value == "") {
-		err.style.display = "none";
-		err.innerText = "Scheme Description Missing!!";
-		err.style.display = "block";
+		//err.style.display = "none";
+		err.innerHTML = "Scheme Description Missing!!";
+		//err.style.display = "block";
 	}
 	
 	else if (!schemeDescription.value.replace(/\s/g, '').length) {
-		err.style.display = "none";
-		err.innerText = "Scheme Description Missing!!";
-		err.style.display = "block";
+		//err.style.display = "none";
+		err.innerHTML = "Scheme Description Missing!!";
+		//err.style.display = "block";
 	}
 
 	else if (schemeQuestions.value == "" || schemeQuestions.value == 0) {
-		err.style.display = "none";
-		err.innerText = "No Of Questions Incorrect or Missing!!";
-		err.style.display = "block";
+		//err.style.display = "none";
+		err.innerHTML = "No Of Questions Incorrect or Missing!!";
+		//err.style.display = "block";
 	}
 
 	else {
-		err.style.display = "none";
+		//err.style.display = "none";
 		for (var b = 0; b < array.length; b++) {
 
 			var checkId = "percentage" + array[b];
@@ -165,29 +168,29 @@ function checkError(btnType) {
 		}
 
 		if (totalSum == 100) {
-			err.innerText = "";
+			err.innerHTML = "";
 			var form = document.getElementById("formSubmitScheme");
 			form.action += btnType;
-			alert('Scheme saved successfully');
+			//alert('Scheme saved successfully');
 			form.submit();
 		}
 
 		else if(totalSum == 0 && cat1== 1){
-			err.innerText = "No Percentage Selected";
-			err.style.display = "block";
+			err.innerHTML = "No Percentage Selected";
+		//	err.style.display = "block";
 		}
 		
 		else if (totalSum == 0) {
-			err.innerText = "No Categories Selected";
-			err.style.display = "block";
+			err.innerHTML = "No Categories Selected";
+			//err.style.display = "block";
 		}
 		
 		
 		
 		else {
-			err.style.display = "none";
-			err.innerText = "Incorrect Percentage Of Categories!!";
-			err.style.display = "block";
+			//err.style.display = "none";
+			err.innerHTML = "Incorrect Percentage Of Categories!!";
+			//err.style.display = "block";
 		}
 	}
 

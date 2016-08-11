@@ -4,9 +4,10 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%
-    response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");//HTTP 1.1
-    response.setHeader("Pragma","no-cache"); //HTTP 1.0
-    response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
+	response.setHeader("Cache-Control",
+			"no-cache,no-store,must-revalidate");//HTTP 1.1
+	response.setHeader("Pragma", "no-cache"); //HTTP 1.0
+	response.setDateHeader("Expires", 0); //prevents caching at the proxy server
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -38,7 +39,6 @@
 	$(document).ready(function() {
 		initJQMultiSelect("slctQuestion");
 	});
-	
 </script>
 
 </head>
@@ -60,7 +60,8 @@
 			<div class="col-md-9 column">
 				<h3>Create Test Scheme</h3>
 				<form:form id="formSubmitScheme" method="POST" autocomplete="off"
-					action="/springhibernate/test/createtestscheme?type=" modelAttribute="newScheme">
+					action="/springhibernate/test/createtestscheme?type="
+					modelAttribute="newScheme">
 
 					<table border="1px" class="table table-bordered">
 
@@ -75,50 +76,49 @@
 							<th>Scheme Description *</th>
 							<td><form:textarea path="description" id="descriptionTxt"
 									class="form-control input" required="true" /> <input
-								type="hidden" name="creatorId" maxlength="90" value="${currentUser.getId()}" />
-							</td>
+								type="hidden" name="creatorId" maxlength="90"
+								value="${currentUser.getId()}" /></td>
 
 						</tr>
-						
+
 						<tr>
 							<th>Total Questions *</th>
-							<td colspan="2">
-							<form:input type="number" id="questionTxt" path="totalQuestions" class="form-control input" required="true" min="1" max="999" />
+							<td colspan="2"><form:input type="number" id="questionTxt"
+									path="totalQuestions" class="form-control input"
+									required="true" min="1" max="999" /></td>
+						</tr>
+
+						<tr>
+							<th>Categories *</th>
+							<td height="300px" width="400px" colspan="2">
+								<div id="selectCategory">
+									<table>
+										<tr>
+											<td><form:select path="" id="selectCategoryList"
+													class="form-control input" style="width: 302px">
+													<c:forEach var="category" items="${categoryType}">
+														<form:option value="${category.getId()}"
+															label="${category.getTypeName()}" />
+													</c:forEach>
+												</form:select></td>
+
+											<td style="padding-left: 25px"><input type="button"
+												class="btn btn-primary" value="Add Category"
+												onclick="addMoreCategories()" /></td>
+										</tr>
+									</table>
+
+									<div id="dataDiv" style="margin-top: 15px; margin-left: 5px"></div>
+
+								</div>
+
+
 							</td>
 						</tr>
-					
+
 						<tr>
-						<th>Categories *</th>
-						<td height="300px" width="400px" colspan="2">
-						<div id="selectCategory">
-						<table>
-						<tr>
-						  <td>
-						  <form:select path="" id="selectCategoryList" class="form-control input" style="width: 302px">
-						  <c:forEach var="category" items="${categoryType}">
-        		            <form:option value="${category.getId()}" label="${category.getTypeName()}" />
-		                  </c:forEach>
-                  			</form:select>
-             			 </td>
-             			  
-             			 <td style="padding-left: 25px">
-             			 <input type="button" class="btn btn-primary" value="Add Category" onclick="addMoreCategories()" />
-             			 </td>
-						</tr>
-						</table>
-						
-						<div id="dataDiv" style="margin-top: 15px; margin-left: 5px"></div>
-						
-						</div>
-						
-						
-						</td>
-						</tr>
-						
-						<tr>
-							<td colspan="3" align="center">
-							<label id="errorLabel" style="display: none; color: red "></label>
-							</td>
+							<td colspan="3" align="center"
+								style="color: red; font-weight: bold" id="schemeNameChecker">${status}</td>
 						</tr>
 
 						<tr>
@@ -128,23 +128,24 @@
 									<div class="col-md-4">
 										<div class="text-center">
 											<input type="button" value="Save" id="save"
-												name="singlebutton" class="btn btn-success" onclick="checkError(this.id)" />
+												name="singlebutton" class="btn btn-success"
+												onclick="checkError(this.id)" />
 										</div>
 
 									</div>
-									
+
 									<div class="col-md-4">
 										<div class="text-center">
 											<input type="button" value="Generate Test" id="generate"
-												name="singlebutton" class="btn btn-success" onclick="checkError(this.id)" />
+												name="singlebutton" class="btn btn-success"
+												onclick="checkError(this.id)" />
 										</div>
 
 									</div>
 
 									<div class="col-md-4">
 										<div class="text-center">
-											<a href="/springhibernate/home">
-											<input type="button"
+											<a href="/springhibernate/home"> <input type="button"
 												class="btn btn-danger" value="Cancel & Go Back" /></a>
 										</div>
 									</div>

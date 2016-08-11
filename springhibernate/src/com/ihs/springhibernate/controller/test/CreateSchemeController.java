@@ -50,7 +50,7 @@ public class CreateSchemeController {
 
 				List<CategoryType> categoryType = CategoryTypeDAO
 						.getCategoryTypes();
-				modelAndView.getModel().put("categoryType", categoryType);
+				modelAndView.getModelMap().put("categoryType", categoryType);
 			} else {
 				modelAndView = new ModelAndView("redirect:/"
 						+ resources.getJSP_INDEX());
@@ -70,6 +70,7 @@ public class CreateSchemeController {
 			@ModelAttribute("newScheme") @Valid Scheme newScheme,
 			BindingResult result, HttpServletRequest request) {
 		ResourcesName resources = new ResourcesName();
+		boolean exists = true;
 
 		List<CategoryType> categories = CategoryTypeDAO.getCategoryTypes();
 		LinkedHashMap<Integer, Integer> percentageList = new LinkedHashMap<Integer, Integer>();
@@ -78,67 +79,93 @@ public class CreateSchemeController {
 		ModelAndView modelAndView = new ModelAndView(resources.getFOLDER_TEST()
 				+ "/" + resources.getJSP_CREATE_SCHEME());
 
-		modelAndView.getModel().put("resources", resources);
+		modelAndView.getModelMap().put("resources", resources);
 
-		modelAndView.getModel().put("newScheme", newScheme);
+		modelAndView.getModelMap().put("newScheme", newScheme);
 
-		modelAndView.getModel().put("currentUser", userSession);
+		modelAndView.getModelMap().put("currentUser", userSession);
 		
-		
-	String parameter = request.getParameter("type");
+		List<Scheme> schemeList = SchemeDAO.getAllSchemes();
 
-		if (userSession.getName() != null) {
+		for (Scheme schemeType : schemeList) {
+			if (newScheme.getName().toLowerCase()
+					.equals(schemeType.getName().toLowerCase())) {
+				exists = false;
+			}
+		}
 
-			Integer newlySavedId = -1;
-			if (UserDAO.hasPrivilegeFor(userSession, Privileges.TEST_MAKER) == true) {
-				newlySavedId = SchemeDAO.saveScheme(newScheme);
+		if (exists == false) {
+			modelAndView.getModelMap().put("status", "Scheme name already exists");
 
-				for (CategoryType cat : categories) {
-					String a = request.getParameter("percentage" + cat.getId());
-					if (a == null) {
-					} else {
-						percentageList.put(cat.getId(), Integer.parseInt(a));
-						labelList.add(cat.getId());
+			modelAndView.getModelMap().put("categoryType", categories);
+		}
+
+		else {
+
+			String parameter = request.getParameter("type");
+
+			if (userSession.getName() != null) {
+
+				Integer newlySavedId = -1;
+				if (UserDAO.hasPrivilegeFor(userSession, Privileges.TEST_MAKER) == true) {
+					newlySavedId = SchemeDAO.saveScheme(newScheme);
+
+					for (CategoryType cat : categories) {
+						String a = request.getParameter("percentage"
+								+ cat.getId());
+						if (a == null) {
+						} else {
+							percentageList
+									.put(cat.getId(), Integer.parseInt(a));
+							labelList.add(cat.getId());
+						}
+					}
+
+					List<SchemeCategory> schemeCategoryList = new ArrayList<SchemeCategory>();
+					List<Scheme> schemeIdList;
+					Scheme schemeID;
+					int size = labelList.size();
+					SchemeCategory obj;
+
+					for (int i = 0; i < size; i++) {
+						obj = new SchemeCategory();
+						obj.setCategory_id(labelList.get(i));
+						obj.setWeightage(percentageList.get(labelList.get(i)));
+						schemeIdList = new ArrayList<Scheme>();
+						schemeID = new Scheme();
+						schemeIdList = SchemeDAO.getSchemeData(newScheme
+								.getName());
+						schemeID = schemeIdList.get(0);
+						obj.setScheme_id(schemeID.getId());
+
+						schemeCategoryList.add(obj);
+					}
+
+					int newSaved = SchemeCategoryDAO
+							.saveSchemeCategory(schemeCategoryList);
+
+					if (newlySavedId != -1 && newSaved != -1
+							&& parameter.equals("save")) {
+						modelAndView = new ModelAndView("redirect:/"
+								+ resources.getFOLDER_TEST() + "/"
+								+ resources.getJSP_VIEWSCHEME());
+					}
+
+					else if (newlySavedId != -1 && newSaved != -1
+							&& parameter.equals("generate")) {
+						modelAndView = new ModelAndView("redirect:/"
+								+ resources.getFOLDER_TEST() + "/"
+								+ resources.getJSP_FINALIZE_TEST() + "?id="
+								+ newlySavedId);
+					}
+
+					else {
+						modelAndView.getModelMap().put("status",
+								resources.getMESSAGE_FAIL_ADD());
 					}
 				}
 
-
-				List<SchemeCategory> schemeCategoryList = new ArrayList<SchemeCategory>();
-				List<Scheme> schemeIdList;
-				Scheme schemeID;
-				int size = labelList.size();
-				SchemeCategory obj;
-				
-				for (int i = 0; i < size; i++) {
-					obj = new SchemeCategory();
-					obj.setCategory_id(labelList.get(i));
-					obj.setWeightage(percentageList.get(labelList.get(i)));
-					schemeIdList = new ArrayList<Scheme>();
-					schemeID = new Scheme();
-					schemeIdList = SchemeDAO.getSchemeData(newScheme.getName());
-					schemeID = schemeIdList.get(0);
-					obj.setScheme_id(schemeID.getId());
-
-					schemeCategoryList.add(obj);
-				}
-
-				int newSaved = SchemeCategoryDAO.saveSchemeCategory(schemeCategoryList);
-				
-				if (newlySavedId != -1 && newSaved!= -1 && parameter.equals("save")) {
-					 modelAndView = new ModelAndView("redirect:/" + resources.getFOLDER_TEST()
-								+ "/" + resources.getJSP_VIEWSCHEME());
-				}
-				
-				else if (newlySavedId != -1 && newSaved!= -1 && parameter.equals("generate")) {
-					 modelAndView = new ModelAndView("redirect:/" + resources.getFOLDER_TEST() + "/" + resources.getJSP_FINALIZE_TEST()+"?id="+ newlySavedId);
-				}
-
-				else {
-					modelAndView.getModel().put("status",
-							resources.getMESSAGE_FAIL_ADD());
-				}
 			}
-
 		}
 		return modelAndView;
 	}
