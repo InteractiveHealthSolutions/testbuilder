@@ -82,7 +82,7 @@ html, body {
 						<tr>
 
 							<th>Question Type *</th>
-							<td colspan="2"><form:select path="questionType.id"
+							<td colspan="2" width="450px"><form:select path="questionType.id"
 									id="slctQuestionType" onchange="updateBtnAddMore()"
 									class="form-control input">
 									<c:forEach var="questionType" items="${questionTypeList}">
@@ -168,8 +168,8 @@ html, body {
 								<div class="control-group">
 									<div class="col-md-6">
 										<div class="text-center">
-											<input type="submit" value="Save" id="singlebutton"
-												name="singlebutton" class="btn btn-primary"
+											<input type="button" value="Save" id="singlebutton"
+												name="singlebutton" class="btn btn-success"
 												onclick="submitQuesForm()" />
 										</div>
 

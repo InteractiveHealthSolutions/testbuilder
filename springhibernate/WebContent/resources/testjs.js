@@ -1,4 +1,5 @@
 var array = [];
+var cat1 = 0;
 
 $(document).ready(function() {
 	// alert('dfssdfsdfs')
@@ -33,6 +34,7 @@ function checkError() {
 
 function addMoreCategories() {
 
+	cat1++;
 	var selectedItem = document.getElementById('selectCategoryList');
 	var selectedItemValue = selectedItem.options[selectedItem.selectedIndex];
 	var deletedValue = selectedItem.selectedIndex;
@@ -88,6 +90,7 @@ function addMoreCategories() {
 			function() {
 				removeElement($(categoryDiv).attr('id'), $(categoryLabel)
 						.text(), $(categoryLabel).attr('id'));
+				cat1--
 			});
 }
 
@@ -162,16 +165,25 @@ function checkError(btnType) {
 		}
 
 		if (totalSum == 100) {
+			err.innerText = "";
 			var form = document.getElementById("formSubmitScheme");
 			form.action += btnType;
+			alert('Scheme saved successfully');
 			form.submit();
 		}
 
-		else if (totalSum == 0) {
-			err.innerText = "No Categories Selected or No Percentage Selected For Categories!!";
+		else if(totalSum == 0 && cat1== 1){
+			err.innerText = "No Percentage Selected";
 			err.style.display = "block";
 		}
-
+		
+		else if (totalSum == 0) {
+			err.innerText = "No Categories Selected";
+			err.style.display = "block";
+		}
+		
+		
+		
 		else {
 			err.style.display = "none";
 			err.innerText = "Incorrect Percentage Of Categories!!";

@@ -117,7 +117,7 @@
           </tr>
 
           <tr>
-            <td colspan="2">${status}</td>
+            <td colspan="2" style="color: green; font-weight: bold;" align="center">${status}</td>
           </tr>
           
           <tr>

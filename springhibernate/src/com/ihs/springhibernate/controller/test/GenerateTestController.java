@@ -127,7 +127,7 @@ public class GenerateTestController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/finalizetest", method = RequestMethod.POST)
+	@RequestMapping(value = "/generatetest", method = RequestMethod.POST)
 	ModelAndView submitTest(@ModelAttribute("newTest") @Valid Test newTest,
 			BindingResult result, HttpServletRequest request) {
 

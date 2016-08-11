@@ -65,7 +65,7 @@ public class CreateSchemeController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/createtest", method = RequestMethod.POST)
+	@RequestMapping(value = "/createtestscheme", method = RequestMethod.POST)
 	ModelAndView submitTest(
 			@ModelAttribute("newScheme") @Valid Scheme newScheme,
 			BindingResult result, HttpServletRequest request) {
@@ -125,7 +125,8 @@ public class CreateSchemeController {
 				int newSaved = SchemeCategoryDAO.saveSchemeCategory(schemeCategoryList);
 				
 				if (newlySavedId != -1 && newSaved!= -1 && parameter.equals("save")) {
-					 modelAndView = new ModelAndView("redirect:/" + resources.getJSP_HOME());
+					 modelAndView = new ModelAndView("redirect:/" + resources.getFOLDER_TEST()
+								+ "/" + resources.getJSP_VIEWSCHEME());
 				}
 				
 				else if (newlySavedId != -1 && newSaved!= -1 && parameter.equals("generate")) {
