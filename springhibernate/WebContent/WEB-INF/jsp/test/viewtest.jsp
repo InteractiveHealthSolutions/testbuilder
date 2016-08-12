@@ -117,7 +117,7 @@ html, body {
 
 								<div class="col-md-6">
 									<div class="text-center">
-									  <a href="managetest">	<input type="button" value="Cancel & Go Back" id="cancel"
+									  <a href="viewtests">	<input type="button" value="Cancel & Go Back" id="cancel"
 											name="singlebutton" class="btn btn-danger" /></a>
 									</div>
 

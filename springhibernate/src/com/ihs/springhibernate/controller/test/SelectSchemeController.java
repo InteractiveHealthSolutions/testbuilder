@@ -1,5 +1,7 @@
 package com.ihs.springhibernate.controller.test;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ihs.springhibernate.dao.SchemeDAO;
 import com.ihs.springhibernate.dao.UserDAO;
+import com.ihs.springhibernate.model.CategoryType;
 import com.ihs.springhibernate.model.Scheme;
 import com.ihs.springhibernate.sessioninterface.IUserSession;
 import com.ihs.springhibernate.utility.Privileges;
@@ -39,6 +42,15 @@ public class SelectSchemeController {
 				
 				List<Scheme> schemeListAll = SchemeDAO.getAllSchemes();
 				modelAndView.getModel().put("schemeListAll", schemeListAll);
+				
+				Collections.sort(schemeListAll, new Comparator<Scheme>() {
+					@Override
+					public int compare(final Scheme object1,
+							final Scheme object2) {
+						return object1.getName().toLowerCase()
+								.compareTo(object2.getName().toLowerCase());
+					}
+				});
 				
 				modelAndView.getModelMap().put("schemeListAll", schemeListAll);
 			}

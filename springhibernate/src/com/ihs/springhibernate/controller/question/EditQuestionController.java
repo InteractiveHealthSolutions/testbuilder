@@ -1,9 +1,12 @@
 package com.ihs.springhibernate.controller.question;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.validation.Valid;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -62,6 +65,15 @@ public class EditQuestionController {
 
 				List<CategoryType> categoryType = CategoryTypeDAO
 						.getCategoryTypes();
+
+				Collections.sort(categoryType, new Comparator<CategoryType>() {
+					@Override
+					public int compare(final CategoryType object1,
+							final CategoryType object2) {
+						return object1.getTypeName().toLowerCase()
+								.compareTo(object2.getTypeName().toLowerCase());
+					}
+				});
 
 				modelAndView.getModel().put("categoryType", categoryType);
 			}
@@ -125,48 +137,110 @@ public class EditQuestionController {
 
 		modelAndView.getModel().put("resources", resources);
 
-		QuestionValidator questionValidator = new QuestionValidator();
-		questionValidator.validate(editQuestion, result);
+		boolean repeat = true;
+		List<Question> questionList = QuestionDAO
+				.getAllQuestion(QuestionDAO.FetchType.EAGER);
+		String val = editQuestion.getTitle();
+		for (Question ques : questionList) {
+			if (ques.getTitle().toLowerCase()
+					.equals(editQuestion.getTitle().toLowerCase())) {
+				repeat = false;
+			}
+		}
 
-		if (result.hasErrors()) {
+		if (StringUtils.isBlank(editQuestion.getTitle())
+				|| StringUtils.isBlank(editQuestion.getDescription())) {
+
+			modelAndView.getModel().put("status", "Required fields missing");
+
 			List<QuestionType> questionTypeList = QuestionTypeDAO.getAllTypes();
 
 			modelAndView.getModel().put("questionTypeList", questionTypeList);
 
-			modelAndView.getModel().put("status",
-					resources.getMESSAGE_VALIDATION_ERROR());
+			List<CategoryType> categoryType = CategoryTypeDAO
+					.getCategoryTypes();
 
-			return modelAndView;
+			Collections.sort(categoryType, new Comparator<CategoryType>() {
+				@Override
+				public int compare(final CategoryType object1,
+						final CategoryType object2) {
+					return object1.getTypeName().toLowerCase()
+							.compareTo(object2.getTypeName().toLowerCase());
+				}
+			});
+
+			modelAndView.getModel().put("categoryType", categoryType);
 		}
 
-		if (userSession != null) {
-			Privilege privilege = new Privilege();
+		else if (repeat == false) {
+			modelAndView.getModel().put("status", "Question title exists");
 
-			privilege.setId(Privileges.TEST_MAKER.getRoleId());
+			List<QuestionType> questionTypeList = QuestionTypeDAO.getAllTypes();
 
-			if (QuestionDAO.update(editQuestion) == true) {
-				modelAndView = new ModelAndView("redirect:/"
-						+ resources.getFOLDER_QUESTION() + "/"
-						+ resources.getJSP_VIEW_QUESTION() + "?id="
-						+ editQuestion.getId());
-				modelAndView.getModel().put("status",
-						resources.getMESSAGE_UPDATE());
-			}
+			modelAndView.getModel().put("questionTypeList", questionTypeList);
 
-			else {
+			List<CategoryType> categoryType = CategoryTypeDAO
+					.getCategoryTypes();
+
+			Collections.sort(categoryType, new Comparator<CategoryType>() {
+				@Override
+				public int compare(final CategoryType object1,
+						final CategoryType object2) {
+					return object1.getTypeName().toLowerCase()
+							.compareTo(object2.getTypeName().toLowerCase());
+				}
+			});
+
+			modelAndView.getModel().put("categoryType", categoryType);
+		}
+
+		else {
+
+			QuestionValidator questionValidator = new QuestionValidator();
+			questionValidator.validate(editQuestion, result);
+
+			if (result.hasErrors()) {
 				List<QuestionType> questionTypeList = QuestionTypeDAO
 						.getAllTypes();
 
 				modelAndView.getModel().put("questionTypeList",
 						questionTypeList);
 
-				List<CategoryType> categoryType = CategoryTypeDAO
-						.getCategoryTypes();
-
-				modelAndView.getModel().put("categoryType", categoryType);
-
 				modelAndView.getModel().put("status",
-						resources.getMESSAGE_FAIL_ADD());
+						resources.getMESSAGE_VALIDATION_ERROR());
+
+				return modelAndView;
+			}
+
+			if (userSession != null) {
+				Privilege privilege = new Privilege();
+
+				privilege.setId(Privileges.TEST_MAKER.getRoleId());
+
+				if (QuestionDAO.update(editQuestion) == true) {
+					modelAndView = new ModelAndView("redirect:/"
+							+ resources.getFOLDER_QUESTION() + "/"
+							+ resources.getJSP_VIEW_QUESTION() + "?id="
+							+ editQuestion.getId());
+					modelAndView.getModel().put("status",
+							resources.getMESSAGE_UPDATE());
+				}
+
+				else {
+					List<QuestionType> questionTypeList = QuestionTypeDAO
+							.getAllTypes();
+
+					modelAndView.getModel().put("questionTypeList",
+							questionTypeList);
+
+					List<CategoryType> categoryType = CategoryTypeDAO
+							.getCategoryTypes();
+
+					modelAndView.getModel().put("categoryType", categoryType);
+
+					modelAndView.getModel().put("status",
+							resources.getMESSAGE_FAIL_ADD());
+				}
 			}
 		}
 

@@ -201,7 +201,7 @@ function submitFormByType(typeBtn) {
 
 	if (typeBtn == "print") {
 		while (true) {
-			var fileName = prompt("Please enter file name", "");
+			var fileName = prompt("Please enter file name. Test will be saved in Downloads folder.", "");
 			if (fileName != "") {
 				break;
 			}
@@ -211,7 +211,6 @@ function submitFormByType(typeBtn) {
 		}
 
 		name.action += typeBtn + "/" + fileName;
-		alert("Test has been saved in Downloads folder");
 		name.submit();
 	}
 
@@ -232,7 +231,7 @@ function printTest(){
 	
 	var name = document.getElementById("formViewTest");
 	while (true) {
-		var fileName = prompt("Please enter file name", "");
+		var fileName = prompt("Please enter file name. File will be saved in downloads", "");
 		if (fileName != "") {
 			break;
 		}
@@ -242,7 +241,6 @@ function printTest(){
 	}
 
 	name.action += fileName;
-	alert("Test has been saved in Downloads folder");
 	name.submit();
 }
 

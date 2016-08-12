@@ -55,6 +55,7 @@
 			<div class="col-md-9 column">
 
 				<h3>Create Test Paper</h3>
+				<p style="color: red; font-weight: bold">${status}</p>
 
 				<form:form id="formSubmitTest" method="POST"
 					action="/springhibernate/test/generatetest?type="
@@ -63,17 +64,17 @@
 
 					<table border="1px" class="table table-bordered">
 						<tr>
-							<th>Test Name</th>
-							<td><form:input path="name" size="50" maxlength="90"
+							<th>Test Name *</th>
+							<td><form:input path="name" size="50" maxlength="50"
 									class="form-control input" required="true" /> <input
 								type="hidden" name="scheme.id" value="${schemeId }" /></td>
 
 						</tr>
 
 						<tr>
-							<th>Test Description</th>
+							<th>Test Description *</th>
 							<td><form:textarea path="description"
-									class="form-control input" required="true" /> <input
+									class="form-control input" required="true" maxlength="90" /> <input
 								type="hidden" name="creatorId" value="${currentUser.getId()}" />
 							</td>
 						</tr>
@@ -114,10 +115,6 @@
 									</c:forEach></td>
 							</tr>
 						</c:forEach>
-
-						<tr>
-							<td colspan="3" >${status}</td>
-						</tr>
 
 						<tr>
 							<td colspan="3">

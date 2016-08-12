@@ -262,6 +262,9 @@ public class QuestionDAO {
 				}
 
 				session.getTransaction().commit();
+				
+				
+				
 				finalQuestionList.add(selectedQuestionList);
 				session.close();
 			}

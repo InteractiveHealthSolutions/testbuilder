@@ -1,5 +1,6 @@
 package com.ihs.springhibernate.controller.test;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -158,12 +159,10 @@ public class DetailTestController
 
 			table.setWidths(columnWidths);
 
-			String userName = System.getProperty("user.home");
-			String userSplit[] = userName.split("\\\\");
-			String file = userSplit[0] + "/" + userSplit[1] + "/"
-					+ userSplit[2] + "/Downloads/" + fileName + ".pdf";
+			String workingDirectory = System.getProperty("user.home");
+			String absoluteFilePath = workingDirectory + File.separator + "Downloads" + File.separator + fileName + ".pdf";
 
-			PdfWriter.getInstance(document, new FileOutputStream(file));
+			PdfWriter.getInstance(document, new FileOutputStream(absoluteFilePath));
 			document.open();
 
 			document.add(title);
