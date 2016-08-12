@@ -53,6 +53,8 @@ public class GenerateTestController {
 	private IUserSession userSession;
 	String secondPara;
 	Integer schemeId;
+	int finalTotalQues = 0;
+	int returnTotalQues = 0;
 
 	@RequestMapping(value = "/generatetest", method = RequestMethod.GET)
 	public ModelAndView getSchemeData(@ModelAttribute("newTest") Test newTest,
@@ -65,6 +67,8 @@ public class GenerateTestController {
 		double calculateVal = 0;
 		int weightage = 0;
 		int questionAmount = 0;
+		finalTotalQues = 0;
+		returnTotalQues = 0;
 
 		String id = request.getParameter("id");
 
@@ -87,7 +91,7 @@ public class GenerateTestController {
 				schemeList = SchemeDAO.getSchemeById(schemeId);
 
 				List<Scheme> schemeListAll = SchemeDAO.getAllSchemes();
-				modelAndView.getModel().put("schemeListAll", schemeListAll);
+			
 
 				List<SchemeCategory> schemeCategoryList = new ArrayList<SchemeCategory>();
 				schemeCategoryList = SchemeCategoryDAO
@@ -98,8 +102,8 @@ public class GenerateTestController {
 				HashMap<Integer, Integer> categoryWeightageList = new HashMap<Integer, Integer>();
 
 				modelAndView.getModelMap().put("schemeList", schemeList);
-				modelAndView.getModelMap().put("schemeCategoryList",
-						schemeCategoryList);
+			
+				
 
 				for (SchemeCategory sc : schemeCategoryList) {
 					categoryId = sc.getCategory_id();
@@ -111,13 +115,30 @@ public class GenerateTestController {
 					BigDecimal b1 = b.setScale(scale, RoundingMode.HALF_UP);
 					questionAmount = Integer.parseInt(b1.toString());
 					categoryWeightageList.put(categoryId, questionAmount);
+					finalTotalQues += questionAmount;
 				}
-
+				
+				
+				
 				questionCollection = QuestionDAO
 						.getQuestionForTest(categoryWeightageList);
 				
-				modelAndView.getModelMap().put("questionCollection",
-						questionCollection);
+				for(List<Question> innerList : questionCollection){
+					returnTotalQues += innerList.size();
+				}
+				
+				if(returnTotalQues == finalTotalQues){
+					modelAndView.getModelMap().put("questionCollection",
+							questionCollection);
+					modelAndView.getModel().put("schemeListAll", schemeListAll);
+					modelAndView.getModelMap().put("schemeCategoryList",
+							schemeCategoryList);
+				}
+				
+				else {
+					modelAndView.getModelMap().put("status",
+							"Not enough questions according to scheme");
+				}
 			}
 
 			else {
@@ -181,6 +202,10 @@ public class GenerateTestController {
 
 			}
 			
+			else if(returnTotalQues != finalTotalQues){
+				modelAndView.getModelMap().put("status",
+						"Not enough questions according to scheme");
+			}
 
 			else if (StringUtils.isBlank(newTest.getName())
 					|| StringUtils.isBlank(newTest.getDescription())) {

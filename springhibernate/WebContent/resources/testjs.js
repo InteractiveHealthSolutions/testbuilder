@@ -227,7 +227,7 @@ function submitScheme(){
 	finalForm.submit();
 }
 
-function printTest(){
+function printTest(btnId){
 	
 	var name = document.getElementById("formViewTest");
 	while (true) {
@@ -240,7 +240,7 @@ function printTest(){
 		}
 	}
 
-	name.action += fileName;
+	name.action += fileName + "&type=" + btnId;
 	name.submit();
 }
 

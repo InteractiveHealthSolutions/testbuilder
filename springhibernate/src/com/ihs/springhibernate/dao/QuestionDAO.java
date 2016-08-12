@@ -263,9 +263,13 @@ public class QuestionDAO {
 
 				session.getTransaction().commit();
 				
+				if(selectedQuestionList.size() == numberOfQuestion){
+					finalQuestionList.add(selectedQuestionList);
+				}
 				
-				
-				finalQuestionList.add(selectedQuestionList);
+				else {
+					
+				}
 				session.close();
 			}
 

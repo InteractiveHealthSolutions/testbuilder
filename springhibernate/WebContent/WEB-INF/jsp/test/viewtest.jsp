@@ -107,15 +107,25 @@ html, body {
 						<td colspan="3">
 							<div class="control-group">
 
-								<div class="col-md-6">
+								<div class="col-md-4">
 									<div class="text-center">
-										<input type="button" value="Print" id="printBtn"
-											name="singlebutton" class="btn btn-success" onclick="printTest()" />
+										<input type="button" value="Print" 
+										id="1"
+											name="singlebutton" class="btn btn-success" onclick="printTest(this.id)" />
 									</div>
 
 								</div>
 
-								<div class="col-md-6">
+								<div class="col-md-4">
+									<div class="text-center">
+										<input type="button" value="Print Test"
+										id="2"
+											name="singlebutton" class="btn btn-success" onclick="printTest(this.id)" />
+									</div>
+
+								</div>
+								
+								<div class="col-md-4">
 									<div class="text-center">
 									  <a href="viewtests">	<input type="button" value="Cancel & Go Back" id="cancel"
 											name="singlebutton" class="btn btn-danger" /></a>
