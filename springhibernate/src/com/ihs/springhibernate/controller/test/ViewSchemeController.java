@@ -2,6 +2,8 @@ package com.ihs.springhibernate.controller.test;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +24,7 @@ public class ViewSchemeController {
 	private IUserSession userSession;
 
 	@RequestMapping(value = "/viewscheme", method = RequestMethod.GET)
-	public ModelAndView getSchemeData() {
+	public ModelAndView getSchemeData(HttpServletRequest request) {
 		ResourcesName resources = new ResourcesName();
 		ModelAndView modelAndView = new ModelAndView(resources.getFOLDER_TEST()
 				+ "/" + resources.getJSP_VIEWSCHEME());
@@ -30,6 +32,12 @@ public class ViewSchemeController {
 		List<Scheme> schemeList = SchemeDAO.getAllSchemes();
 		
 		List<SchemeCategory> schemeCategoryList = SchemeCategoryDAO.getAllSchemes();
+		
+		String msg = request.getParameter("id");
+		
+		if(msg != null){
+			modelAndView.getModel().put("message", "Scheme added successfully");
+		}
 		
 		modelAndView.getModelMap().put("currentUser", userSession);
 		modelAndView.getModel().put("schemeList", schemeList);

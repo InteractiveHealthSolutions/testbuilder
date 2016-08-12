@@ -54,6 +54,8 @@
 			<div class="col-md-9 column">
 
 				<h3>View Schemes</h3>
+				
+				<p style="color: green; font-weight: bold">${message}</p>
 
 				<div>
 					<table border="1px" class="table table-bordered">

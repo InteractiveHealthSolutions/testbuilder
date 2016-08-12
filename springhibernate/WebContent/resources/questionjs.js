@@ -1,5 +1,7 @@
 var currentIndex = 1;
 var divCount = 0
+var editCount = 0;
+var myCount = 0;
 
 // it hide/show two table rows: "Add More" button row & Question Data row
 // it enable/disable "Add More" button
@@ -183,6 +185,153 @@ function addMoreOption() {
 
 }
 
+function addEditMoreOption() {
+	$(document)
+			.ready(
+					function() {
+
+						// if question type "text" is selected then remove all
+						// options
+
+						if (document.getElementById("slctQuestionType").value != "1") {
+							editCount = 0;
+							myCount = 0;
+							for (var j = 1; j <= 50; j++) {
+								var str1 = document.getElementById("div" + j);
+								if (str1 != undefined) {
+									var str = String(str1.id);
+									var res = str.split("v");
+									var num = parseInt(res[1]);
+									editCount = num;
+									myCount++;
+								}
+							}
+
+							if (myCount >= 6) {
+								var error = document.getElementById("errorLbl");
+								error.innerHTML = "Options must be less than or equal to 6"
+							} else {
+								editCount++;
+								var questionDiv = document
+										.getElementById("divQuestionData");
+
+								var newDiv = document.createElement("div");
+
+								newDiv.id = "div" + editCount
+
+								// creating div for composing Bootstrap input
+								// groups
+
+								var divInputGroup = document
+										.createElement("div");
+								divInputGroup.className = "input-group";
+
+								/*
+								 * var divFormGroup =
+								 * document.createElement("div");
+								 * divFormGroup.className = "form-group";
+								 * divInputGroup.appendChild(divFormGroup);
+								 */
+
+								// creating option textbox if it is not image
+								// type question
+								if (document.getElementById("slctQuestionType").value != "4") {
+									var newTextBox = document
+											.createElement("input");
+									newTextBox.type = "textbox";
+									newTextBox.id = "textbox" + editCount;
+									newTextBox.name = "questionDataList["
+											+ editCount + "].data";
+									newTextBox.className = "form-control";
+
+									// newTextBox.getAttribute("required"); //
+									// setting validation
+									// newTextBox.setAttribute("required",
+									// "true"); // setting validation
+
+									divInputGroup.appendChild(newTextBox);
+								}
+
+								var removeButton = document
+										.createElement("input");
+								removeButton.type = "button";
+								removeButton.id = "btnRemove" + editCount;
+								removeButton.value = "X";
+								removeButton.className = "btn btn-primary";
+
+								var spanForButton = document
+										.createElement("span");
+								spanForButton.className = "input-group-btn";
+
+								// add questiondatalist.iscorrect
+
+								var checkbox = document.createElement('input');
+								checkbox.id = editCount;
+								checkbox.type = "radio";
+								checkbox.name = "selectedOption";
+								checkbox.style = "margin-left: 50px";
+								checkbox.onclick = function() {
+									var hiddenField = document
+											.getElementById("hid1");
+									hiddenField.value = true;
+									hiddenField.name = "questionDataList["
+											+ checkbox.id + "].correct";
+								}
+								/*
+								 * $("#chkBox" + currentIndex) .on( 'click',
+								 * function() { $("#hid1").val(true);
+								 * $("#hid1").name("questionDataList[" +
+								 * currentIndex + "].correct"); });
+								 */
+
+								var myLabel = document.createElement('Label');
+								myLabel.id = "radioLbl";
+								myLabel.className = "radio control-label";
+								myLabel.appendChild(checkbox);
+
+								var radioDiv = document.createElement("div");
+								radioDiv.id = "div1"
+								radioDiv.className = "radio"
+								radioDiv.appendChild(myLabel);
+
+								divInputGroup.appendChild(spanForButton);
+								spanForButton.appendChild(removeButton);
+								divInputGroup.appendChild(radioDiv);
+
+								var indexHiddenField = document
+										.createElement("input");
+								indexHiddenField.type = "hidden";
+								indexHiddenField.value = editCount;
+								indexHiddenField.name = "questionDataList["
+										+ editCount + "].index";
+
+								newDiv.appendChild(divInputGroup);
+								newDiv.appendChild(indexHiddenField);
+
+								questionDiv.appendChild(newDiv);
+
+								$("#btnRemove" + editCount)
+										.on(
+												'click',
+												function() {
+													removeElement($(newDiv)
+															.attr('id'));
+
+													if (editCount <= 7) {
+														var error = document
+																.getElementById("errorLbl");
+														error.innerHTML = "";
+													}
+												});
+							}
+						} else {
+							// Remove all elements because text type of question
+							// is selected
+						}
+					});
+
+}
+
 function removeElement(elementId) {
 
 	$(document).ready(function() {
@@ -267,6 +416,73 @@ function submitQuesForm() {
 				var createQuestionForm = document
 						.getElementById("frmSubmitQuestion");
 				createQuestionForm.submit();
+			}
+		}
+	}
+}
+
+function submitEditQuesForm() {
+	var error = document.getElementById("errorLbl");
+	var empty = true;
+	var yourCount = 0;
+	var marksBox = document.getElementById("maxMarks");
+	// var divBox = document.getElementById("textbox2");
+	var radioCheck = true;
+	
+	for (var j = 1; j <= 50; j++) {
+		var str1 = document.getElementById("div" + j);
+		if (str1 != undefined) {
+			yourCount++;
+		}
+	}
+	
+	
+	if (yourCount < 2) {
+		error.innerHTML = "Options must be greater than or equal to 2";
+	}
+
+	else {
+
+		for (var i = 1; i < 50; i++) {
+			var tBox = document.getElementById("textbox" + i);
+			if (tBox != undefined) {
+				if (tBox.value == "") {
+					empty = false;
+				}
+			}
+		}
+
+		for (var i = 1; i < 50; i++) {
+			var rad = document.getElementById(i);
+			if (rad != undefined) {
+				if (rad.checked == true) {
+					radioCheck = true;
+					break;
+				}
+			}
+
+			else {
+				radioCheck = false;
+			}
+		}
+
+		if (empty == false) {
+			error.innerHTML = "Values of options missing";
+		}
+
+		else if (radioCheck == false) {
+			error.innerHTML = "No correct option selected";
+		}
+
+		else {
+			if (marksBox.value == "" || marksBox.value == null) {
+				error.innerHTML = "Marks missing";
+			}
+
+			else {
+				var editQuestionForm = document
+						.getElementById("frmEditQuestion");
+				editQuestionForm.submit();
 			}
 		}
 	}

@@ -1,6 +1,8 @@
 package com.ihs.springhibernate.controller.test;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -50,6 +52,16 @@ public class CreateSchemeController {
 
 				List<CategoryType> categoryType = CategoryTypeDAO
 						.getCategoryTypes();
+				
+				Collections.sort(categoryType, new Comparator<CategoryType>() {
+					@Override
+					public int compare(final CategoryType object1,
+							final CategoryType object2) {
+						return object1.getTypeName().toLowerCase()
+								.compareTo(object2.getTypeName().toLowerCase());
+					}
+				});
+				
 				modelAndView.getModelMap().put("categoryType", categoryType);
 			} else {
 				modelAndView = new ModelAndView("redirect:/"
@@ -97,6 +109,15 @@ public class CreateSchemeController {
 		if (exists == false) {
 			modelAndView.getModelMap().put("status", "Scheme name already exists");
 
+			Collections.sort(categories, new Comparator<CategoryType>() {
+				@Override
+				public int compare(final CategoryType object1,
+						final CategoryType object2) {
+					return object1.getTypeName().toLowerCase()
+							.compareTo(object2.getTypeName().toLowerCase());
+				}
+			});
+			
 			modelAndView.getModelMap().put("categoryType", categories);
 		}
 
@@ -148,7 +169,7 @@ public class CreateSchemeController {
 							&& parameter.equals("save")) {
 						modelAndView = new ModelAndView("redirect:/"
 								+ resources.getFOLDER_TEST() + "/"
-								+ resources.getJSP_VIEWSCHEME());
+								+ resources.getJSP_VIEWSCHEME() + "?id=1");
 					}
 
 					else if (newlySavedId != -1 && newSaved != -1
