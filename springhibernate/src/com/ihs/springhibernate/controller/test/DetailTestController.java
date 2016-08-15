@@ -239,6 +239,7 @@ public class DetailTestController {
 				answerSubTitle.setAlignment(Element.ALIGN_CENTER);
 
 				Paragraph testName = new Paragraph("Test Title: " + test.getName(), subFont);
+				testName.setAlignment(Element.ALIGN_CENTER);
 
 				String workingDirectory = System.getProperty("user.home");
 				String absoluteFilePath = workingDirectory + File.separator
@@ -257,8 +258,6 @@ public class DetailTestController {
 				document1.add(new Phrase("\n"));
 
 				for (Question question : finalQuestionList) {
-					Paragraph questionTitle = new Paragraph(i + ". ");
-					document1.add(questionTitle);
 					List<QuestionData> choiceList = question
 							.getQuestionDataList();
 					for (QuestionData data : choiceList) {
@@ -268,8 +267,8 @@ public class DetailTestController {
 						}
 
 						else {
-							Paragraph choiceParagraph = new Paragraph(c);
-							document1.add(choiceParagraph);
+							Paragraph questionTitle = new Paragraph(i + ". " + c);
+							document1.add(questionTitle);
 						}
 
 					}

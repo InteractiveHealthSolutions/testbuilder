@@ -64,6 +64,11 @@
 				</c:url>
 				<li><a href="<c:out value="${createCategory}"/>">Add Category</a></li>
 
+				<c:url var="manageCategory"
+					value="/${Resource.FOLDER_QUESTION}/${Resource.JSP_MANAGE_CATEGORY}">
+				</c:url>
+				<li><a href="<c:out value="${manageCategory}"/>">Manage Categories</a></li>
+
 				<c:url var="manageTest"
 					value="/${Resource.FOLDER_TEST}/${Resource.JSP_MANAGE_TEST}">
 				</c:url>

@@ -118,42 +118,40 @@ function checkError(btnType) {
 	var schemeQuestions = document.getElementById("questionTxt");
 	var totalSum = 0;
 	var selectTag = document.getElementById('selectCategoryList');
-	
-	
-	//schemeNameErr.innerHTML = "";
+
+	// schemeNameErr.innerHTML = "";
 
 	if (schemeName.value == "") {
 		err.innerHTML = "Scheme Name Missing!!";
-		//err.style.display = "block";
+		// err.style.display = "block";
 	}
 
 	else if (!schemeName.value.replace(/\s/g, '').length) {
-		//err.style.display = "none";
+		// err.style.display = "none";
 		err.innerHTML = "Scheme Name Missing!!";
-		//err.style.display = "block";
+		// err.style.display = "block";
 	}
 
-	
 	else if (schemeDescription.value == "") {
-		//err.style.display = "none";
+		// err.style.display = "none";
 		err.innerHTML = "Scheme Description Missing!!";
-		//err.style.display = "block";
+		// err.style.display = "block";
 	}
-	
+
 	else if (!schemeDescription.value.replace(/\s/g, '').length) {
-		//err.style.display = "none";
+		// err.style.display = "none";
 		err.innerHTML = "Scheme Description Missing!!";
-		//err.style.display = "block";
+		// err.style.display = "block";
 	}
 
 	else if (schemeQuestions.value == "" || schemeQuestions.value == 0) {
-		//err.style.display = "none";
+		// err.style.display = "none";
 		err.innerHTML = "No Of Questions Incorrect or Missing!!";
-		//err.style.display = "block";
+		// err.style.display = "block";
 	}
 
 	else {
-		//err.style.display = "none";
+		// err.style.display = "none";
 		for (var b = 0; b < array.length; b++) {
 
 			var checkId = "percentage" + array[b];
@@ -171,26 +169,24 @@ function checkError(btnType) {
 			err.innerHTML = "";
 			var form = document.getElementById("formSubmitScheme");
 			form.action += btnType;
-			//alert('Scheme saved successfully');
+			// alert('Scheme saved successfully');
 			form.submit();
 		}
 
-		else if(totalSum == 0 && cat1== 1){
+		else if (totalSum == 0 && cat1 == 1) {
 			err.innerHTML = "No Percentage Selected";
-		//	err.style.display = "block";
+			// err.style.display = "block";
 		}
-		
+
 		else if (totalSum == 0) {
 			err.innerHTML = "No Categories Selected";
-			//err.style.display = "block";
+			// err.style.display = "block";
 		}
-		
-		
-		
+
 		else {
-			//err.style.display = "none";
+			// err.style.display = "none";
 			err.innerHTML = "Incorrect Percentage Of Categories!!";
-			//err.style.display = "block";
+			// err.style.display = "block";
 		}
 	}
 
@@ -201,12 +197,13 @@ function submitFormByType(typeBtn) {
 
 	if (typeBtn == "print") {
 		while (true) {
-			var fileName = prompt("Please enter file name. Test will be saved in Downloads folder.", "");
+			var fileName = prompt(
+					"Please enter file name. Test will be saved in Downloads folder.",
+					"");
 			if (fileName != "") {
 				break;
-			}
-			else {
-			  alert("Invalid file name");
+			} else {
+				alert("Invalid file name");
 			}
 		}
 
@@ -220,24 +217,32 @@ function submitFormByType(typeBtn) {
 	}
 }
 
-function submitScheme(){
+function submitScheme() {
 	var schemeForm = document.getElementById("selectScheme");
 	var finalForm = document.getElementById("selecttestScheme");
 	finalForm.action += schemeForm.options[schemeForm.selectedIndex].value;
 	finalForm.submit();
 }
 
-function printTest(btnId){
-	
+function printTest(btnId) {
+
 	var name = document.getElementById("formViewTest");
-	while (true) {
-		var fileName = prompt("Please enter file name. File will be saved in downloads", "");
-		if (fileName != "") {
-			break;
+
+	if (btnId == 1) {
+		while (true) {
+			var fileName = prompt(
+					"Please enter file name. File will be saved in downloads",
+					"");
+			if (fileName != "") {
+				break;
+			} else {
+				alert("Invalid file name");
+			}
 		}
-		else {
-		  alert("Invalid file name");
-		}
+	}
+
+	else {
+		alert("File will be saved in downloads");
 	}
 
 	name.action += fileName + "&type=" + btnId;

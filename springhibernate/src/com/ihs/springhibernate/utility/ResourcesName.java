@@ -38,6 +38,7 @@ public class ResourcesName
 	private final String JSP_VIEW_QUESTION = "viewquestion";
 	private final String JSP_CREATE_QUESTION = "createquestion";
 	private final String JSP_ADD_CATEGORY = "addcategory";
+	private final String JSP_MANAGE_CATEGORY = "managecategories";
 	private final String JSP_MANAGE_QUESTION = "managequestion"; // manage questions
 
 	
@@ -398,6 +399,10 @@ public class ResourcesName
 
 	public String getJSP_VIEWSCHEME() {
 		return JSP_VIEWSCHEME;
+	}
+
+	public String getJSP_MANAGE_CATEGORY() {
+		return JSP_MANAGE_CATEGORY;
 	}
 
 }

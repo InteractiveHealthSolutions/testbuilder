@@ -500,6 +500,12 @@ function setDefaultValues() {
 	document.getElementById("slctQuestionType").value = 1;
 }
 
+function submitManageCategory(btnId){
+	var form = document.getElementById("formManageCategory");
+	form.action += btnId;
+	form.submit();
+}
+
 function setNewAnswer(elementId) {
 	for ( var item in "questionDataList") {
 		if (item.correct === true) {
