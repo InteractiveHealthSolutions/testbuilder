@@ -79,7 +79,7 @@
 					value="/${Resource.FOLDER_TEST}/${Resource.JSP_VIEWSCHEME}">
 				</c:url>
 
-				<li><a href="<c:out value="${viewTest}"/>">View Schemes</a></li>
+				<li><a href="<c:out value="${viewTest}"/>">Manage Schemes</a></li>
 
 				<c:url var="createTestScheme"
 					value="/${Resource.FOLDER_TEST}/${Resource.JSP_CREATE_SCHEME}">

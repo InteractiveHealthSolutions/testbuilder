@@ -53,7 +53,7 @@ public class ResourcesName
 	}
 
 	private final String JSP_FINALIZE_TEST = "generatetest";
-	private final String JSP_VIEWSCHEME = "viewscheme";
+	private final String JSP_VIEWSCHEME = "manageschemes";
 	private final String JSP_TAKE_TEST_LIST = "taketestlist";
 	private final String JSP_TEST_BEGIN_SUMMARY = "testbeginsummary";
 	private final String JSP_TEST_END_SUMMARY = "testendsummary";

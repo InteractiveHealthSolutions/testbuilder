@@ -249,6 +249,12 @@ function printTest(btnId) {
 	name.submit();
 }
 
+function submitManageScheme(btnId){
+	var form = document.getElementById("formManageScheme");
+	form.action += btnId;
+	form.submit();
+}
+
 function renderDataOption(rawJSON) {
 
 	// Remove table if exist

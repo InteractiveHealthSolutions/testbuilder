@@ -53,16 +53,19 @@
 
 			<div class="col-md-9 column">
 
-				<h3>View Schemes</h3>
+				<h3>Manage Schemes</h3>
 				
-				<p style="color: green; font-weight: bold">${message}</p>
+				<p style="font-weight: bold">${message}</p>
 
 				<div>
+					<form:form id="formManageScheme" method="POST"
+						action="/springhibernate/test/manageschemes?id=">
 					<table border="1px" class="table table-bordered">
 						<tr>
 							<th>Scheme Name</th>
 							<th>Total Question</th>
 							<th>Scheme Category & Weightage</th>
+							<th>Action</th>
 						</tr>
 
 						<c:forEach var="scheme" items="${schemeList}">
@@ -79,9 +82,12 @@
 								<br>
 										</c:if>
 									</c:forEach></td>
+									<td><a id="${scheme.getId()}"
+										onclick="submitManageScheme(this.id)" style="cursor: pointer">Delete</a></td>
 							</tr>
 						</c:forEach>
 					</table>
+					</form:form>
 				</div>
 			</div>
 		</div>

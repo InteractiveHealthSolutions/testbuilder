@@ -152,5 +152,69 @@ public static List<Scheme> getAllSchemes()
 	return schemeList;
 }
 
+public static void deleteSchemeById(Integer id) {
+	try {
+		Session session = SessionFactoryBuilder.getSessionFactory()
+				.openSession();
+
+		session.beginTransaction();
+
+		String hql = "delete from Scheme WHERE id = :_value";
+		Query query = session.createQuery(hql);
+		query.setParameter("_value", id);
+		query.executeUpdate();
+		session.getTransaction().commit();
+		session.close();
+	}
+
+	catch (Exception exc) {
+		exc.printStackTrace();
+	}
+}
+
+public static void deleteSchemeCategoryById(Integer id) {
+	try {
+		Session session = SessionFactoryBuilder.getSessionFactory()
+				.openSession();
+
+		session.beginTransaction();
+
+		String hql = "delete from SchemeCategory WHERE scheme_id = :_value";
+		Query query = session.createQuery(hql);
+		query.setParameter("_value", id);
+		query.executeUpdate();
+		session.getTransaction().commit();
+		session.close();
+	}
+
+	catch (Exception exc) {
+		exc.printStackTrace();
+	}
+}
+
+public static Long countSchemeById(Integer id) {
+	
+	Long result = null;
+	try {
+		Session session = SessionFactoryBuilder.getSessionFactory()
+				.openSession();
+
+		session.beginTransaction();
+
+		String hql = "select count(*) from Test WHERE scheme_id = :_value";
+		Query query = session.createQuery(hql);
+		query.setParameter("_value", id);
+		result = (Long)query.uniqueResult();
+		session.getTransaction().commit();
+		session.close();
+	}
+
+	catch (Exception exc) {
+		exc.printStackTrace();
+	}
+	
+	return result;
+}
+
 
 }

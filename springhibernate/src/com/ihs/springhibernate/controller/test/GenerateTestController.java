@@ -127,7 +127,7 @@ public class GenerateTestController {
 					returnTotalQues += innerList.size();
 				}
 				
-				if(returnTotalQues == finalTotalQues){
+				if(returnTotalQues >= finalTotalQues){
 					modelAndView.getModelMap().put("questionCollection",
 							questionCollection);
 					modelAndView.getModel().put("schemeListAll", schemeListAll);
