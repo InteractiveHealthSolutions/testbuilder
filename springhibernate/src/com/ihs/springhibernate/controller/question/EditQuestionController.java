@@ -172,27 +172,6 @@ public class EditQuestionController {
 			modelAndView.getModel().put("categoryType", categoryType);
 		}
 
-		else if (repeat == false) {
-			modelAndView.getModel().put("status", "Question title exists");
-
-			List<QuestionType> questionTypeList = QuestionTypeDAO.getAllTypes();
-
-			modelAndView.getModel().put("questionTypeList", questionTypeList);
-
-			List<CategoryType> categoryType = CategoryTypeDAO
-					.getCategoryTypes();
-
-			Collections.sort(categoryType, new Comparator<CategoryType>() {
-				@Override
-				public int compare(final CategoryType object1,
-						final CategoryType object2) {
-					return object1.getTypeName().toLowerCase()
-							.compareTo(object2.getTypeName().toLowerCase());
-				}
-			});
-
-			modelAndView.getModel().put("categoryType", categoryType);
-		}
 
 		else {
 

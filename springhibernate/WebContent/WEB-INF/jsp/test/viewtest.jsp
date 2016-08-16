@@ -109,7 +109,7 @@ html, body {
 
 								<div class="col-md-4">
 									<div class="text-center">
-										<input type="button" value="Print" 
+										<input type="button" value="Print Test" 
 										id="1"
 											name="singlebutton" class="btn btn-success" onclick="printTest(this.id)" />
 									</div>
@@ -118,7 +118,7 @@ html, body {
 
 								<div class="col-md-4">
 									<div class="text-center">
-										<input type="button" value="Print Test"
+										<input type="button" value="Print Answers"
 										id="2"
 											name="singlebutton" class="btn btn-success" onclick="printTest(this.id)" />
 									</div>

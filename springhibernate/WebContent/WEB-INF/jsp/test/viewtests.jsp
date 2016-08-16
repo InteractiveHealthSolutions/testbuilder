@@ -65,7 +65,7 @@ html, body {
 								<td><c:url var="detailUrl"
 										value="${resources.JSP_VIEW_TEST}">
 										<c:param name="id" value="${test.getId()}" />
-									</c:url> <a href="<c:out value="${detailUrl}"/>"> Details</a></td>
+									</c:url> <a href="<c:out value="${detailUrl}"/>"> Details / Print</a></td>
 							</tr>
 						</c:forEach>
 

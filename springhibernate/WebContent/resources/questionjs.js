@@ -428,15 +428,14 @@ function submitEditQuesForm() {
 	var marksBox = document.getElementById("maxMarks");
 	// var divBox = document.getElementById("textbox2");
 	var radioCheck = true;
-	
+
 	for (var j = 1; j <= 50; j++) {
 		var str1 = document.getElementById("div" + j);
 		if (str1 != undefined) {
 			yourCount++;
 		}
 	}
-	
-	
+
 	if (yourCount < 2) {
 		error.innerHTML = "Options must be greater than or equal to 2";
 	}
@@ -482,6 +481,17 @@ function submitEditQuesForm() {
 			else {
 				var editQuestionForm = document
 						.getElementById("frmEditQuestion");
+
+				for (var i = 1; i <= 50; i++) {
+					var hiddenField = document.getElementById(i);
+					if (hiddenField != undefined) {
+						if (hiddenField.checked) {
+							hiddenField.value = true;
+							hiddenField.name = "questionDataList[" + i
+									+ "].correct";
+						}
+					}
+				}
 				editQuestionForm.submit();
 			}
 		}
@@ -500,7 +510,7 @@ function setDefaultValues() {
 	document.getElementById("slctQuestionType").value = 1;
 }
 
-function submitManageCategory(btnId){
+function submitManageCategory(btnId) {
 	var form = document.getElementById("formManageCategory");
 	form.action += btnId;
 	form.submit();
