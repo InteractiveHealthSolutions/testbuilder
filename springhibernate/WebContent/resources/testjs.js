@@ -249,10 +249,17 @@ function printTest(btnId) {
 	name.submit();
 }
 
-function submitManageScheme(btnId){
-	var form = document.getElementById("formManageScheme");
-	form.action += btnId;
-	form.submit();
+function submitManageScheme(btnId) {
+	var r = confirm("Are you sure want to delete this scheme?");
+	if (r == true) {
+		var form = document.getElementById("formManageScheme");
+		form.action += btnId;
+		form.submit();
+	}
+
+	else {
+
+	}
 }
 
 function renderDataOption(rawJSON) {

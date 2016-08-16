@@ -184,9 +184,7 @@ public class DetailTestController {
 
 				for (Question question : finalQuestionList) {
 					String garbageData = question.getDescription();
-					String finalData = garbageData.replaceAll("[\\<p>\\</p>]",
-							"");
-
+					String finalData = garbageData.replaceAll("<[^>]*>", "");
 					Paragraph questionTitle = new Paragraph(i + ". "
 							+ finalData);
 					document.add(questionTitle);

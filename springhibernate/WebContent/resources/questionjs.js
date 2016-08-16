@@ -511,9 +511,15 @@ function setDefaultValues() {
 }
 
 function submitManageCategory(btnId) {
-	var form = document.getElementById("formManageCategory");
-	form.action += btnId;
-	form.submit();
+	var r = confirm("Are you sure want to delete this category?");
+	if (r == true) {
+		var form = document.getElementById("formManageCategory");
+		form.action += btnId;
+		form.submit();
+	}
+	else {
+		
+	}
 }
 
 function setNewAnswer(elementId) {
