@@ -28,7 +28,7 @@
 <script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript"
-	src="<c:url value='/resources/testjs.js'/>"></script>
+	src="<c:url value='/resources/createschemejs.js'/>"></script>
 
 
 <script type="text/javascript"

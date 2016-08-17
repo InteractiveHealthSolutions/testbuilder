@@ -40,6 +40,10 @@ public class SelectSchemeController {
 				modelAndView.getModelMap().put("currentUser", userSession);
 				modelAndView.getModelMap().put("resources", resources);
 				
+				Scheme newScheme = new Scheme();
+				modelAndView.getModel().put("newScheme", newScheme);
+				
+				
 				List<Scheme> schemeListAll = SchemeDAO.getAllSchemes();
 				modelAndView.getModel().put("schemeListAll", schemeListAll);
 				

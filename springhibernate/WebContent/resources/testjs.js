@@ -1,14 +1,6 @@
 var array = [];
 var cat1 = 0;
 
-$(document).ready(function() {
-	// alert('dfssdfsdfs')
-	var selectTag = document.getElementById('selectCategoryList');
-	var k = selectTag.options;
-	for (var j = 0; j < selectTag.length; j++) {
-		array.push(k[j].value);
-	}
-});
 
 function getQuestionData() {
 	var selectedValues = [];
@@ -26,10 +18,6 @@ function getQuestionData() {
 			}
 		});
 	}
-}
-
-function checkError() {
-
 }
 
 function addMoreCategories() {
@@ -196,18 +184,7 @@ function submitFormByType(typeBtn) {
 	var name = document.getElementById("formSubmitTest");
 
 	if (typeBtn == "print") {
-		while (true) {
-			var fileName = prompt(
-					"Please enter file name. Test will be saved in Downloads folder.",
-					"");
-			if (fileName != "") {
-				break;
-			} else {
-				alert("Invalid file name");
-			}
-		}
-
-		name.action += typeBtn + "/" + fileName;
+		name.action += typeBtn;
 		name.submit();
 	}
 
@@ -227,25 +204,7 @@ function submitScheme() {
 function printTest(btnId) {
 
 	var name = document.getElementById("formViewTest");
-
-	if (btnId == 1) {
-		while (true) {
-			var fileName = prompt(
-					"Please enter file name. File will be saved in downloads",
-					"");
-			if (fileName != "") {
-				break;
-			} else {
-				alert("Invalid file name");
-			}
-		}
-	}
-
-	else {
-		alert("File will be saved in downloads");
-	}
-
-	name.action += fileName + "&type=" + btnId;
+	name.action += btnId;
 	name.submit();
 }
 

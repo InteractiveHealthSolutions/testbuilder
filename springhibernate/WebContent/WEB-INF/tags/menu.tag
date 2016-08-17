@@ -73,7 +73,7 @@
 					value="/${Resource.FOLDER_TEST}/${Resource.JSP_MANAGE_TEST}">
 				</c:url>
 
-				<li><a href="<c:out value="${manageTest}"/>">View Tests</a></li>
+				<li><a href="<c:out value="${manageTest}"/>">View / Print Tests</a></li>
 						
 				<c:url var="viewTest"
 					value="/${Resource.FOLDER_TEST}/${Resource.JSP_VIEWSCHEME}">

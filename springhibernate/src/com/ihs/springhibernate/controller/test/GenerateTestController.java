@@ -1,15 +1,20 @@
 package com.ihs.springhibernate.controller.test;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.apache.commons.lang.StringUtils;
@@ -152,8 +157,9 @@ public class GenerateTestController {
 
 	@RequestMapping(value = "/generatetest", method = RequestMethod.POST)
 	ModelAndView submitTest(@ModelAttribute("newTest") @Valid Test newTest,
-			BindingResult result, HttpServletRequest request) throws InterruptedException {
+			BindingResult result, HttpServletRequest request, HttpServletResponse response) throws InterruptedException, IOException {
 
+		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 		List<List<Question>> questionCollection = new ArrayList<List<Question>>();
 		int totalQuestions = 0;
 		int categoryId = 0;
@@ -322,8 +328,8 @@ public class GenerateTestController {
 
 				else if (btnClick.substring(0, 5).equals("print")) {
 
-					String[] splitter = btnClick.split("/");
-					String fileName = splitter[1];
+					//String[] splitter = btnClick.split("/");
+				//	String fileName = splitter[1];
 
 					List<TestQuestion> questionList = new ArrayList<TestQuestion>();
 					questionList = QuestionDAO.getQuestionForTest(newlySavedId);
@@ -419,14 +425,11 @@ public class GenerateTestController {
 
 						/* PdfWriter.getInstance(document, new
 						 FileOutputStream(file));*/
+							
+						response.setContentType("application/pdf"); 
+						response.setHeader("Content-Disposition", "attachment; filename=" + newTest.getName() + ".pdf"); 
 						
-						
-						
-						
-						String workingDirectory = System.getProperty("user.home");
-						String absoluteFilePath = workingDirectory + File.separator + "Downloads" + File.separator + fileName + ".pdf";
-						
-						PdfWriter.getInstance(document, new FileOutputStream(absoluteFilePath));
+						PdfWriter.getInstance(document,byteArrayOutputStream);
 						//PdfWriter.getInstance(document, new FileOutputStream(
 							//	fileName + ".pdf"));
 						document.open();
@@ -465,13 +468,22 @@ public class GenerateTestController {
 
 					} catch (DocumentException e) {
 						System.err.println(e.getMessage());
-					} catch (IOException ex) {
-						System.err.println(ex.getMessage());
 					}
 					document.close();
+					
+					
 
-					modelAndView = new ModelAndView("redirect:/"
-							+ resources.getJSP_HOME());
+					/*byte[] pdfBytes = byteArrayOutputStream.toByteArray();
+					ZipOutputStream zip = new ZipOutputStream(response.getOutputStream());
+					zip.write(pdfBytes);
+					zip.closeEntry();
+					zip.close(); */
+					
+					OutputStream os = response.getOutputStream();
+		            byteArrayOutputStream.writeTo(os);
+		            os.flush();
+		            os.close();
+
 				}
 
 			}

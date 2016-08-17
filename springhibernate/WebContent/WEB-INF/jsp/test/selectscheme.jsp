@@ -56,7 +56,7 @@
 			<div class="col-md-9 column">
 				<h3>Select Test Scheme</h3>
 				<form:form id="selecttestScheme" method="POST"
-					action="/springhibernate/test/selectscheme?id=">
+					action="/springhibernate/test/selectscheme?id=" >
 
 					<table border="1px" class="table table-bordered">
 						<tr>
@@ -65,7 +65,7 @@
 							<select id="selectScheme"
 								class="form-control input">
 									<c:forEach var="scheme" items="${schemeListAll}">
-										<option value="${scheme.getId()}" label="${scheme.getName()}" />
+										<option value="${scheme.getId()}"> ${scheme.getName()} </option>
 									</c:forEach>
 							</select></td>
 

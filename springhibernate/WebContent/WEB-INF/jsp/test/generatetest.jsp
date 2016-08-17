@@ -120,7 +120,7 @@
 							<td colspan="3">
 
 								<div class="control-group">
-									<div class="col-md-4">
+									<div class="col-md-6">
 										<div class="text-center">
 											<input type="button" value="Save" id="save"
 												class="btn btn-success" onclick="submitFormByType(this.id)" />
@@ -128,15 +128,15 @@
 
 									</div>
 
-									<div class="col-md-4">
-										<div class="text-center">
-											<input type="button" id="print" value="Print"
-												class="btn btn-primary" onclick="submitFormByType(this.id)" />
-										</div>
-									</div>
+<!-- 									<div class="col-md-4"> -->
+<!-- 										<div class="text-center"> -->
+<!-- 											<input type="button" id="print" value="Print" -->
+<!-- 												class="btn btn-primary" onclick="submitFormByType(this.id)" /> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
 
 
-									<div class="col-md-4">
+									<div class="col-md-6">
 										<div class="text-center">
 											<input type="button" class="btn btn-danger" id="cancel"
 												value="Cancel & Go Back" onclick="submitFormByType(this.id)" /></a>
