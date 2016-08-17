@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.swing.text.TabExpander;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,6 +36,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Rectangle;
@@ -243,7 +245,7 @@ public class DetailTestController {
 			        cell9.setFixedHeight(40);
 			        PdfPCell cell10 = new PdfPCell(new Paragraph("  Land Line: ____________________ \n\n  Cell Phone:____________________", mediumSmall));
 			        
-			        float[] columnWidths = {40f, 100f};
+			        float[] columnWidths = {40f, 140f};
 			        
 			        
 			        table.addCell(cell1);
@@ -266,7 +268,7 @@ public class DetailTestController {
 			        Paragraph block1 = new Paragraph("(PLEASE ENTER MOST RECENT DEGREE / DIPLOMA FIRST)", verySmall);
 			        
 			    	PdfPTable table1 = new PdfPTable(6);
-			    	float[] columnWidths1 = {18f, 40f, 40f, 30f, 33f, 20f };
+			    	float[] columnWidths1 = {18f, 40f, 50f, 20f, 33f, 20f };
 			    	table1.setWidths(columnWidths1);
 			    	table1.setSpacingBefore(10);
 			    	table1.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -275,18 +277,18 @@ public class DetailTestController {
 			    	cell1.setFixedHeight(30);
 			    	PdfPCell cell12 = new PdfPCell(new Paragraph("  Name Of Institute", smallWithoutBold));
 			    	PdfPCell cell13 = new PdfPCell(new Paragraph("  Major Subjects", smallWithoutBold));
-			    	PdfPCell cell14 = new PdfPCell(new Paragraph("  GPA or Grade ", smallWithoutBold));
+			    	PdfPCell cell14 = new PdfPCell(new Paragraph("  GPA or\n  Grade ", smallWithoutBold));
 			    	PdfPCell cell15 = new PdfPCell(new Paragraph("  Degree or\n  Diploma", smallWithoutBold));
 			    	PdfPCell cell16 = new PdfPCell(new Paragraph("  Year of\n  Passing", smallWithoutBold));
 			    	PdfPCell cell17 = new PdfPCell(new Paragraph(""));
-			    	cell17.setFixedHeight(45);
+			    	cell17.setFixedHeight(55);
 			    	PdfPCell cell18 = new PdfPCell(new Paragraph(""));
 			    	PdfPCell cell19 = new PdfPCell(new Paragraph(""));
 			    	PdfPCell cell20 = new PdfPCell(new Paragraph(""));
 			    	PdfPCell cell21 = new PdfPCell(new Paragraph(""));
 			    	PdfPCell cell22 = new PdfPCell(new Paragraph(""));
 			    	PdfPCell cell23 = new PdfPCell(new Paragraph(""));
-			    	cell23.setFixedHeight(45);
+			    	cell23.setFixedHeight(55);
 			    	PdfPCell cell24 = new PdfPCell(new Paragraph(""));
 			    	PdfPCell cell25 = new PdfPCell(new Paragraph(""));
 			    	PdfPCell cell26 = new PdfPCell(new Paragraph(""));
@@ -314,7 +316,7 @@ public class DetailTestController {
 			    	table1.addCell(cell28);
 			    	
 			    	Paragraph EmploymentInfo = new Paragraph("EMPLOYMENT INFORMATION", smallBold);
-			        Paragraph block2 = new Paragraph("(PLEASE ENTER MOST RECENT JOB/INTERNSHIP FIRST)", verySmall);
+			        Paragraph block2 = new Paragraph("(PLEASE ENTER MOST RECENT JOB / INTERNSHIP FIRST)", verySmall);
 			        
 			        PdfPTable table2 = new PdfPTable(5);
 			    	float[] columnWidths2 = {18f, 50f, 35f, 35f, 40f };
@@ -371,7 +373,7 @@ public class DetailTestController {
 			    	cell41.setFixedHeight(25);
 			    	PdfPCell cell42 = new PdfPCell(new Paragraph("  FIELD OF INTEREST", smallBold));
 			    	PdfPCell cell43 = new PdfPCell(new Paragraph(""));
-			    	cell43.setFixedHeight(55);
+			    	cell43.setFixedHeight(70);
 			    	
 			    	
 			    	table3.addCell(cell41);
@@ -379,9 +381,10 @@ public class DetailTestController {
 			    	table3.addCell(cell43);
 			    	table3.addCell(cell43);
 			    	
-			    	Paragraph lastLine = new Paragraph("Expected Time of Joining: ______________________                      Signature: _________________",smallWithoutBold);
+			    	Paragraph lastLine = new Paragraph("Expected Time of Joining: ______________________                      Signature: ______________",smallWithoutBold);
 					
-					document.setMargins(20, 20, 20, 20);
+		
+					document.setMargins(50, 15, 15, 20);
 					document.newPage();
 					document.add(applicantTitle);
 					document.add(new Phrase("\n"));
