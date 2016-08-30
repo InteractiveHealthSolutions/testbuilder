@@ -2,7 +2,7 @@ package com.ihs.springhibernate.audittrailfields;
 
 import java.util.Date;
 
-public interface IAuditTrailFields
+public interface IAuditTrailFields 
 {
 	public Date getCreationTS();
 	public void setCreationTS(Date creationTS);
