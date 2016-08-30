@@ -62,10 +62,6 @@ public class CreateQuestionController {
 				modelAndView.getModel().put("questionTypeList",
 						questionTypeList);
 
-				List<AnswerType> answerTypeList = AnswerTypeDAO.getAllTypes();
-
-				modelAndView.getModel().put("answerTypeList", answerTypeList);
-
 				List<CategoryType> categoryType = CategoryTypeDAO
 						.getCategoryTypes();
 
