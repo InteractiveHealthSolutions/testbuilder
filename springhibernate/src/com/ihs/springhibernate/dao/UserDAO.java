@@ -12,6 +12,8 @@ import com.ihs.springhibernate.model.User;
 import com.ihs.springhibernate.sessioninterface.IUserSession;
 import com.ihs.springhibernate.utility.Privileges;
 import com.ihs.springhibernate.utility.SessionFactoryBuilder;
+import com.ihsinformatics.util.MDHashUtil;
+
 
 public class UserDAO
 {
@@ -29,7 +31,6 @@ public class UserDAO
 		try
 		{
 			Session session = SessionFactoryBuilder.getSessionFactory().openSession();
-
 			session.beginTransaction();
 			session.update(user);
 			session.getTransaction().commit();
@@ -143,6 +144,8 @@ public class UserDAO
 			Query query = session.createSQLQuery(sql);
 			query.setParameter("_login_id", user.getLogin_Id());
 			query.setParameter("_password", user.getPassword());
+			
+			System.out.print(MDHashUtil.getHashString(user.getPassword()));
 
 			if (query.uniqueResult() != null)
 			{

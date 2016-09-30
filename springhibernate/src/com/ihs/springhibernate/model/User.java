@@ -16,6 +16,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.ihs.springhibernate.audittrailfields.IAuditTrailFields;
+import com.ihsinformatics.util.MDHashUtil;
 
 @Entity
 @Table(name = "user")
@@ -111,7 +112,8 @@ public class User implements IAuditTrailFields
 
 	public void setPassword(String password)
 	{
-		this.password = password;
+   	  String hashPass = MDHashUtil.getHashString(password);
+		this.password = hashPass;
 	}
 
 	@Override
