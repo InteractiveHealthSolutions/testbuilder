@@ -1,7 +1,7 @@
 <%@ tag language="java" description="Login Page template" pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@tag import="com.ihs.springhibernate.model.User" %>
-<%-- <%@attribute name="user" required="true" type="com.ihs.springhibernate.model.User"%> --%>
+<%@tag import="com.ihs.mcqbuilder.model.User" %>
+<%-- <%@attribute name="user" required="true" type="com.ihs.mcqbuilder.model.User"%> --%>
 
 <%--     <title>${user.getName()}</title> --%>
     

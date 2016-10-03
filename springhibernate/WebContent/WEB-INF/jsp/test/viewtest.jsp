@@ -65,7 +65,7 @@ html, body {
 				<h3>View Test</h3>
 				
 					<form:form id="formViewTest" method="POST"
-					action="/springhibernate/test/viewtest?type=">
+					action="/ihsmcqbuilder/test/viewtest?type=">
 
 				<table border="1px" class="table table-bordered">
 

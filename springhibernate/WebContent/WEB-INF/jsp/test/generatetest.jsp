@@ -58,7 +58,7 @@
 				<p style="color: red; font-weight: bold">${status}</p>
 
 				<form:form id="formSubmitTest" method="POST"
-					action="/springhibernate/test/generatetest?type="
+					action="/ihsmcqbuilder/test/generatetest?type="
 					modelAttribute="newTest">
 
 

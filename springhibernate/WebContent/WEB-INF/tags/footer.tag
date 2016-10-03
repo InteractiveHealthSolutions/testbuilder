@@ -1,8 +1,8 @@
 <%@ tag language="java" pageEncoding="ISO-8859-1"%>
 <%@attribute name="header" fragment="true" %>
 <%@attribute name="footer" fragment="true" %>
-<%@tag import="com.ihs.springhibernate.model.User" %>
-<%@attribute name="user" required="false" type="com.ihs.springhibernate.model.User"%>
+<%@tag import="com.ihs.mcqbuilder.model.User" %>
+<%@attribute name="user" required="false" type="com.ihs.mcqbuilder.model.User"%>
 
 <footer class="row clearfix">
   <div class="col-md-12 column">

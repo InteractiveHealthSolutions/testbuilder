@@ -51,7 +51,7 @@ html, body {
 			<div class="col-md-9 column">
 				<h3>Add Category</h3>
 				<form:form id="frmSubmitCategory" method="POST"
-					action="/springhibernate/question/addcategory"
+					action="/ihsmcqbuilder/question/addcategory"
 					modelAttribute="newCategory" autocomplete="off">
 
 					<table border="1px" class="table table-bordered">
@@ -90,7 +90,7 @@ html, body {
 
 									<div class="col-md-6">
 										<div class="text-center">
-											<a href="/springhibernate/home">
+											<a href="/ihsmcqbuilder/home">
 											<input type="button"
 												class="btn btn-danger" value="Cancel & Go Back" /></a>
 										</div>

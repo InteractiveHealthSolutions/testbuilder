@@ -57,7 +57,7 @@
 				<div>
 
 					<form:form id="formManageCategory" method="POST"
-						action="/springhibernate/question/managecategories?id=">
+						action="/ihsmcqbuilder/question/managecategories?id=">
 						<table border="1px" class="table table-bordered">
 							<tr>
 								<th>Category Name</th>

@@ -60,7 +60,7 @@
 			<div class="col-md-9 column">
 				<h3>Create Test Scheme</h3>
 				<form:form id="formSubmitScheme" method="POST" autocomplete="off"
-					action="/springhibernate/test/createtestscheme?type="
+					action="/ihsmcqbuilder/test/createtestscheme?type="
 					modelAttribute="newScheme">
 
 					<table border="1px" class="table table-bordered">
@@ -145,7 +145,7 @@
 
 									<div class="col-md-4">
 										<div class="text-center">
-											<a href="/springhibernate/home"> <input type="button"
+											<a href="/mcqbuilder/home"> <input type="button"
 												class="btn btn-danger" value="Cancel & Go Back" /></a>
 										</div>
 									</div>

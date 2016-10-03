@@ -11,23 +11,23 @@
 		for more details: http://docs.cksource.com/CKFinder_2.x/Developers_Guide/Java/Configuration/baseURL_and_baseDir -->
 
 	<baseDir>
-		C:\Program Files\Apache Software Foundation\apache-tomcat-7.0.59\webapps\springhibernate\resources\ckfinder\userfiles\
+		C:\Program Files\Apache Software Foundation\apache-tomcat-7.0.59\webapps\ihsmcqbuilder\resources\ckfinder\userfiles\
 	</baseDir>
 
-	<!-- C:\Program Files\Apache Software Foundation\apache-tomcat-7.0.59\wtpwebapps\springhibernate\resources\ckfinder\userfiles\ -->
+	<!-- C:\Program Files\Apache Software Foundation\apache-tomcat-7.0.59\wtpwebapps\mcqbuilder\resources\ckfinder\userfiles\ -->
 
 	<!-- Need to figure out how to store image during publishing mode -->
 
 	<!-- <baseDir> -->
 	<!-- C:\Program Files\Apache Software Foundation\Tomcat -->
-	<!-- 7.0\webapps\springhibernate\resources\ckfinder\userfiles\ -->
+	<!-- 7.0\webapps\mcqbuilder\resources\ckfinder\userfiles\ -->
 	<!-- </baseDir> -->
 
 	<baseURL>
-		http://localhost:8080/springhibernate/resources/ckfinder/userfiles/
+		http://localhost:8080/mcqbuilder/resources/ckfinder/userfiles/
 	</baseURL>
 
-	<!-- <baseURL>/springhibernate/resources/ckfinder/userfiles/</baseURL> -->
+	<!-- <baseURL>/mcqbuilder/resources/ckfinder/userfiles/</baseURL> -->
 
 	<licenseKey></licenseKey>
 	<licenseName></licenseName>

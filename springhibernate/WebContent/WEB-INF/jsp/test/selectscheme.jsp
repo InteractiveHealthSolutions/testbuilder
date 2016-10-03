@@ -56,7 +56,7 @@
 			<div class="col-md-9 column">
 				<h3>Select Test Scheme</h3>
 				<form:form id="selecttestScheme" method="POST"
-					action="/springhibernate/test/selectscheme?id=" >
+					action="/ihsmcqbuilder/test/selectscheme?id=" >
 
 					<table border="1px" class="table table-bordered">
 						<tr>

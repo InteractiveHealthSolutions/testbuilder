@@ -73,7 +73,7 @@ html, body {
 
 
 				<form:form id="frmSubmitQuestion" method="POST"
-					action="/springhibernate/question/createquestion"
+					action="/ihsmcqbuilder/question/createquestion"
 					modelAttribute="newQuestion" enctype="multipart/form-data"
 					class="form-horizontal">
 
@@ -178,7 +178,7 @@ html, body {
 
 									<div class="col-md-6">
 										<div class="text-center">
-											<a href="/springhibernate/home"><input type="button"
+											<a href="/ihsmcqbuilder/home"><input type="button"
 												class="btn btn-danger" value="Cancel & Go Back" /></a>
 										</div>
 									</div>
@@ -189,7 +189,7 @@ html, body {
 						</tr>
 						<%-- 						<tr id="Delete_that_Tr"> --%>
 						<%-- 							<td> --%>
-						<!-- 							 <img src="/springhibernate/resources/src/img/apple-touch-icon-144-precomposed.png" alt="Smiley face" height="42" width="42">  -->
+						<!-- 							 <img src="/ihsmcqbuilder/resources/src/img/apple-touch-icon-144-precomposed.png" alt="Smiley face" height="42" width="42">  -->
 						<%-- 							</td> --%>
 						<%-- 						</tr> --%>
 					</table>

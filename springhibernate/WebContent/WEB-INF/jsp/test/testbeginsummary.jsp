@@ -32,7 +32,7 @@
 
 				<h3>Test Summary</h3>
 
-				<form id="frm" method="get" action="/springhibernate/test/takingtest">
+				<form id="frm" method="get" action="/ihsmcqbuilder/test/takingtest">
 
 					<table border="1px" class="table table-bordered">
 

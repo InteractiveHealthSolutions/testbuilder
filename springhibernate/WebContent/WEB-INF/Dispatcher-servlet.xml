@@ -17,7 +17,7 @@
 
 	<mvc:annotation-driven />
 
-	<context:component-scan base-package="com.ihs.springhibernate" />
+	<context:component-scan base-package="com.ihs.mcqbuilder" />
 
 	<!-- Maps a logical view name to a physical resource -->
 	<bean
@@ -26,7 +26,7 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-	<bean id="sessionscope" class="com.ihs.springhibernate.sessionuser.UserSession"
+	<bean id="sessionscope" class="com.ihs.mcqbuilder.sessionuser.UserSession"
 		scope="session">
 
 		<aop:scoped-proxy proxy-target-class="false" />

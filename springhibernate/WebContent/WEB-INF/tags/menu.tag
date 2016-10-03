@@ -1,11 +1,11 @@
 <%@ tag language="java" pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@tag import="com.ihs.springhibernate.model.User"%>
-<%-- <%@attribute name="user" required="true" type="com.ihs.springhibernate.model.User"%> --%>
+<%@tag import="com.ihs.mcqbuilder.model.User"%>
+<%-- <%@attribute name="user" required="true" type="com.ihs.mcqbuilder.model.User"%> --%>
 <%@attribute name="user" required="true"
-	type="com.ihs.springhibernate.sessioninterface.IUserSession"%>
+	type="com.ihs.mcqbuilder.sessioninterface.IUserSession"%>
 <%@attribute name="Resource" required="false"
-	type="com.ihs.springhibernate.utility.ResourcesName"%>
+	type="com.ihs.mcqbuilder.utility.ResourcesName"%>
 
 <!-- <div class="col-md-4 column"> -->
 <div class="col-md-3 column">
@@ -20,7 +20,7 @@
 		<!--         </li> -->
 
 		<jsp:useBean id="Resource"
-			class="com.ihs.springhibernate.utility.ResourcesName" />
+			class="com.ihs.mcqbuilder.utility.ResourcesName" />
 
 		<c:forEach var="right" items="${user.getRole().getPrivilegeList()}">
 
@@ -106,7 +106,7 @@
 					value="/${Resource.FOLDER_TEST}/${Resource.JSP_TEST_CHECK_LIST}">
 				</c:url>
 
-				<li><a href="<c:out value="${checkTest}"/>">Check Test</a></li>
+<%-- 				<li><a href="<c:out value="${checkTest}"/>">Check Test</a></li> --%>
 			</c:if>
 
 			<c:if test="${ right.getId() == 4}">

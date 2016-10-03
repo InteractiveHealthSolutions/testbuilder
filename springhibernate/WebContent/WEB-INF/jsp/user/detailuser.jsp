@@ -36,6 +36,9 @@
         <h3>User Detail</h3>
 
         <table border="1px" class="table table-bordered table-hover">
+        <col width="20">
+         <col width="80">
+        
           <tr>
             <td colspan="2"><p class="text-success">${status}</p></td>
           </tr>
@@ -49,10 +52,7 @@
             <td>${detailUser.getLogin_Id()}</td>
           </tr>
 
-          <tr>
-            <th>Password</th>
-            <td>${detailUser.getPassword()}</td>
-          </tr>
+      
           <tr>
             <th>Role Type</th>
             <td>${detailUser.getRole().getRoleName()}</td>

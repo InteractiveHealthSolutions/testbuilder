@@ -53,7 +53,7 @@
 				<h3>Edit User</h3>
 
 
-				<form:form method="POST" action="/springhibernate/user/edituser"
+				<form:form method="POST" action="/ihsmcqbuilder/user/edituser"
 					modelAttribute="editUser" role="form" class="form-horizontal">
 
 					<div class="row">
@@ -151,7 +151,7 @@
 
 
 
-	<%--   <form:form method="POST" action="/springhibernate/edituser" commandName="editUser"> --%>
+	<%--   <form:form method="POST" action="/ihsmcqbuilder/edituser" commandName="editUser"> --%>
 	<!--     <table border="1px"> -->
 	<!--       <tr> -->
 	<!--         <th>Name</th> -->

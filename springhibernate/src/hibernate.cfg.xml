@@ -43,22 +43,22 @@
 		<property name="hbm2ddl.auto">update</property>
 
 		<!-- Names the annotated entity class -->
-		<mapping class="com.ihs.springhibernate.model.Answer" />
-		<mapping class="com.ihs.springhibernate.model.AnswerData" />
-		<!-- <mapping class="com.ihs.springhibernate.model.AnswerType" /> -->
+		<mapping class="com.ihs.mcqbuilder.model.Answer" />
+		<mapping class="com.ihs.mcqbuilder.model.AnswerData" />
+		<!-- <mapping class="com.ihs.mcqbuilder.model.AnswerType" /> -->
 
-		<mapping class="com.ihs.springhibernate.model.User" />
-		<mapping class="com.ihs.springhibernate.model.Role" />
-		<mapping class="com.ihs.springhibernate.model.Scheme" />
-		<mapping class="com.ihs.springhibernate.model.SchemeCategory" />
-		<mapping class="com.ihs.springhibernate.model.Privilege" />
-		<mapping class="com.ihs.springhibernate.model.Question" />
-		<mapping class="com.ihs.springhibernate.model.QuestionData" />
+		<mapping class="com.ihs.mcqbuilder.model.User" />
+		<mapping class="com.ihs.mcqbuilder.model.Role" />
+		<mapping class="com.ihs.mcqbuilder.model.Scheme" />
+		<mapping class="com.ihs.mcqbuilder.model.SchemeCategory" />
+		<mapping class="com.ihs.mcqbuilder.model.Privilege" />
+		<mapping class="com.ihs.mcqbuilder.model.Question" />
+		<mapping class="com.ihs.mcqbuilder.model.QuestionData" />
 
-		<mapping class="com.ihs.springhibernate.model.QuestionType" />
-		<mapping class = "com.ihs.springhibernate.model.CategoryType"/>
-		<mapping class="com.ihs.springhibernate.model.Test" />
-		<mapping class="com.ihs.springhibernate.model.TestQuestion" />
+		<mapping class="com.ihs.mcqbuilder.model.QuestionType" />
+		<mapping class = "com.ihs.mcqbuilder.model.CategoryType"/>
+		<mapping class="com.ihs.mcqbuilder.model.Test" />
+		<mapping class="com.ihs.mcqbuilder.model.TestQuestion" />
 
 	</session-factory>
 

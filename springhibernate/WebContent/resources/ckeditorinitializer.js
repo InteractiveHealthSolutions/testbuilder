@@ -23,9 +23,9 @@ function initCKEditor(elementIdToReplace) {
 				.replace(
 						elementIdToReplace,
 						{
-							filebrowserUploadUrl : '/springhibernate/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Files',
-							filebrowserImageUploadUrl : '/springhibernate/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Images',
-							filebrowserFlashUploadUrl : '/springhibernate/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Flash'
+							filebrowserUploadUrl : '/ihsmcqbuilder/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Files',
+							filebrowserImageUploadUrl : '/ihsmcqbuilder/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Images',
+							filebrowserFlashUploadUrl : '/ihsmcqbuilder/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Flash'
 						});
 	};
 

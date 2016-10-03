@@ -59,7 +59,7 @@
 
 				<div>
 					<form:form id="formManageScheme" method="POST"
-						action="/springhibernate/test/manageschemes?id=">
+						action="/ihsmcqbuilder/test/manageschemes?id=">
 					<table border="1px" class="table table-bordered">
 						<tr>
 							<th>Scheme Name</th>

@@ -138,7 +138,7 @@
       <div class="col-md-9 column">
         <h3>Edit Test</h3>
 
-        <form:form id="frmSubmitQuestion" method="POST" action="/springhibernate/test/edittest" modelAttribute="editTest">
+        <form:form id="frmSubmitQuestion" method="POST" action="/ihsmcqbuilder/test/edittest" modelAttribute="editTest">
 
           <table border="1px" class="table table-bordered">
 

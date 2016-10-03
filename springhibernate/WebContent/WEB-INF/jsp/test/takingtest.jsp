@@ -61,7 +61,7 @@
 <body style="opacity: 0">
 	<!-- This page will be used for conducting test -->
 
-    <form:form id="frm" method="POST" action="/springhibernate/test/submittest"  modelAttribute="exam">
+    <form:form id="frm" method="POST" action="/ihsmcqbuilder/test/submittest"  modelAttribute="exam">
 
      <input type="hidden" name="token" value="${token}" />
      
@@ -210,7 +210,7 @@
 <script type="text/javascript"	src="<c:url value="/resources/src/js/jquery.min.js"/>"></script>
 
 <script
-	data-main="/springhibernate/resources/quizslidify/libraries/frameworks/io2012/js/slides"
+	data-main="/ihsmcqbuilder/resources/quizslidify/libraries/frameworks/io2012/js/slides"
 	src="<c:url value="/resources/quizslidify/libraries/frameworks/io2012/js/require-1.0.8.min.js"/>"></script>
 
 

@@ -58,7 +58,7 @@
 				<h3>Edit Question</h3>
 
 				<form:form id="frmEditQuestion" method="POST"
-					action="/springhibernate/question/editquestion"
+					action="/ihsmcqbuilder/question/editquestion"
 					modelAttribute="editQuestion" enctype="multipart/form-data"
 					class="form-horizontal">
 

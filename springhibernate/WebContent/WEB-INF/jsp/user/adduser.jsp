@@ -17,6 +17,12 @@
 <!-- Header tag is called -->
 <t:header />
 
+<script type="text/javascript">
+$(document).ready(function() {
+	document.getElementById('pass').value = "";
+})
+</script>
+
 </head>
 <body>
 
@@ -37,7 +43,7 @@
 
         <h3>Add New User</h3>
 
-        <form:form method="POST" action="/springhibernate/user/adduser" modelAttribute="newUser" role="form"
+        <form:form method="POST" action="/ihsmcqbuilder/user/adduser" modelAttribute="newUser" role="form"
           class="form-horizontal">
 
           <div class="row">
@@ -63,7 +69,7 @@
             <div class="control-group">
               <div class="col-md-6">
                 <form:label path="password" class="control-label">Password</form:label>
-                <form:input path="password" class="form-control input" placeholder="Password"  required="true" />
+                <form:input path="password" class="form-control input" placeholder="Password" required="true" type="password" id="pass" />
                 <form:errors path="name" />
               </div>
             </div>
@@ -87,14 +93,14 @@
 <br/>
           <div class="row">
          
-         <p class="text-danger">${status}</p>
+         <p class="text-danger" align="center" style="color: red; font-weight: bold">${status}</p>
          
              <div class="control-group">
                   <div class="col-md-6">
                     <div class="text-center">
                    
                      
-                      <input type="submit" value="Save" id="singlebutton" name="singlebutton" class="btn btn-primary" />
+                      <input type="submit" value="Save" id="singlebutton" name="singlebutton" class="btn btn-success" />
                     </div>
 
                   </div>
@@ -102,7 +108,7 @@
 
                   <div class="col-md-6">
                     <div class="text-center">
-                      <a href="manageuser"><input type="button" class="btn btn-default" value="Cancel & Go Back" /></a>
+                      <a href="manageuser"><input type="button" class="btn btn-danger" value="Cancel & Go Back" /></a>
                     </div>
                   </div>
 

@@ -1,70 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-	id="WebApp_ID" version="3.0">
-	<display-name>springhibernate</display-name>
-	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>		
-	</welcome-file-list>
-	
-	<display-name>Spring MVC Form Handling</display-name>
- 
-    <servlet>
-        <servlet-name>Dispatcher</servlet-name>
-        <servlet-class>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>ihsmcqbuilder</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <display-name>Spring MVC Form Handling</display-name>
+  <servlet>
+    <servlet-name>Dispatcher</servlet-name>
+    <servlet-class>
            org.springframework.web.servlet.DispatcherServlet
         </servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-
-	<servlet-mapping>
-
-		<servlet-name>Dispatcher</servlet-name>
-
-		<url-pattern>/</url-pattern>
-	</servlet-mapping>
-	
-		<!-- 	CK Finder configuration -->
-	<servlet>
-		<servlet-name>ConnectorServlet</servlet-name>
-		<servlet-class>com.ckfinder.connector.ConnectorServlet</servlet-class>
-	<init-param>
-		<param-name>XMLConfig</param-name>
-		<param-value>/WEB-INF/config.xml</param-value>
-	</init-param>
-	<init-param>
-		<param-name>debug</param-name>
-		<param-value>true</param-value>
-	</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	
-<servlet-mapping>
-	<servlet-name>ConnectorServlet</servlet-name>
-	<url-pattern>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Dispatcher</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ConnectorServlet</servlet-name>
+    <servlet-class>com.ckfinder.connector.ConnectorServlet</servlet-class>
+    <init-param>
+      <param-name>XMLConfig</param-name>
+      <param-value>/WEB-INF/config.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>debug</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ConnectorServlet</servlet-name>
+    <url-pattern>
 		/ckfinder/core/connector/java/connector.java
 	</url-pattern>
-</servlet-mapping>
-
-  <!-- End of CK Finder configuration -->
-
-
-<context-param>
-  <param-name>log4jConfigLocation</param-name>
-  <param-value>/WEB-INF/classes/log4j.properties</param-value>
-</context-param>
-
-<context-param>
-  <param-name>webAppRootKey</param-name>
-  <param-value>myWebapp-instance-root</param-value>
-</context-param>
-
-<!-- The listener is something sitting there and 
-wait for specified event happened, then “hijack” the event and run its own event. -->
-
-<listener>
-  <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
-</listener>
-
+  </servlet-mapping>
+  <context-param>
+    <param-name>log4jConfigLocation</param-name>
+    <param-value>/WEB-INF/classes/log4j.properties</param-value>
+  </context-param>
+  <context-param>
+    <param-name>webAppRootKey</param-name>
+    <param-value>myWebapp-instance-root</param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+  </listener>
 </web-app>

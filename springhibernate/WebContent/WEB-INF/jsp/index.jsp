@@ -65,7 +65,7 @@ html, body {
 
 
 				<form:form method="POST" id="loginForm"
-					action="/springhibernate/index" commandName="loginUser"
+					action="/ihsmcqbuilder/index" commandName="loginUser"
 					class="form-horizontal">
 
 					<fieldset>
@@ -119,7 +119,7 @@ html, body {
 
 		<!-- 	<div align="center"> -->
 
-		<%-- 		<form:form method="POST" action="/springhibernate/index" --%>
+		<%-- 		<form:form method="POST" action="/mcqbuilder/index" --%>
 		<%-- 			commandName="loginUser"> --%>
 		<!-- 			<table> -->
 		<!-- 				<tr>					 -->
