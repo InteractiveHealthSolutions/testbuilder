@@ -20,8 +20,7 @@ import com.ihsinformatics.util.MDHashUtil;
 
 @Entity
 @Table(name = "user")
-public class User implements IAuditTrailFields
-{
+public class User implements IAuditTrailFields {
 	@Id
 	@GeneratedValue
 	private Integer id;
@@ -55,96 +54,78 @@ public class User implements IAuditTrailFields
 	@Column(name = "last_editor_id")
 	private Integer lastEditorId;
 
-	public Role getRole()
-	{
+	public Role getRole() {
 		return role;
 	}
 
-	public void setRole(Role role)
-	{
+	public void setRole(Role role) {
 		this.role = role;
 	}
 
-	public String getLogin_Id()
-	{
+	public String getLogin_Id() {
 		return login_Id;
 	}
 
-	public void setLogin_Id(String login_Id)
-	{
+	public void setLogin_Id(String login_Id) {
 		this.login_Id = login_Id;
 	}
 
-	public Date getCreationTS()
-	{
+	public Date getCreationTS() {
 		return creationTS;
 	}
 
-	public void setCreationTS(Date creationTS)
-	{
+	public void setCreationTS(Date creationTS) {
 		this.creationTS = creationTS;
 	}
 
-	public Integer getId()
-	{
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Integer id)
-	{
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
-	public void setName(String name)
-	{
+	public void setName(String name) {
 		this.name = name;
 	}
 
-	public String getPassword()
-	{
+	public String getPassword() {
 		return password;
 	}
 
-	public void setPassword(String password)
-	{
-   	  String hashPass = MDHashUtil.getHashString(password);
+	public void setPassword(String password) {
+		String hashPass = MDHashUtil.getHashString(password);
 		this.password = hashPass;
 	}
 
 	@Override
-	public Date getLastEditedTS()
-	{
+	public Date getLastEditedTS() {
 		return lastEditedTS;
 	}
 
 	@Override
-	public void setLastEditedTS(Date lastEditedTS)
-	{
+	public void setLastEditedTS(Date lastEditedTS) {
 		this.lastEditedTS = lastEditedTS;
 	}
 
-	public Integer getCreatorId()
-	{
+	public Integer getCreatorId() {
 		return creatorId;
 	}
 
-	public void setCreatorId(Integer craetorId)
-	{
+	public void setCreatorId(Integer craetorId) {
 		this.creatorId = craetorId;
 	}
 
-	public Integer getLastEditorId()
-	{
+	public Integer getLastEditorId() {
 		return lastEditorId;
 	}
 
-	public void setLastEditorId(Integer lastEditorId)
-	{
+	public void setLastEditorId(Integer lastEditorId) {
 		this.lastEditorId = lastEditorId;
 	}
 

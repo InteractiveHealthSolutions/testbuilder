@@ -5,7 +5,7 @@
 
 <%--     <title>${user.getName()}</title> --%>
     
-    <title>Test Manager</title>
+    <title>IHS MCQ Builder</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
      
      <!-- All Required CSS and JS for UI -->
@@ -19,17 +19,18 @@
   <![endif]-->
 
 <!-- Fav and touch icons -->
-<link rel="apple-touch-icon-precomposed" sizes="144x144"
-  href="<c:url value="/resources/src/img/apple-touch-icon-144-precomposed.png"/>"/>
+<!-- <link rel="apple-touch-icon-precomposed" sizes="144x144" -->
+<%--   href="<c:url value="/resources/src/img/apple-touch-icon-144-precomposed.png"/>"/> --%>
 
-<link rel="apple-touch-icon-precomposed" sizes="114x114"
-  href="<c:url value="/resources/src/img/apple-touch-icon-114-precomposed.png"/>"/>
+<!-- <link rel="apple-touch-icon-precomposed" sizes="114x114" -->
+<%--   href="<c:url value="/resources/src/img/apple-touch-icon-114-precomposed.png"/>"/> --%>
 
-<link rel="apple-touch-icon-precomposed" sizes="72x72"
-  href="<c:url value="/resources/src/img/apple-touch-icon-72-precomposed.png"/>"/>
+<!-- <link rel="apple-touch-icon-precomposed" sizes="72x72" -->
+<%--   href="<c:url value="/resources/src/img/apple-touch-icon-72-precomposed.png"/>"/> --%>
 
-<link rel="apple-touch-icon-precomposed" href="<c:url value="/resources/src/img/apple-touch-icon-57-precomposed.png"/>" />
-<link rel="shortcut icon" href="<c:url value="/resources/src/img/favicon.png"/>" />
+<%-- <link rel="apple-touch-icon-precomposed" href="<c:url value="/resources/src/img/apple-touch-icon-57-precomposed.png"/>" /> --%>
+<link rel="icon" type="image/png" href="<c:url value="/resources/src/img/ihs_logo.png"/>" />
+
 
 <script type="text/javascript" src="<c:url value="/resources/src/js/jquery.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/resources/src/js/bootstrap.min.js"/>"></script>

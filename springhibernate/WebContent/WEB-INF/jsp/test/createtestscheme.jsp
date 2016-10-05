@@ -145,7 +145,7 @@
 
 									<div class="col-md-4">
 										<div class="text-center">
-											<a href="/mcqbuilder/home"> <input type="button"
+											<a href="/ihsmcqbuilder/home"> <input type="button"
 												class="btn btn-danger" value="Cancel & Go Back" /></a>
 										</div>
 									</div>
