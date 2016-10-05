@@ -55,7 +55,7 @@
 			<div class="col-md-9 column">
 
 				<h3>Create Test Paper</h3>
-				<p style="color: red; font-weight: bold">${status}</p>
+				<p style="font-weight: bold">${status}</p>
 
 				<form:form id="formSubmitTest" method="POST"
 					action="/ihsmcqbuilder/test/generatetest?type="

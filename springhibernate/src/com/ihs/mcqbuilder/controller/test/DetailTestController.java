@@ -139,6 +139,7 @@ public class DetailTestController {
 			if (printTypeId == 1) {
 
 				Document document = new Document();
+				document.setMargins(50f, 50f, 20f, 20f);
 				ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 				try {
 
@@ -160,41 +161,7 @@ public class DetailTestController {
 					
 					Font mediumSmall = new Font(Font.FontFamily.TIMES_ROMAN, 9,
 							Font.NORMAL);
-					
-					
-		/*			PdfPTable table = new PdfPTable(3);
-					table.setSpacingBefore(300);
-					PdfPCell fake = new PdfPCell();
-					fake.setBorder(Rectangle.NO_BORDER);
-
-					PdfPCell dataCell = new PdfPCell();
-					dataCell.setHorizontalAlignment(Element.ALIGN_LEFT);
-					dataCell.setBorder(Rectangle.NO_BORDER);
-
-				
-
-					float[] columnWidths = { 30f, 50f, 20f };
-
-					dataCell.addElement(new Paragraph(
-							"Name:            ___________________", smallBold));
-					dataCell.addElement(new Phrase("\n"));
-					dataCell.addElement(new Paragraph(
-							"Email:            ___________________", smallBold));
-					dataCell.addElement(new Phrase("\n"));
-					dataCell.addElement(new Paragraph(
-							"Phone No:     ___________________", smallBold));
-					dataCell.addElement(new Phrase("\n"));
-					dataCell.addElement(new Paragraph(
-							"Date:              ___________________", smallBold));
-
-					table.addCell(fake);
-					table.addCell(dataCell);
-					table.addCell(fake);
-
-					table.setWidths(columnWidths);*/
-					
-					
-					
+						
 					
 					Test test = TestDAO.getTest(TestDAO.By.ID, testId,
 							TestDAO.FetchType.EAGER);
@@ -222,13 +189,14 @@ public class DetailTestController {
 					Paragraph applicantTitle = new Paragraph("APPLICANT INFORMATION FORM",catFont1);
 					applicantTitle.setAlignment(Element.ALIGN_CENTER);
 					
-					Paragraph positionLine = new Paragraph("POSITION APPLIED FOR:__________________________________________ DATE:___________________",smallWithoutBold);
+					Paragraph positionLine = new Paragraph("POSITION APPLIED FOR:________________________________     DATE:___________________",smallWithoutBold);
 					Paragraph personalInformation = new Paragraph("PERSONAL INFORMATION", smallBold);
 					
 					Paragraph blockLetters = new Paragraph("(PLEASE USE BLOCK LETTERS)", verySmall);
 					
-					
+				
 					PdfPTable table = new PdfPTable(2);
+					table.setWidthPercentage(100f);
 					PdfPCell cell1 = new PdfPCell(new Paragraph("  Name",smallWithoutBold));
 					cell1.setFixedHeight(25);
 			        PdfPCell cell2 = new PdfPCell(new Paragraph(""));
@@ -245,8 +213,7 @@ public class DetailTestController {
 			        cell9.setFixedHeight(40);
 			        PdfPCell cell10 = new PdfPCell(new Paragraph("  Land Line: ____________________ \n\n  Cell Phone:____________________", mediumSmall));
 			        
-			        float[] columnWidths = {40f, 140f};
-			        
+			        float[] columnWidths = {20f, 80f};
 			        
 			        table.addCell(cell1);
 			        table.addCell(cell2);
@@ -268,10 +235,9 @@ public class DetailTestController {
 			        Paragraph block1 = new Paragraph("(PLEASE ENTER MOST RECENT DEGREE / DIPLOMA FIRST)", verySmall);
 			        
 			    	PdfPTable table1 = new PdfPTable(6);
-			    	float[] columnWidths1 = {18f, 40f, 50f, 20f, 33f, 20f };
-			    	table1.setWidths(columnWidths1);
-			    	table1.setSpacingBefore(10);
-			    	table1.setHorizontalAlignment(Element.ALIGN_LEFT);
+			    	table1.setWidthPercentage(100f);
+			    	float[] columnWidths1 = {8f, 30f, 23f, 10f, 18f, 11f };
+			    	
 			    	
 			    	PdfPCell cell11 = new PdfPCell(new Paragraph("  S.No", smallWithoutBold));
 			    	cell1.setFixedHeight(30);
@@ -315,11 +281,16 @@ public class DetailTestController {
 			    	table1.addCell(cell27);
 			    	table1.addCell(cell28);
 			    	
+			    	table1.setWidths(columnWidths1);
+			    	table1.setSpacingBefore(10);
+			    	table1.setHorizontalAlignment(Element.ALIGN_LEFT);
+			    	
 			    	Paragraph EmploymentInfo = new Paragraph("EMPLOYMENT INFORMATION", smallBold);
 			        Paragraph block2 = new Paragraph("(PLEASE ENTER MOST RECENT JOB / INTERNSHIP FIRST)", verySmall);
 			        
 			        PdfPTable table2 = new PdfPTable(5);
-			    	float[] columnWidths2 = {18f, 50f, 35f, 35f, 40f };
+			        table2.setWidthPercentage(100);
+			    	float[] columnWidths2 = {8f, 30f, 22f, 20f, 20f };
 			    	table2.setWidths(columnWidths2);
 			    	table2.setSpacingBefore(10);
 			    	table2.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -367,6 +338,7 @@ public class DetailTestController {
 			    	
 			    	  
 			        PdfPTable table3 = new PdfPTable(2);
+			        table3.setWidthPercentage(100);
 			    	table3.setHorizontalAlignment(Element.ALIGN_LEFT);
 			    	
 			    	PdfPCell cell41 = new PdfPCell(new Paragraph("  TECHNICAL SKILLS / EXPERTISE", smallBold));
@@ -381,10 +353,9 @@ public class DetailTestController {
 			    	table3.addCell(cell43);
 			    	table3.addCell(cell43);
 			    	
-			    	Paragraph lastLine = new Paragraph("Expected Time of Joining: ______________________                      Signature: ______________",smallWithoutBold);
+			    	Paragraph lastLine = new Paragraph("Expected Time of Joining: ______________________                      Signature: _________________",smallWithoutBold);
 					
 		
-					document.setMargins(50, 15, 15, 20);
 					document.newPage();
 					document.add(applicantTitle);
 					document.add(new Phrase("\n"));

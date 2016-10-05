@@ -179,10 +179,6 @@ public class QuestionDAO {
 				useInteger = true;
 			}
 
-			// else if (by.toString().equalsIgnoreCase(By.TYPE_NAME.toString()))
-			// {
-			// sql += "type_name= :_value";
-			// }
 
 			Query query = session.createQuery(sql);
 
