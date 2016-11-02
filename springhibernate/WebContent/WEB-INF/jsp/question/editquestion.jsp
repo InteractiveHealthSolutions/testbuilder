@@ -200,7 +200,7 @@
 									<div class="col-md-6">
 										<div class="text-center">
 											<input type="button" value="Save" id="singlebutton"
-												name="singlebutton" class="btn btn-primary"
+												name="singlebutton" class="btn btn-success"
 												onclick="submitEditQuesForm()" />
 										</div>
 
@@ -210,7 +210,7 @@
 									<div class="col-md-6">
 										<div class="text-center">
 											<a href="managequestion"><input type="button"
-												class="btn btn-default" value="Cancel & Go Back" /></a>
+												class="btn btn-danger" value="Cancel & Go Back" /></a>
 										</div>
 									</div>
 

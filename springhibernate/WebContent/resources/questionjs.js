@@ -374,7 +374,7 @@ function submitQuesForm() {
 	var empty = true;
 	var marksBox = document.getElementById("maxMarks");
 	var radioCheck = true;
-	if (divCount < 2) {
+	if (document.getElementById("slctQuestionType").value != "1" && divCount < 2) {
 		error.innerHTML = "Options must be greater than or equal to 2";
 	}
 
@@ -399,11 +399,11 @@ function submitQuesForm() {
 			}
 		}
 
-		if (empty == false) {
+		if (document.getElementById("slctQuestionType").value != "1" && empty == false) {
 			error.innerHTML = "Values of options missing";
 		}
 
-		else if (radioCheck == false) {
+		else if (document.getElementById("slctQuestionType").value != "1" && radioCheck == false) {
 			error.innerHTML = "No correct option selected";
 		}
 
@@ -436,7 +436,7 @@ function submitEditQuesForm() {
 		}
 	}
 
-	if (yourCount < 2) {
+	if (document.getElementById("slctQuestionType").value != "1" && yourCount < 2) {
 		error.innerHTML = "Options must be greater than or equal to 2";
 	}
 
@@ -465,11 +465,11 @@ function submitEditQuesForm() {
 			}
 		}
 
-		if (empty == false) {
+		if (document.getElementById("slctQuestionType").value != "1" && empty == false) {
 			error.innerHTML = "Values of options missing";
 		}
 
-		else if (radioCheck == false) {
+		else if (document.getElementById("slctQuestionType").value != "1" && radioCheck == false) {
 			error.innerHTML = "No correct option selected";
 		}
 
